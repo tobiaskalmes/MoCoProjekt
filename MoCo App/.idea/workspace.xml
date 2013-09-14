@@ -2,16 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1a680e2-2fe2-4459-9380-b6135bef0327" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/logging/LoggerNames.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/logging/LoggingFormatter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/logging/RootLogger.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/communication/Login.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/ant.xml" />
+      <change type="DELETED" beforePath="D:\HTW\Master\Mobile Computing\MoCoProjekt\MoCo Server\src\example\HelloWorld.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/Main.java" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../MoCo Server/web/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" />
     </list>
     <list id="52bb4632-4c50-4d47-991b-d3798583f8f8" name="Don't Commit" comment="" />
     <ignored path="MoCo App.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379156606054" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379156998216" ignored="false" />
+    <file path="/Login.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379159558219" ignored="false" />
+    <file path="/web.xml" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379160883128" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,8 +299,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
