@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1a680e2-2fe2-4459-9380-b6135bef0327" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/artifacts/MoCo_Server_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MoCo Server/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/MoCo Server.iml" afterPath="$PROJECT_DIR$/../MoCo Server/MoCo Server.iml" />
+    </list>
+    <list id="52bb4632-4c50-4d47-991b-d3798583f8f8" name="Don't Commit" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" />
     </list>
     <ignored path="MoCo App.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379152867498" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379153253266" ignored="false" />
+    <file path="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379156274416" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379156274416" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,6 +286,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c1a680e2-2fe2-4459-9380-b6135bef0327" name="Default" comment="" />
+      <changelist id="52bb4632-4c50-4d47-991b-d3798583f8f8" name="Don't Commit" comment="" />
       <created>1379152817612</created>
       <updated>1379152817612</updated>
     </task>
@@ -313,7 +319,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15795091" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15795091" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />

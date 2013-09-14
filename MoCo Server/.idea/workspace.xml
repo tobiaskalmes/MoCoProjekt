@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c19fcc61-aaaf-4fc4-be2b-660041314ff3" name="Default" comment="">
+    <list default="true" id="c19fcc61-aaaf-4fc4-be2b-660041314ff3" name="Default" comment="init">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/MoCo_Server_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoCo Server.iml" afterPath="$PROJECT_DIR$/MoCo Server.iml" />
+    </list>
+    <list id="541ae2ae-fc57-4881-802b-ca2dd7dd8d73" name="Don't Commit" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MoCo Server.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Main.java" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379151642297" ignored="false" />
-    <file path="/Dummy.txt" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152914906" ignored="false" />
+    <file path="/Dummy.txt" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379153253266" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/res/values/strings.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152825733" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/AndroidManifest.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152825733" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/src/de/htw/toto/moco/app/MainActivity.java" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/build.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/res/layout/main.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379156274416" ignored="false" />
+    <file path="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379156274416" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +82,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.38368055">
+            <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.25817758">
               <folding />
             </state>
           </provider>
@@ -103,10 +111,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="960" />
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -196,6 +203,7 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -209,7 +217,7 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 7.0">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -301,7 +309,33 @@
       <patterns />
       <method />
     </configuration>
-    <list size="0" />
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Tomcat 7.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0">
+      <deployment>
+        <artifact name="MoCo Server:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="MoCo Server:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0" />
+    </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -311,6 +345,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c19fcc61-aaaf-4fc4-be2b-660041314ff3" name="Default" comment="" />
+      <changelist id="541ae2ae-fc57-4881-802b-ca2dd7dd8d73" name="Don't Commit" comment="" />
       <created>1379151522764</created>
       <updated>1379151522764</updated>
     </task>
@@ -322,14 +357,18 @@
       <created>1379152918844</created>
       <updated>1379152918844</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="init">
+      <created>1379152977574</created>
+      <updated>1379152977574</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="960" y="0" width="960" height="1040" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -341,12 +380,13 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15314835" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31959912" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -422,7 +462,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.38368055">
+        <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.25817758">
           <folding />
         </state>
       </provider>
