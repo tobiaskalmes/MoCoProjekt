@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c19fcc61-aaaf-4fc4-be2b-660041314ff3" name="Default" comment="init">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/MoCo_Server_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoCo Server.iml" afterPath="$PROJECT_DIR$/MoCo Server.iml" />
-    </list>
-    <list id="541ae2ae-fc57-4881-802b-ca2dd7dd8d73" name="Don't Commit" comment="">
+    <list default="true" id="c19fcc61-aaaf-4fc4-be2b-660041314ff3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/LoggerNames.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/LoggingFormatter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/RootLogger.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+    <list id="541ae2ae-fc57-4881-802b-ca2dd7dd8d73" name="Don't Commit" comment="" />
     <ignored path="MoCo Server.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Main.java" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379151642297" ignored="false" />
-    <file path="/Dummy.txt" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379153253266" ignored="false" />
+    <file path="/Dummy.txt" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379156605877" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/res/values/strings.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152825733" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/AndroidManifest.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152825733" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/src/de/htw/toto/moco/app/MainActivity.java" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/build.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
     <file path="$PROJECT_DIR$/../MoCo App/res/layout/main.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379152830123" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379156274416" ignored="false" />
-    <file path="$PROJECT_DIR$/../MoCo App/.idea/workspace.xml" changelist="c19fcc61-aaaf-4fc4-be2b-660041314ff3" time="1379156274416" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,10 +76,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.25817758">
+            <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelloWorld.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/example/HelloWorld.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="23" selection-start="1291" selection-end="1291" vertical-scroll-proportion="1.045208">
               <folding />
             </state>
           </provider>
@@ -107,6 +113,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/de/htw/toto/moco/server/Main.java" />
+        <option value="$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/LoggerNames.java" />
       </list>
     </option>
   </component>
@@ -173,6 +180,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MoCo Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MoCo Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="de" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -190,6 +215,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MoCo Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MoCo Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moco" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logging" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -216,6 +279,11 @@
     <option name="myDjangoConsoleState">
       <PyConsoleSettings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HTW\Master\Mobile Computing\MoCoProjekt\MoCo Server\src\de\htw\toto\moco\server\logging" />
+    </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 7.0">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -361,14 +429,22 @@
       <created>1379152977574</created>
       <updated>1379152977574</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="init">
+      <created>1379156582145</created>
+      <updated>1379156582145</updated>
+    </task>
+    <task id="LOCAL-00005" summary="init">
+      <created>1379156611127</created>
+      <updated>1379156611127</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="0" width="960" height="1040" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -386,7 +462,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31959912" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31959912" sideWeight="0.6712018" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -462,7 +538,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.25817758">
+        <state line="13" column="22" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/RootLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="328" selection-end="328" vertical-scroll-proportion="0.16545013">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/LoggingFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="235" selection-end="235" vertical-scroll-proportion="0.18149467">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/toto/moco/server/logging/LoggerNames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="31" selection-start="201" selection-end="201" vertical-scroll-proportion="0.17873831">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/example/HelloWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="23" selection-start="1291" selection-end="1291" vertical-scroll-proportion="1.045208">
           <folding />
         </state>
       </provider>
