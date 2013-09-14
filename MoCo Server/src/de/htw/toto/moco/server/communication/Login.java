@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/login")
 public class Login {
-
     @GET
     @Path(value = "/{username}/{passwordhash}")
     @Produces(MediaType.TEXT_HTML)
