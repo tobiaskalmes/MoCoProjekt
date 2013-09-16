@@ -8,4 +8,5 @@ package de.htw.toto.moco.server.database;
  * To change this template use File | Settings | File Templates.
  */
 public class DBHandler {
+
 }
