@@ -18,7 +18,7 @@ import java.util.logging.Level;
 
 //TODO addChatmessage, getChatmessage, addFriend, getFriend, deleteFriend, checkFriend
 public class DBBackend {
-    private static Connection con = null;
+    private Connection con = null;
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
@@ -26,6 +26,14 @@ public class DBBackend {
     private static String dbPass = "MoCo1234";
 
     private RootLogger logger;
+    private static DBBackend instance;
+    public static DBBackend getInstance(){
+        if (instance == null){
+            instance = new DBBackend();
+        }
+         return instance;
+
+    }
 
     private DBBackend(){
         //severe kacke dampft
@@ -33,25 +41,24 @@ public class DBBackend {
         //info
         //finest zu detailliert
         logger = RootLogger.getInstance(LoggerNames.DB_LOGGER);
-        try {
-            Class.forName("com.mysql.jdbc.Driver"); //load driver
-
-            //connect
-            con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
-        } catch (ClassNotFoundException e) {
-            logger.log("driver not found", Level.SEVERE,e);
-        } catch (SQLException e) {
-            logger.log("can't connect", Level.WARNING, e);
-        }
+        checkConnection();
     }
 
-    private static Connection getInstance(){
-        if(con == null)
-            new DBBackend();
-        return con;
+    private void checkConnection(){
+         if (con==null){
+             try {
+                 Class.forName("com.mysql.jdbc.Driver"); //load driver
+
+                 con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
+             } catch (ClassNotFoundException e) {
+                 logger.log("driver not found", Level.SEVERE,e);
+             } catch (SQLException e) {
+                 logger.log("can't connect", Level.WARNING, e);
+             }
+         }
     }
 
-    private void closeConnection(Connection con){
+    public void closeConnection(){
         try {
             con.close();
         } catch (SQLException e) {
@@ -72,7 +79,7 @@ public class DBBackend {
 
     public Boolean verifyUserPassword(String userName, String passwordToVerify){
         String sql = "SELECT passwordhash FROM userlist WHERE username IS ?;";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -94,7 +101,7 @@ public class DBBackend {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
             closePreparedStatement(pst);
-            closeConnection(con);
+
         }
 
         return null;
@@ -103,7 +110,7 @@ public class DBBackend {
 
     public void addUser(String username,String password){
         String sql = "INSERT INTO userlist (username,passwordhash) VALUES (?,?);"; //on duplicate key?
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -113,14 +120,13 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
             closePreparedStatement(pst);
         }
     }
 
     public void deleteUser(String username){
         String sql = "DELETE * FROM userlist WHERE username = ?;";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
 
         try {
@@ -130,7 +136,7 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
     }
@@ -141,7 +147,7 @@ public class DBBackend {
 
      public void addPoi(Poi poi) {
          String sql = "INSERT INTO poi (latitude,longitude,type,active,poiName ) VALUES (?,?,?,?,?);"; //on duplicate key?
-         Connection con = getInstance();
+         checkConnection();
          PreparedStatement pst= null;
          try {
              pst  = con.prepareStatement(sql);
@@ -157,14 +163,14 @@ public class DBBackend {
          } catch (SQLException e) {
              e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
          } finally {
-             closeConnection(con);
+
              closePreparedStatement(pst);
          }
      }
     public Poi getPoiById(int idPoi){
         Poi poi = null;
         String sql = "SELECT * FROM poi WHERE idPoi = ?;";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -185,7 +191,7 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
         return poi;
@@ -196,7 +202,7 @@ public class DBBackend {
     public ArrayList<Poi> getAllPoi(){
         ArrayList<Poi> poiList =new ArrayList<Poi>();
         String sql = "SELECT * FROM poi";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -219,7 +225,7 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
         return poiList;
@@ -230,7 +236,7 @@ public class DBBackend {
 
     public void addFriend(int idUserA, int idUserB ){
         String sql = "INSERT INTO friendlist (idUserA,idUserB) VALUES (?,?);"; //on duplicate key?
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -241,7 +247,7 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
 
@@ -251,7 +257,7 @@ public class DBBackend {
         ArrayList<Integer> friendlist = new ArrayList<Integer>();
 
         String sql = "SELECT idUserB FROM friendlist WHERE idUserA = "+idUser+";";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -270,9 +276,12 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
         return friendlist;
     }
+    /*--------------------------------------------------------------*
+     * message management                                           *
+     *--------------------------------------------------------------*/
 }
