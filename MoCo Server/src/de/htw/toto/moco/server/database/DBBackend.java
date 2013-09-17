@@ -1,14 +1,13 @@
 package de.htw.toto.moco.server.database;
 
+import de.htw.toto.moco.server.logging.LoggerNames;
+import de.htw.toto.moco.server.logging.RootLogger;
 import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.navigation.POI;
-import de.htw.toto.moco.server.logging.LoggerNames;
-import de.htw.toto.moco.server.logging.RootLogger;
 import de.htw.toto.moco.server.navigation.POIList;
 import de.htw.toto.moco.server.user.UserList;
 
-import java.nio.channels.Channels;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,23 +22,14 @@ import java.util.logging.Level;
 
 //TODO addChatmessage, getChatmessage, addFriend, getFriend, deleteFriend, checkFriend
 public class DBBackend {
-    private Connection con = null;
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
-    private static String dbUser = "moco";
-    private static String dbPass = "MoCo1234";
-
-    private RootLogger logger;
+    private static String dbUser = "root";
+    private static String dbPass = "Admin123#";
     private static DBBackend instance;
-
-    public static DBBackend getInstance() {
-        if (instance == null) {
-            instance = new DBBackend();
-        }
-        return instance;
-
-    }
+    private Connection con = null;
+    private RootLogger logger;
 
     private DBBackend() {
         //severe kacke dampft
@@ -50,15 +40,26 @@ public class DBBackend {
         checkConnection();
     }
 
+    public static DBBackend getInstance() {
+        if (instance == null) {
+            instance = new DBBackend();
+        }
+        return instance;
+
+    }
+
     private void checkConnection() {
         if (con == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver"); //load driver
 
-                con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
-            } catch (ClassNotFoundException e) {
+                con = DriverManager.getConnection(
+                        "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
+            }
+            catch (ClassNotFoundException e) {
                 logger.log("driver not found", Level.SEVERE, e);
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 logger.log("can't connect", Level.WARNING, e);
             }
         }
@@ -67,7 +68,8 @@ public class DBBackend {
     public void closeConnection() {
         try {
             con.close();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("failed to close connection", Level.WARNING, e);
         }
     }
@@ -75,7 +77,8 @@ public class DBBackend {
     private void closePreparedStatement(PreparedStatement pst) {
         try {
             pst.close();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("failed to close Statement", Level.WARNING, e);
         }
     }
@@ -104,9 +107,11 @@ public class DBBackend {
                 return false;
                 //user exist pw ng
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("verfiyUserPassword sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
             closePreparedStatement(pst);
 
         }
@@ -124,9 +129,11 @@ public class DBBackend {
             pst.setString(1, username);
             pst.setString(2, password);
             pst.execute();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("addUser sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
             closePreparedStatement(pst);
         }
     }
@@ -140,15 +147,18 @@ public class DBBackend {
             pst = con.prepareStatement(sql);
             pst.setString(1, username);
             pst.execute();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("deleteUser sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
     }
+
     public int getIdUserByName(String userName) {
-        String sql = "SELECT idUser FROM userlist WHERE username IS ?;";
+        String sql = "SELECT idUser FROM userlist WHERE username = ?;";
         checkConnection();
         PreparedStatement pst = null;
         try {
@@ -163,9 +173,11 @@ public class DBBackend {
             }
             return rs.getInt("idUser");
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("getIdUserByName sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
             closePreparedStatement(pst);
 
         }
@@ -173,6 +185,7 @@ public class DBBackend {
         return 0;
         //sth bad happened!
     }
+
     public String getUsernameById(int idUser) {
         String sql = "SELECT username FROM userlist WHERE idUser = ?;";
         checkConnection();
@@ -189,9 +202,11 @@ public class DBBackend {
             }
             return rs.getString("username");
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("getUsernameById sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
             closePreparedStatement(pst);
 
         }
@@ -213,15 +228,18 @@ public class DBBackend {
             pst.setDouble(1, poi.getLatitude());
             pst.setDouble(2, poi.getLongitude());
             pst.setInt(3, poi.getType());
-            if (poi.isActive())
+            if (poi.isActive()) {
                 pst.setInt(4, 1);
-            else
+            } else {
                 pst.setInt(4, 0);
+            }
             pst.setString(5, poi.getName());
             pst.execute();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("addPoi sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
@@ -242,22 +260,26 @@ public class DBBackend {
             }
             rs.beforeFirst();
             while (rs.next()) {
-                if (rs.getInt("active") == 1)
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true, rs.getInt("type"), rs.getInt("idPoi"));
-                else
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false, rs.getInt("type"), rs.getInt("idPoi"));
+                if (rs.getInt("active") == 1) {
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true,
+                                  rs.getInt("type"), rs.getInt("idPoi"));
+                } else {
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false,
+                                  rs.getInt("type"), rs.getInt("idPoi"));
+                }
 
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("getPoiById sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
         return poi;
 
     }
-
 
     public POIList getAllPOIs() {
         ArrayList<POI> poiList = new ArrayList<POI>();
@@ -275,16 +297,21 @@ public class DBBackend {
             rs.beforeFirst();
             while (rs.next()) {
                 POI poi;
-                if (rs.getInt("active") == 1)
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true, rs.getInt("type"), rs.getInt("idPoi"));
-                else
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false, rs.getInt("type"), rs.getInt("idPoi"));
+                if (rs.getInt("active") == 1) {
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true,
+                                  rs.getInt("type"), rs.getInt("idPoi"));
+                } else {
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false,
+                                  rs.getInt("type"), rs.getInt("idPoi"));
+                }
                 poiList.add(poi);
 
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("getAllPoi sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
@@ -307,9 +334,11 @@ public class DBBackend {
             pst.setInt(2, idUserB);
 
             pst.execute();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("addFriend sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
@@ -334,12 +363,14 @@ public class DBBackend {
             rs.beforeFirst();
             while (rs.next()) {
 
-                friendlist.add(getUsernameById(rs.getInt("idUserA")));
+                friendlist.add(getUsernameById(rs.getInt("idUserB")));
 
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             logger.log("addFriend sql problems", Level.WARNING, e);
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
@@ -351,10 +382,9 @@ public class DBBackend {
      * message management                                           *
      *--------------------------------------------------------------*/
 
-
     public ChatMessageList getAllChatMessages(String username) {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
-        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser WHERE uls = ? OR uld = ? ORDER BY sendTime DESC LIMIT 0,50;";
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser WHERE uls.username = ? OR uld.username = ? ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
         PreparedStatement pst = null;
         try {
@@ -369,12 +399,16 @@ public class DBBackend {
             }
             rs.beforeFirst();
             while (rs.next()) {
-                chatMessageList.add(new ChatMessage(rs.getString("sender"), rs.getString("destination"),rs.getString("content"),rs.getInt("idChatmessage"), rs.getDate("sendTime")));
+                chatMessageList.add(
+                        new ChatMessage(rs.getString("sender"), rs.getString("destination"), rs.getString("content"),
+                                        rs.getInt("idChatmessage"), rs.getDate("sendTime")));
 
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
@@ -395,9 +429,11 @@ public class DBBackend {
             pst.setInt(3, getIdUserByName(cm.getReceiver()));
             pst.setDate(4, new java.sql.Date(cm.getSendTime().getTime()));
             pst.execute();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } finally {
+        }
+        finally {
 
             closePreparedStatement(pst);
         }
