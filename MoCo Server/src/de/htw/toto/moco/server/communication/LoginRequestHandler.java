@@ -1,5 +1,7 @@
 package de.htw.toto.moco.server.communication;
 
+import de.htw.toto.moco.server.token.TokenHandler;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,7 +24,7 @@ public class LoginRequestHandler extends RequestHandler {
     public String login(@PathParam(value = "username") String username, @PathParam(value = "passwordHash") String
             passwordHash) {
         //TODO: add password check
-        //TODO: return token
-        return "<html><body>username: " + username + "<br/>passwordHash:" + passwordHash + "</body></html>";
+        //TODO: getUserID
+        return TokenHandler.getInstance().createToken(username, -1);
     }
 }

@@ -4,4 +4,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="friendList">Freundesliste</string>
+    <string name="addFriend">Freund hinzufügen</string>
+    <string name="undefined">UNDEFINED</string>
+    <string name="chatpartner">Chatpartner:</string>
+    <string name="sendMessage">Nachricht senden</string>
 </resources>

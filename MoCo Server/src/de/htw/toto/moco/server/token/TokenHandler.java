@@ -12,13 +12,13 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class TokenHandler {
-    private TokenHandler instance;
+    private static TokenHandler instance;
 
     private TokenHandler() {
 
     }
 
-    public TokenHandler getInstance() {
+    public static TokenHandler getInstance() {
         if (instance == null) {
             instance = new TokenHandler();
         }
