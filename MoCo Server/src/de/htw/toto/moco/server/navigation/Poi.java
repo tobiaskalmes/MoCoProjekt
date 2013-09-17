@@ -7,14 +7,14 @@ package de.htw.toto.moco.server.navigation;
  * Time: 18:56
  * To change this template use File | Settings | File Templates.
  */
-public class Poi {
+public class POI {
     private double latitude, longitude;
     private String name;
     private boolean active;
     private int type;
     private Integer idPoi;
 
-    public Poi(double latitude, double longitude, String name, boolean active, int type, Integer idPoi) {
+    public POI(double latitude, double longitude, String name, boolean active, int type, Integer idPoi) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
