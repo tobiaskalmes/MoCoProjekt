@@ -1,9 +1,12 @@
 package de.htw.toto.moco.server.database;
 
+import de.htw.toto.moco.server.logging.LoggerNames;
+import de.htw.toto.moco.server.logging.RootLogger;
 import de.htw.toto.moco.server.navigation.Poi;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,19 +25,23 @@ public class DBBackend {
     private static String dbUser = "moco";
     private static String dbPass = "MoCo1234";
 
+    private RootLogger logger;
+
     private DBBackend(){
+        //severe kacke dampft
+        //debug
+        //info
+        //finest zu detailliert
+        logger = RootLogger.getInstance(LoggerNames.DB_LOGGER);
         try {
             Class.forName("com.mysql.jdbc.Driver"); //load driver
 
             //connect
             con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
         } catch (ClassNotFoundException e) {
-            System.out.println("driver not found");
+            logger.log("driver not found", Level.SEVERE,e);
         } catch (SQLException e) {
-            System.out.println("can't connect");
-            System.out.println("SQLException: " + e.getMessage());
-            System.out.println("SQLState: " + e.getSQLState());
-            System.out.println("VendorError: " + e.getErrorCode());
+            logger.log("can't connect", Level.WARNING, e);
         }
     }
 
@@ -44,20 +51,18 @@ public class DBBackend {
         return con;
     }
 
-    private static void closeConnection(Connection con){
+    private void closeConnection(Connection con){
         try {
             con.close();
         } catch (SQLException e) {
-            System.out.println("failed to close connection");
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           logger.log("failed to close connection",Level.WARNING,e);
         }
     }
-    private static void closePreparedStatement(PreparedStatement pst){
+    private void closePreparedStatement(PreparedStatement pst){
         try {
             pst.close();
         } catch (SQLException e) {
-            System.out.println("failed to close Statement");
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           logger.log("failed to close Statement",Level.WARNING,e);
         }
     }
 
@@ -66,11 +71,12 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
     public Boolean verifyUserPassword(String userName, String passwordToVerify){
-        String sql = "SELECT password FROM mocodb.user WHERE username IS " + userName;
+        String sql = "SELECT passwordhash FROM userlist WHERE username IS ?;";
         Connection con = getInstance();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
+            pst.setString(1, userName);
             pst.execute();
             ResultSet rs= pst.getResultSet();
             if (!rs.first()) {
@@ -87,8 +93,8 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
             closePreparedStatement(pst);
+            closeConnection(con);
         }
 
         return null;
@@ -96,7 +102,7 @@ public class DBBackend {
     }
 
     public void addUser(String username,String password){
-        String sql = "INSERT INTO user (username,password) VALUES (?,?);"; //on duplicate key?
+        String sql = "INSERT INTO userlist (username,passwordhash) VALUES (?,?);"; //on duplicate key?
         Connection con = getInstance();
         PreparedStatement pst= null;
         try {
@@ -113,11 +119,13 @@ public class DBBackend {
     }
 
     public void deleteUser(String username){
-        String sql = "DROP FROM user WHERE username = \""+ username+"\"" ;
+        String sql = "DELETE * FROM userlist WHERE username = ?;";
         Connection con = getInstance();
         PreparedStatement pst= null;
+
         try {
             pst  = con.prepareStatement(sql);
+            pst.setString(1, username);
             pst.execute();
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -132,7 +140,7 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
      public void addPoi(Poi poi) {
-         String sql = "INSERT INTO poi (latitude,longitude,type,active,name ) VALUES (?,?,?,?,?);"; //on duplicate key?
+         String sql = "INSERT INTO poi (latitude,longitude,type,active,poiName ) VALUES (?,?,?,?,?);"; //on duplicate key?
          Connection con = getInstance();
          PreparedStatement pst= null;
          try {
@@ -153,6 +161,38 @@ public class DBBackend {
              closePreparedStatement(pst);
          }
      }
+    public Poi getPoiById(int idPoi){
+        Poi poi = null;
+        String sql = "SELECT * FROM poi WHERE idPoi = ?;";
+        Connection con = getInstance();
+        PreparedStatement pst= null;
+        try {
+            pst  = con.prepareStatement(sql);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+                return null;
+                //keine poi
+            }
+            rs.beforeFirst();
+            while(rs.next()){
+                if(rs.getInt("active")==1)
+                    poi= new Poi(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
+                else
+                    poi= new Poi(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            closeConnection(con);
+            closePreparedStatement(pst);
+        }
+        return poi;
+
+    }
+
+
     public ArrayList<Poi> getAllPoi(){
         ArrayList<Poi> poiList =new ArrayList<Poi>();
         String sql = "SELECT * FROM poi";
