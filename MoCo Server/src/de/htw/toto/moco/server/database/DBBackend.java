@@ -28,15 +28,16 @@ public class DBBackend {
 
     private RootLogger logger;
     private static DBBackend instance;
-    public static DBBackend getInstance(){
-        if (instance == null){
+
+    public static DBBackend getInstance() {
+        if (instance == null) {
             instance = new DBBackend();
         }
-         return instance;
+        return instance;
 
     }
 
-    private DBBackend(){
+    private DBBackend() {
         //severe kacke dampft
         //debug
         //info
@@ -45,32 +46,33 @@ public class DBBackend {
         checkConnection();
     }
 
-    private void checkConnection(){
-         if (con==null){
-             try {
-                 Class.forName("com.mysql.jdbc.Driver"); //load driver
+    private void checkConnection() {
+        if (con == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver"); //load driver
 
-                 con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
-             } catch (ClassNotFoundException e) {
-                 logger.log("driver not found", Level.SEVERE,e);
-             } catch (SQLException e) {
-                 logger.log("can't connect", Level.WARNING, e);
-             }
-         }
+                con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
+            } catch (ClassNotFoundException e) {
+                logger.log("driver not found", Level.SEVERE, e);
+            } catch (SQLException e) {
+                logger.log("can't connect", Level.WARNING, e);
+            }
+        }
     }
 
-    public void closeConnection(){
+    public void closeConnection() {
         try {
             con.close();
         } catch (SQLException e) {
-           logger.log("failed to close connection",Level.WARNING,e);
+            logger.log("failed to close connection", Level.WARNING, e);
         }
     }
-    private void closePreparedStatement(PreparedStatement pst){
+
+    private void closePreparedStatement(PreparedStatement pst) {
         try {
             pst.close();
         } catch (SQLException e) {
-           logger.log("failed to close Statement",Level.WARNING,e);
+            logger.log("failed to close Statement", Level.WARNING, e);
         }
     }
 
@@ -78,20 +80,20 @@ public class DBBackend {
      * user management                                              *
      *--------------------------------------------------------------*/
 
-    public Boolean verifyUserPassword(String userName, String passwordToVerify){
+    public Boolean verifyUserPassword(String userName, String passwordToVerify) {
         String sql = "SELECT passwordhash FROM userlist WHERE username IS ?;";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.setString(1, userName);
             pst.execute();
-            ResultSet rs= pst.getResultSet();
+            ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
                 return null;
                 //user does not exist!
             }
-            if (rs.getString("password").equals(passwordToVerify)){
+            if (rs.getString("password").equals(passwordToVerify)) {
                 return true;
                 //user exist pw ok
             } else {
@@ -109,12 +111,12 @@ public class DBBackend {
         //sth bad happened!
     }
 
-    public void addUser(String username,String password){
+    public void addUser(String username, String password) {
         String sql = "INSERT INTO userlist (username,passwordhash) VALUES (?,?);"; //on duplicate key?
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.setString(1, username);
             pst.setString(2, password);
             pst.execute();
@@ -125,13 +127,13 @@ public class DBBackend {
         }
     }
 
-    public void deleteUser(String username){
+    public void deleteUser(String username) {
         String sql = "DELETE * FROM userlist WHERE username = ?;";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
 
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.setString(1, username);
             pst.execute();
         } catch (SQLException e) {
@@ -146,35 +148,36 @@ public class DBBackend {
      * poi management                                               *
      *--------------------------------------------------------------*/
 
-     public void addPoi(POI poi) {
-         String sql = "INSERT INTO poi (latitude,longitude,type,active,poiName ) VALUES (?,?,?,?,?);"; //on duplicate key?
-         checkConnection();
-         PreparedStatement pst= null;
-         try {
-             pst  = con.prepareStatement(sql);
-             pst.setDouble(1, poi.getLatitude());
-             pst.setDouble(2, poi.getLongitude());
-             pst.setInt(3,poi.getType());
-             if(poi.isActive())
-                pst.setInt(4,1);
-             else
-                pst.setInt(4,0);
-             pst.setString(5,poi.getName());
-             pst.execute();
-         } catch (SQLException e) {
-             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-         } finally {
+    public void addPoi(POI poi) {
+        String sql = "INSERT INTO poi (latitude,longitude,type,active,poiName ) VALUES (?,?,?,?,?);"; //on duplicate key?
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setDouble(1, poi.getLatitude());
+            pst.setDouble(2, poi.getLongitude());
+            pst.setInt(3, poi.getType());
+            if (poi.isActive())
+                pst.setInt(4, 1);
+            else
+                pst.setInt(4, 0);
+            pst.setString(5, poi.getName());
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
 
-             closePreparedStatement(pst);
-         }
-     }
-    public POI getPoiById(int idPoi){
+            closePreparedStatement(pst);
+        }
+    }
+
+    public POI getPoiById(int idPoi) {
         POI poi = null;
         String sql = "SELECT * FROM poi WHERE idPoi = ?;";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -182,11 +185,11 @@ public class DBBackend {
                 //keine poi
             }
             rs.beforeFirst();
-            while(rs.next()){
-                if(rs.getInt("active")==1)
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
+            while (rs.next()) {
+                if (rs.getInt("active") == 1)
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true, rs.getInt("type"), rs.getInt("idPoi"));
                 else
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false, rs.getInt("type"), rs.getInt("idPoi"));
 
             }
         } catch (SQLException e) {
@@ -200,13 +203,13 @@ public class DBBackend {
     }
 
 
-    public ArrayList<POI> getAllPoi(){
-        ArrayList<POI> poiList =new ArrayList<POI>();
+    public ArrayList<POI> getAllPoi() {
+        ArrayList<POI> poiList = new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -214,12 +217,12 @@ public class DBBackend {
                 //keine poi
             }
             rs.beforeFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 POI poi;
-                if(rs.getInt("active")==1)
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
-                   else
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+                if (rs.getInt("active") == 1)
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true, rs.getInt("type"), rs.getInt("idPoi"));
+                else
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false, rs.getInt("type"), rs.getInt("idPoi"));
                 poiList.add(poi);
 
             }
@@ -235,12 +238,12 @@ public class DBBackend {
      * friend management                                            *
      *--------------------------------------------------------------*/
 
-    public void addFriend(int idUserA, int idUserB ){
+    public void addFriend(int idUserA, int idUserB) {
         String sql = "INSERT INTO friendlist (idUserA,idUserB) VALUES (?,?);"; //on duplicate key?
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.setInt(1, idUserA);
             pst.setInt(2, idUserB);
 
@@ -254,14 +257,14 @@ public class DBBackend {
 
     }
 
-    public ArrayList<Integer> getFriendlist(int idUser){
+    public ArrayList<Integer> getFriendlist(int idUser) {
         ArrayList<Integer> friendlist = new ArrayList<Integer>();
 
-        String sql = "SELECT idUserB FROM friendlist WHERE idUserA = "+idUser+";";
+        String sql = "SELECT idUserB FROM friendlist WHERE idUserA = " + idUser + ";";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -269,7 +272,7 @@ public class DBBackend {
                 //keine freunde
             }
             rs.beforeFirst();
-            while(rs.next()){
+            while (rs.next()) {
 
                 friendlist.add(rs.getInt("idUserA"));
 
@@ -285,16 +288,15 @@ public class DBBackend {
     /*--------------------------------------------------------------*
      * message management                                           *
      *--------------------------------------------------------------*/
-   // SELECT userName AS sendername FROM userlist INNER JOIN chatmessage ON userlist.iduser = chatmessage.idsender ORDER BY sendTime DESC LIMIT 0,50;
 
 
-    public ArrayList<ChatMessage> getAllChatMessage(){
-        ArrayList<ChatMessage> chatMessageList =new ArrayList<ChatMessage>();
-        String sql = "SELECT * FROM chatmessage ORDER BY sendTime DESC LIMIT 0,50;";
+    public ArrayList<ChatMessage> getAllChatMessage() {
+        ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
-        PreparedStatement pst= null;
+        PreparedStatement pst = null;
         try {
-            pst  = con.prepareStatement(sql);
+            pst = con.prepareStatement(sql);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -302,8 +304,8 @@ public class DBBackend {
                 //keine chatmessages
             }
             rs.beforeFirst();
-            while(rs.next()){
-               // chatMessageList.add(new ChatMessage())
+            while (rs.next()) {
+                chatMessageList.add(new ChatMessage(rs.getString("sender"), rs.getString("destination"),rs.getString("content"),rs.getInt("idChatMessage")));
 
             }
         } catch (SQLException e) {
