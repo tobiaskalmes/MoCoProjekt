@@ -14,5 +14,7 @@ import java.util.List;
 public interface IPOIListener {
     public void result(List<POI> result);
 
+    public void resultDetails(POI poi);
+
     public void error(Throwable e);
 }
