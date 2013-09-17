@@ -16,7 +16,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Path("/game")
-public class Game {
+public class GameRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list")
     @Produces(MediaType.TEXT_XML)

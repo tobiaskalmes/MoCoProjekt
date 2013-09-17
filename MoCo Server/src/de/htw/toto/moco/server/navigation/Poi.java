@@ -1,5 +1,8 @@
 package de.htw.toto.moco.server.navigation;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * Created with IntelliJ IDEA.
  * User: TG
@@ -7,11 +10,13 @@ package de.htw.toto.moco.server.navigation;
  * Time: 18:56
  * To change this template use File | Settings | File Templates.
  */
+@XmlRootElement
+@XmlType(propOrder = {"name", "idPoi", "type", "latitude", "longitude", "active"})
 public class POI {
     private double latitude, longitude;
-    private String name;
+    private String  name;
     private boolean active;
-    private int type;
+    private int     type;
     private Integer idPoi;
 
     public POI(double latitude, double longitude, String name, boolean active, int type, Integer idPoi) {
@@ -23,7 +28,7 @@ public class POI {
         this.idPoi = idPoi;
     }
 
-    public Poi() {
+    public POI() {
     }
 
     public double getLatitude() {
