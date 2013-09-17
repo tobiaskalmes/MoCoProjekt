@@ -31,6 +31,7 @@ public class TokenHandler {
         timeOutHandler = new Thread() {
             @Override
             public void run() {
+                logger.log("TokenHandler - TimeOutHandler started...", Level.INFO);
                 while (keepRunning) {
                     try {
                         for (Map.Entry<String, Token> t : tokenMap.entrySet()) {
@@ -70,9 +71,11 @@ public class TokenHandler {
         ChecksumHandler handler = ChecksumHandler.getInstance(ChecksumHandler.Type.SHA1);
         handler.update(username);
         handler.update(Integer.toString(userID));
-        handler.update(new Date().toString());
+        Date tokenDate = new Date();
+        handler.update(tokenDate.toString());
         String token = handler.digest();
-        //TODO: add token to list
+        tokenMap.put(username, new Token(token, tokenDate));
+        logger.log("Added token for user " + username + ".", Level.INFO);
         return token;
     }
 

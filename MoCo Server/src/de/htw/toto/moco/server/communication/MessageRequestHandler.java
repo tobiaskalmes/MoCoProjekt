@@ -1,15 +1,12 @@
 package de.htw.toto.moco.server.communication;
 
-import de.htw.toto.moco.server.messaging.ChatMessage;
+import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
+import de.htw.toto.moco.server.token.TokenHandler;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,13 +21,22 @@ public class MessageRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{token}")
     @Produces(MediaType.TEXT_XML)
-    public ChatMessageList getChatMessages(@PathParam(value = "token")String token) {
-        //TODO: add db request
-        //marshall the messages
-        ChatMessageList cml = new ChatMessageList();
-        List<ChatMessage> cm = new ArrayList<ChatMessage>();
-        cm.add(new ChatMessage("senderString", "receiverString", "contentString", 1234));
-        cml.setMessages(cm);
-        return cml;
+    public ChatMessageList getChatMessages(@PathParam(value = "token") String token) {
+        if (!TokenHandler.getInstance().checkToken(token)) {
+            logger.log("Token " + token + " is not valid!", Level.WARNING);
+            return null;
+        }
+        return DBBackend.getInstance().getAllChatMessages();
+    }
+
+    @POST
+    @Path(value = "/{token}/addMessage")
+    @Consumes("application/xml")
+    public void addMessage(@PathParam("token") String token, String xml) {
+        if (!TokenHandler.getInstance().checkToken(token)) {
+            logger.log("Token " + token + " is not valid!", Level.WARNING);
+            return;
+        }
+        logger.log(xml, Level.FINEST);
     }
 }

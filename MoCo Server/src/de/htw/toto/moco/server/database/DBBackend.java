@@ -322,7 +322,7 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
 
-    public ChatMessageList getAllChatMessage() {
+    public ChatMessageList getAllChatMessages() {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
         String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();

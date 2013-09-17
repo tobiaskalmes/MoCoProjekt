@@ -31,6 +31,14 @@ public class ChatMessage {
         this.sendTime = sendTime;
     }
 
+    public ChatMessage(String sender, String receiver, String content, int id) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.content = content;
+        this.id = id;
+        sendTime = new Date();
+    }
+
     public Date getSendTime() {
         return sendTime;
     }
