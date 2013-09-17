@@ -1,7 +1,6 @@
 package de.htw.toto.moco.server.communication;
 
-import de.htw.toto.moco.server.database.DBBackend;
-import de.htw.toto.moco.server.navigation.POIList;
+import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.token.TokenHandler;
 
 import javax.ws.rs.GET;
@@ -15,19 +14,19 @@ import java.util.logging.Level;
  * Created with IntelliJ IDEA.
  * User: Tobias
  * Date: 17.09.13
- * Time: 11:30
+ * Time: 17:29
  * To change this template use File | Settings | File Templates.
  */
-@Path("/poi")
-public class POIRequestHandler extends RequestHandler {
+public class UserListRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/list/{token}")
+    @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.TEXT_XML)
-    public POIList getPOIList(@PathParam(value = "token") String token) {
+    public ChatMessageList getChatMessages(@PathParam(value = "token") String token,
+                                           @PathParam("username") String username) {
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
         }
-        return DBBackend.getInstance().getAllPOIs();
+        return null;// DBBackend.getInstance().getFriendlist(username);
     }
 }

@@ -1,6 +1,5 @@
 package de.htw.toto.moco.server.communication;
 
-import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.token.TokenHandler;
 
@@ -19,14 +18,14 @@ import java.util.logging.Level;
 public class MessageRequestHandler extends RequestHandler {
 
     @GET
-    @Path(value = "/list/{token}")
+    @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.TEXT_XML)
     public ChatMessageList getChatMessages(@PathParam(value = "token") String token) {
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
         }
-        return DBBackend.getInstance().getAllChatMessages();
+        return null; //DBBackend.getInstance().getAllChatMessages(username);
     }
 
     @POST

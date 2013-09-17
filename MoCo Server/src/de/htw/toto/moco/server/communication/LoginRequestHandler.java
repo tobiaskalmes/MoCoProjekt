@@ -24,7 +24,6 @@ public class LoginRequestHandler extends RequestHandler {
     public String login(@PathParam(value = "username") String username, @PathParam(value = "passwordHash") String
             passwordHash) {
         //TODO: add password check
-        //TODO: getUserID
-        return TokenHandler.getInstance().createToken(username, -1);
+        return TokenHandler.getInstance().createToken(username);
     }
 }

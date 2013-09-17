@@ -67,10 +67,9 @@ public class TokenHandler {
         return false;
     }
 
-    public String createToken(String username, int userID) {
+    public String createToken(String username) {
         ChecksumHandler handler = ChecksumHandler.getInstance(ChecksumHandler.Type.SHA1);
         handler.update(username);
-        handler.update(Integer.toString(userID));
         Date tokenDate = new Date();
         handler.update(tokenDate.toString());
         String token = handler.digest();

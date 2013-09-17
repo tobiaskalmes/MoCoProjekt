@@ -232,7 +232,7 @@ public class DBBackend {
     }
 
 
-    public POIList getAllPoi() {
+    public POIList getAllPOIs() {
         ArrayList<POI> poiList = new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         checkConnection();
