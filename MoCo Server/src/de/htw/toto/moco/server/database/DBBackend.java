@@ -143,6 +143,32 @@ public class DBBackend {
             closePreparedStatement(pst);
         }
     }
+    public int getIdUserByName(String userName) {
+        String sql = "SELECT idUser FROM userlist WHERE username IS ?;";
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, userName);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+
+                logger.log("requested userid for username not found!", Level.INFO);
+                return 0;
+            }
+            return rs.getInt("idUser");
+
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            closePreparedStatement(pst);
+
+        }
+
+        return 0;
+        //sth bad happened!
+    }
 
      /*-------------------------------------------------------------*
      * poi management                                               *
@@ -292,7 +318,7 @@ public class DBBackend {
 
     public ArrayList<ChatMessage> getAllChatMessage() {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
-        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
         PreparedStatement pst = null;
         try {
@@ -305,7 +331,7 @@ public class DBBackend {
             }
             rs.beforeFirst();
             while (rs.next()) {
-                chatMessageList.add(new ChatMessage(rs.getString("sender"), rs.getString("destination"),rs.getString("content"),rs.getInt("idChatMessage")));
+                chatMessageList.add(new ChatMessage(rs.getString("sender"), rs.getString("destination"),rs.getString("content"),rs.getInt("idChatmessage"), rs.getDate("sendTime")));
 
             }
         } catch (SQLException e) {
@@ -316,4 +342,26 @@ public class DBBackend {
         }
         return chatMessageList;
     }
+
+    public void addChatMessage(ChatMessage cm) {
+        ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
+        String sql = "INSERT INTO chatmessage (content,idsender,iddestination,sendTime) VALUES (?,?,?,?);";
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, cm.getContent());
+            pst.setInt(2, getIdUserByName(cm.getSender()));
+            pst.setInt(3, getIdUserByName(cm.getReceiver()));
+            pst.setDate(4, new java.sql.Date(cm.getSendTime().getTime()));
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+
+            closePreparedStatement(pst);
+        }
+
+    }
+
 }

@@ -23,11 +23,12 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
-    public ChatMessage(String sender, String receiver, String content, int id) {
+    public ChatMessage(String sender, String receiver, String content, int id, Date sendTime) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
         this.id = id;
+        this.sendTime = sendTime;
     }
 
     public Date getSendTime() {
