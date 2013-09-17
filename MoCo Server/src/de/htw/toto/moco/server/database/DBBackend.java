@@ -1,6 +1,6 @@
 package de.htw.toto.moco.server.database;
 
-import de.htw.toto.moco.server.navigation.Poi;
+import de.htw.toto.moco.server.navigation.POI;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -131,7 +131,7 @@ public class DBBackend {
      * poi management                                               *
      *--------------------------------------------------------------*/
 
-     public void addPoi(Poi poi) {
+     public void addPoi(POI poi) {
          String sql = "INSERT INTO poi (latitude,longitude,type,active,name ) VALUES (?,?,?,?,?);"; //on duplicate key?
          Connection con = getInstance();
          PreparedStatement pst= null;
@@ -153,8 +153,8 @@ public class DBBackend {
              closePreparedStatement(pst);
          }
      }
-    public ArrayList<Poi> getAllPoi(){
-        ArrayList<Poi> poiList =new ArrayList<Poi>();
+    public ArrayList<POI> getAllPoi(){
+        ArrayList<POI> poiList =new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         Connection con = getInstance();
         PreparedStatement pst= null;
@@ -168,11 +168,11 @@ public class DBBackend {
             }
             rs.beforeFirst();
             while(rs.next()){
-                Poi poi;
+                POI poi;
                 if(rs.getInt("active")==1)
-                    poi= new Poi(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
                    else
-                    poi= new Poi(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
                 poiList.add(poi);
 
             }
