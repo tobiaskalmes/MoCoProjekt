@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 13:49
  * To change this template use File | Settings | File Templates.
  */
-@XmlRootElement(name = "ChatMessageList")
+@XmlRootElement()
 public class ChatMessageList {
     private List<ChatMessage> messages;
 

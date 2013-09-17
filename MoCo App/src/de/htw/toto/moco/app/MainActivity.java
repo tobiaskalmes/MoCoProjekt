@@ -3,6 +3,7 @@ package de.htw.toto.moco.app;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class MainActivity extends Activity implements ILoginListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -32,5 +34,10 @@ public class MainActivity extends Activity implements ILoginListener {
     @Override
     public void result(String result) {
         ((TextView) findViewById(R.id.loginResult)).setText(result);
+    }
+
+    @Override
+    public void error(Throwable e) {
+        ((TextView) findViewById(R.id.loginResult)).setText(e.getMessage());
     }
 }
