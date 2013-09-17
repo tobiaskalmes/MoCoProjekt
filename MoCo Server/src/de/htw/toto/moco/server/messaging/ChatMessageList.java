@@ -22,6 +22,7 @@ public class ChatMessageList {
         messages = new ArrayList<ChatMessage>();
     }
 
+
     @XmlElements({@XmlElement(name = "chatmessage", type = ChatMessage.class)})
     @XmlElementWrapper
     public List<ChatMessage> getMessages() {

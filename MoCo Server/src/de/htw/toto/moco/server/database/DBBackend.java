@@ -1,10 +1,13 @@
 package de.htw.toto.moco.server.database;
 
 import de.htw.toto.moco.server.messaging.ChatMessage;
+import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.navigation.POI;
 import de.htw.toto.moco.server.logging.LoggerNames;
 import de.htw.toto.moco.server.logging.RootLogger;
+import de.htw.toto.moco.server.navigation.POIList;
 
+import java.nio.channels.Channels;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -229,7 +232,7 @@ public class DBBackend {
     }
 
 
-    public ArrayList<POI> getAllPoi() {
+    public POIList getAllPoi() {
         ArrayList<POI> poiList = new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         checkConnection();
@@ -258,7 +261,10 @@ public class DBBackend {
 
             closePreparedStatement(pst);
         }
-        return poiList;
+        POIList pl = new POIList();
+        pl.setPois(poiList);
+
+        return pl;
     }
     /*--------------------------------------------------------------*
      * friend management                                            *
@@ -316,7 +322,7 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
 
-    public ArrayList<ChatMessage> getAllChatMessage() {
+    public ChatMessageList getAllChatMessage() {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
         String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
@@ -340,7 +346,9 @@ public class DBBackend {
 
             closePreparedStatement(pst);
         }
-        return chatMessageList;
+        ChatMessageList cml = new ChatMessageList();
+        cml.setMessages(chatMessageList);
+        return cml;
     }
 
     public void addChatMessage(ChatMessage cm) {
