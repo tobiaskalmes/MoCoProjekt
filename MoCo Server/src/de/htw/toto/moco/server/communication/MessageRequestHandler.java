@@ -20,7 +20,7 @@ public class MessageRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.TEXT_XML)
-    public ChatMessageList getChatMessages(@PathParam(value = "token") String token) {
+    public ChatMessageList getChatMessages(@PathParam("token") String token) {
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;

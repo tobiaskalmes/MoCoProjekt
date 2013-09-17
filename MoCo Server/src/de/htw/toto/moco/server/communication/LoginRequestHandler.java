@@ -21,7 +21,7 @@ public class LoginRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/{username}/{passwordHash}")
     @Produces(MediaType.TEXT_HTML)
-    public String login(@PathParam(value = "username") String username, @PathParam(value = "passwordHash") String
+    public String login(@PathParam("username") String username, @PathParam("passwordHash") String
             passwordHash) {
         //TODO: add password check
         return TokenHandler.getInstance().createToken(username);
