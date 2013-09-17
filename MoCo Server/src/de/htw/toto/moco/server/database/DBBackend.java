@@ -20,7 +20,7 @@ import java.util.logging.Level;
  * To change this template use File | Settings | File Templates.
  */
 
-//TODO addChatmessage, getChatmessage, addFriend, getFriend, deleteFriend, checkFriend
+//TODO , , , , deleteFriend, checkFriend
 public class DBBackend {
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
@@ -88,7 +88,7 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
     public Boolean verifyUserPassword(String userName, String passwordToVerify) {
-        String sql = "SELECT passwordhash FROM userlist WHERE username IS ?;";
+        String sql = "SELECT passwordhash FROM userlist WHERE username = ?;";
         checkConnection();
         PreparedStatement pst = null;
         try {
@@ -324,14 +324,14 @@ public class DBBackend {
      * friend management                                            *
      *--------------------------------------------------------------*/
 
-    public void addFriend(int idUserA, int idUserB) {
-        String sql = "INSERT INTO friendlist (idUserA,idUserB) VALUES (?,?);"; //on duplicate key?
+    public void addFriend(String usernameA, String usernameB) {
+        String sql = "INSERT INTO friendlist (idUserA,idUserB) VALUES (?,?);"; //TODO on duplicate key?
         checkConnection();
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, idUserA);
-            pst.setInt(2, idUserB);
+            pst.setInt(1, getIdUserByName(usernameA));
+            pst.setInt(2, getIdUserByName(usernameB));
 
             pst.execute();
         }
@@ -381,6 +381,43 @@ public class DBBackend {
     /*--------------------------------------------------------------*
      * message management                                           *
      *--------------------------------------------------------------*/
+
+    public ChatMessageList getAllChatMessagesForTwo(String usernameA, String usernameB) {
+        ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser WHERE (uls.username = ? AND uld.username = ?) OR (uls.username = ? AND uld.username = ?) ORDER BY sendTime DESC LIMIT 0,50;";
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, usernameA);
+            pst.setString(2, usernameB);
+            pst.setString(3, usernameB);
+            pst.setString(4, usernameA);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+                return null;
+                //keine chatmessages
+            }
+            rs.beforeFirst();
+            while (rs.next()) {
+                chatMessageList.add(
+                        new ChatMessage(rs.getString("sender"), rs.getString("destination"), rs.getString("content"),
+                                rs.getInt("idChatmessage"), rs.getDate("sendTime")));
+
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        finally {
+
+            closePreparedStatement(pst);
+        }
+        ChatMessageList cml = new ChatMessageList();
+        cml.setMessages(chatMessageList);
+        return cml;
+    }
 
     public ChatMessageList getAllChatMessages(String username) {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
