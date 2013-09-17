@@ -1,4 +1,4 @@
-package de.htw.toto.moco.app.communication;
+package de.htw.toto.moco.app.communication.login;
 
 import android.content.Context;
 import com.android.volley.Request;
@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import de.htw.toto.moco.app.communication.ServerInfo;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,24 +16,13 @@ import com.android.volley.toolbox.Volley;
  * Time: 15:37
  * To change this template use File | Settings | File Templates.
  */
-public class Login {
-    private static final String LOGIN_BASE_URL = "http://192.168.2.102:9998/login/";
-    private static final String DELIMETER      = "/";
-    private static Login instance;
-
-    private Login() {
+public class LoginRequester {
+    private LoginRequester() {
     }
 
-    public static Login getInstance() {
-        if (instance == null) {
-            instance = new Login();
-        }
-        return instance;
-    }
-
-    public void login(Context context, final ILoginListener listener, String username, String passwordHash) {
+    public static void login(Context context, final ILoginListener listener, String username, String passwordHash) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = LOGIN_BASE_URL + username + DELIMETER + passwordHash;
+        String requestURL = ServerInfo.serverBaseURL + username + ServerInfo.DELIMETER + passwordHash;
         StringRequest request = new StringRequest(Request.Method.GET, requestURL,
                                                   new Response.Listener<String>() {
                                                       @Override
@@ -43,7 +33,7 @@ public class Login {
                                                   new Response.ErrorListener() {
                                                       @Override
                                                       public void onErrorResponse(VolleyError volleyError) {
-                                                          listener.result(volleyError.getMessage());
+                                                          listener.error(volleyError);
                                                       }
                                                   }
         );

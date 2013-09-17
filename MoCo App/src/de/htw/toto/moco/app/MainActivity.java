@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import de.htw.toto.moco.app.communication.ILoginListener;
-import de.htw.toto.moco.app.communication.Login;
+import de.htw.toto.moco.app.communication.login.ILoginListener;
+import de.htw.toto.moco.app.communication.login.LoginRequester;
 
 public class MainActivity extends Activity implements ILoginListener {
     /**
@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements ILoginListener {
             public void onClick(View view) {
                 String username = ((EditText) findViewById(R.id.username)).getText().toString();
                 String passwordHash = ((EditText) findViewById(R.id.password)).getText().toString();
-                Login.getInstance().login(MainActivity.this, MainActivity.this, username, passwordHash);
+                LoginRequester.login(MainActivity.this, MainActivity.this, username, passwordHash);
             }
         });
     }
