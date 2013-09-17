@@ -322,13 +322,15 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
 
-    public ChatMessageList getAllChatMessages() {
+    public ChatMessageList getAllChatMessages(String username) {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
-        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, ul1.username AS sender, ul2.username AS destination FROM chatmessage INNER JOIN userlist ul1 ON chatmessage.idsender = ul1.idUser INNER JOIN userlist ul2 ON chatmessage.iddestination = ul2.idUser ORDER BY sendTime DESC LIMIT 0,50;";
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser WHERE uls = ? OR uld = ? ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(sql);
+            pst.setString(1, username);
+            pst.setString(2, username);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
