@@ -23,7 +23,7 @@ public class POI {
         this.idPoi = idPoi;
     }
 
-    public Poi() {
+    public POI() {
     }
 
     public double getLatitude() {
