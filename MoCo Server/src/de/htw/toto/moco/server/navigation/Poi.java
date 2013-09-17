@@ -23,6 +23,9 @@ public class Poi {
         this.idPoi = idPoi;
     }
 
+    public Poi() {
+    }
+
     public double getLatitude() {
         return latitude;
     }

@@ -1,6 +1,8 @@
 package de.htw.toto.moco.server.database;
 
 import de.htw.toto.moco.server.navigation.POI;
+import de.htw.toto.moco.server.logging.LoggerNames;
+import de.htw.toto.moco.server.logging.RootLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -154,7 +156,7 @@ public class DBBackend {
          }
      }
     public ArrayList<POI> getAllPoi(){
-        ArrayList<POI> poiList =new ArrayList<POI>();
+        ArrayList<POI> poiList =new ArrayList<Poi>();
         String sql = "SELECT * FROM poi";
         Connection con = getInstance();
         PreparedStatement pst= null;
@@ -170,9 +172,11 @@ public class DBBackend {
             while(rs.next()){
                 POI poi;
                 if(rs.getInt("active")==1)
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, 
+                                rs.getInt("type"),rs.getInt("idPoi"));
                    else
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, 
+                                rs.getInt("type"),rs.getInt("idPoi"));
                 poiList.add(poi);
 
             }
