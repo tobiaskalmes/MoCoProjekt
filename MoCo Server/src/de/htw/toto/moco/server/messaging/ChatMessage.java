@@ -2,6 +2,7 @@ package de.htw.toto.moco.server.messaging;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,12 +12,13 @@ import javax.xml.bind.annotation.XmlType;
  * To change this template use File | Settings | File Templates.
  */
 @XmlRootElement
-@XmlType(propOrder = {"sender", "receiver", "content", "id"})
+@XmlType(propOrder = {"sender", "receiver", "content", "id", "sendTime"})
 public class ChatMessage {
     private String sender;
     private String receiver;
     private String content;
     private int    id;
+    private Date   sendTime;
 
     public ChatMessage() {
     }
@@ -26,6 +28,14 @@ public class ChatMessage {
         this.receiver = receiver;
         this.content = content;
         this.id = id;
+    }
+
+    public Date getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
     }
 
     public String getSender() {
