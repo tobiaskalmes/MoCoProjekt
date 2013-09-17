@@ -16,7 +16,7 @@ public class MainActivity extends Activity implements ILoginListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.logintest);
+        setContentView(R.layout.login);
 
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
