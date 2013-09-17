@@ -12,5 +12,6 @@
     <EditText android:id="@+id/password" android:inputType="textPassword" android:layout_height="wrap_content"
               android:layout_width="fill_parent"/>
     <Button android:id="@+id/loginButton" android:text="@string/login" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" android:onClick="{Lo}"/>
+    <TextView android:id="@+id/loginResult" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 </LinearLayout>
