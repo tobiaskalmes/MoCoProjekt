@@ -2,28 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1a680e2-2fe2-4459-9380-b6135bef0327" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/messaging/ChatMessage.java" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/messaging/ChatMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/database/DBBackend.java" afterPath="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/database/DBBackend.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/.idea/libraries/JAX_RS_jersey_1_12.xml" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/libraries/JAX_RS_jersey_1_12.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/Manifest.java" afterPath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/Manifest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoCo App.iml" afterPath="$PROJECT_DIR$/MoCo App.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/MoCo Server.iml" afterPath="$PROJECT_DIR$/../MoCo Server/MoCo Server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/R.java" afterPath="$PROJECT_DIR$/gen/de/htw/toto/moco/app/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/.idea/ant.xml" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/ant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MoCo Server/.idea/workspace.xml" />
     </list>
     <list id="52bb4632-4c50-4d47-991b-d3798583f8f8" name="Don't Commit" comment="" />
     <ignored path="MoCo App.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379418394649" ignored="false" />
+    <file path="/Dummy.txt" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379424304942" ignored="false" />
     <file path="/Login.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379159558219" ignored="false" />
     <file path="/web.xml" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379160883128" ignored="false" />
-    <file path="/DBBackend.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379417331706" ignored="false" />
+    <file path="/DBBackend.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379428539839" ignored="false" />
     <file path="/a.sql" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379412467563" ignored="false" />
     <file path="db-console:/9088fdd7/98ea693d-24bf-455f-9dd0-2d381d8b3ce1/" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379411115641" ignored="false" />
     <file path="/Poi.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379412337475" ignored="false" />
+    <file path="$PROJECT_DIR$/../MoCo Server/src/de/htw/toto/moco/server/navigation/Poi.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379424323916" ignored="false" />
+    <file path="/ChatMessage.java" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379426027831" ignored="false" />
+    <file path="dbtable:/9088fdd7/98ea693d-24bf-455f-9dd0-2d381d8b3ce1/mocodb..game" changelist="c1a680e2-2fe2-4459-9380-b6135bef0327" time="1379427262898" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
