@@ -6,6 +6,7 @@ import de.htw.toto.moco.server.navigation.POI;
 import de.htw.toto.moco.server.logging.LoggerNames;
 import de.htw.toto.moco.server.logging.RootLogger;
 import de.htw.toto.moco.server.navigation.POIList;
+import de.htw.toto.moco.server.user.UserList;
 
 import java.nio.channels.Channels;
 import java.sql.*;
@@ -172,6 +173,32 @@ public class DBBackend {
         return 0;
         //sth bad happened!
     }
+    public String getUsernameById(int idUser) {
+        String sql = "SELECT username FROM userlist WHERE idUser = ?;";
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, idUser);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+
+                logger.log("requested userid for username not found!", Level.INFO);
+                return "";
+            }
+            return rs.getString("username");
+
+        } catch (SQLException e) {
+            logger.log("getUsernameById sql problems", Level.WARNING, e);
+        } finally {
+            closePreparedStatement(pst);
+
+        }
+
+        return "";
+        //sth bad happened!
+    }
 
      /*-------------------------------------------------------------*
      * poi management                                               *
@@ -289,14 +316,15 @@ public class DBBackend {
 
     }
 
-    public ArrayList<Integer> getFriendlist(int idUser) {
-        ArrayList<Integer> friendlist = new ArrayList<Integer>();
+    public UserList getFriendlist(String username) {
+        ArrayList<String> friendlist = new ArrayList<String>();
 
-        String sql = "SELECT idUserB FROM friendlist WHERE idUserA = " + idUser + ";";
+        String sql = "SELECT idUserB FROM friendlist WHERE idUserA = ?;";
         checkConnection();
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(sql);
+            pst.setInt(1, getIdUserByName(username));
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -306,7 +334,7 @@ public class DBBackend {
             rs.beforeFirst();
             while (rs.next()) {
 
-                friendlist.add(rs.getInt("idUserA"));
+                friendlist.add(getUsernameById(rs.getInt("idUserA")));
 
             }
         } catch (SQLException e) {
@@ -315,7 +343,9 @@ public class DBBackend {
 
             closePreparedStatement(pst);
         }
-        return friendlist;
+        UserList userList = new UserList();
+        userList.setUsers(friendlist);
+        return userList;
     }
     /*--------------------------------------------------------------*
      * message management                                           *
