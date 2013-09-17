@@ -1,4 +1,4 @@
-package de.htw.toto.moco.app.communication;
+package de.htw.toto.moco.app.communication.login;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,4 +10,6 @@ package de.htw.toto.moco.app.communication;
 public interface ILoginListener {
 
     public void result(String result);
+
+    public void error(Throwable e);
 }
