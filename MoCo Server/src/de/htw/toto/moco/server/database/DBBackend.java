@@ -104,7 +104,7 @@ public class DBBackend {
                 //user exist pw ng
             }
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("verfiyUserPassword sql problems", Level.WARNING, e);
         } finally {
             closePreparedStatement(pst);
 
@@ -124,7 +124,7 @@ public class DBBackend {
             pst.setString(2, password);
             pst.execute();
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("addUser sql problems", Level.WARNING, e);
         } finally {
             closePreparedStatement(pst);
         }
@@ -140,7 +140,7 @@ public class DBBackend {
             pst.setString(1, username);
             pst.execute();
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("deleteUser sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
@@ -163,7 +163,7 @@ public class DBBackend {
             return rs.getInt("idUser");
 
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("getIdUserByName sql problems", Level.WARNING, e);
         } finally {
             closePreparedStatement(pst);
 
@@ -193,7 +193,7 @@ public class DBBackend {
             pst.setString(5, poi.getName());
             pst.execute();
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("addPoi sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
@@ -222,7 +222,7 @@ public class DBBackend {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("getPoiById sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
@@ -256,7 +256,7 @@ public class DBBackend {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("getAllPoi sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
@@ -281,7 +281,7 @@ public class DBBackend {
 
             pst.execute();
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("addFriend sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
@@ -310,7 +310,7 @@ public class DBBackend {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.log("addFriend sql problems", Level.WARNING, e);
         } finally {
 
             closePreparedStatement(pst);
