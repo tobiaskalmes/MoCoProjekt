@@ -1,7 +1,7 @@
 package de.htw.toto.moco.server.communication;
 
-import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.token.TokenHandler;
+import de.htw.toto.moco.server.user.UserList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,8 +21,8 @@ public class UserListRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.TEXT_XML)
-    public ChatMessageList getChatMessages(@PathParam(value = "token") String token,
-                                           @PathParam("username") String username) {
+    public UserList getChatMessages(@PathParam(value = "token") String token,
+                                    @PathParam("username") String username) {
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
