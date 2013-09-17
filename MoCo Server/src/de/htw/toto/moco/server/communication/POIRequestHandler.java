@@ -21,9 +21,9 @@ import java.util.List;
 @Path("/poi")
 public class POIRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/list")
+    @Path(value = "/list/{token}")
     @Produces(MediaType.TEXT_XML)
-    public POIList getPOIList() {
+    public POIList getPOIList(@PathParam(value = "token") String token) {
         //TODO: get list from DB
 
         POIList pois = new POIList();
@@ -34,9 +34,10 @@ public class POIRequestHandler extends RequestHandler {
     }
 
     @GET
-    @Path(value = "/details/{idPOI}")
+    @Path(value = "/details/{token}/{idPOI}")
     @Produces(MediaType.TEXT_XML)
-    public POIRequestHandler getPOIDetails(@PathParam(value = "idPOI") int idPOI) {
+    public POI getPOIDetails(@PathParam(value = "idPOI") int idPOI,
+                                           @PathParam(value = "token") String token) {
         //TODO: get details from db
         return null;
     }

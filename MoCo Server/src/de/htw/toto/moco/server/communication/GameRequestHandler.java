@@ -4,6 +4,7 @@ import de.htw.toto.moco.server.game.GameInfo;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -18,9 +19,9 @@ import java.util.List;
 @Path("/game")
 public class GameRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/list")
+    @Path(value = "/list/{token}")
     @Produces(MediaType.TEXT_XML)
-    public List<GameInfo> getGameInfoList() {
+    public List<GameInfo> getGameInfoList(@PathParam(value = "token") String token) {
         //TODO: add db request
         return null;
     }
