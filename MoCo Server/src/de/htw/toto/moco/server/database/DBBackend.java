@@ -156,7 +156,7 @@ public class DBBackend {
          }
      }
     public ArrayList<POI> getAllPoi(){
-        ArrayList<POI> poiList =new ArrayList<Poi>();
+        ArrayList<POI> poiList =new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         Connection con = getInstance();
         PreparedStatement pst= null;
