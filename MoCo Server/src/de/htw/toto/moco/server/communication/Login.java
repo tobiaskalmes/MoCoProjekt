@@ -17,10 +17,12 @@ import javax.ws.rs.core.MediaType;
 @Path("/login")
 public class Login {
     @GET
-    @Path(value = "/{username}/{passwordhash}")
+    @Path(value = "/{username}/{passwordHash}")
     @Produces(MediaType.TEXT_HTML)
-    public String login(@PathParam(value = "username") String username, @PathParam(value = "passwordhash") String
-            passwordhash) {
-        return "<html><body>username: " + username + "<br/>passwordhash:" + passwordhash + "</body></html>";
+    public String login(@PathParam(value = "username") String username, @PathParam(value = "passwordHash") String
+            passwordHash) {
+        //TODO: add password check
+        //TODO: return token
+        return "<html><body>username: " + username + "<br/>passwordHash:" + passwordHash + "</body></html>";
     }
 }
