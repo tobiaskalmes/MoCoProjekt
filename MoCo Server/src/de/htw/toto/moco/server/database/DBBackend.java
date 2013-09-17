@@ -1,11 +1,13 @@
 package de.htw.toto.moco.server.database;
 
+import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.navigation.POI;
 import de.htw.toto.moco.server.logging.LoggerNames;
 import de.htw.toto.moco.server.logging.RootLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,49 +19,58 @@ import java.util.ArrayList;
 
 //TODO addChatmessage, getChatmessage, addFriend, getFriend, deleteFriend, checkFriend
 public class DBBackend {
-    private static Connection con = null;
+    private Connection con = null;
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
     private static String dbUser = "moco";
     private static String dbPass = "MoCo1234";
 
-    private DBBackend(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver"); //load driver
-
-            //connect
-            con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
-        } catch (ClassNotFoundException e) {
-            System.out.println("driver not found");
-        } catch (SQLException e) {
-            System.out.println("can't connect");
-            System.out.println("SQLException: " + e.getMessage());
-            System.out.println("SQLState: " + e.getSQLState());
-            System.out.println("VendorError: " + e.getErrorCode());
+    private RootLogger logger;
+    private static DBBackend instance;
+    public static DBBackend getInstance(){
+        if (instance == null){
+            instance = new DBBackend();
         }
+         return instance;
+
     }
 
-    private static Connection getInstance(){
-        if(con == null)
-            new DBBackend();
-        return con;
+    private DBBackend(){
+        //severe kacke dampft
+        //debug
+        //info
+        //finest zu detailliert
+        logger = RootLogger.getInstance(LoggerNames.DB_LOGGER);
+        checkConnection();
     }
 
-    private static void closeConnection(Connection con){
+    private void checkConnection(){
+         if (con==null){
+             try {
+                 Class.forName("com.mysql.jdbc.Driver"); //load driver
+
+                 con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" + "user=" + dbUser + "&" + "password=" + dbPass);
+             } catch (ClassNotFoundException e) {
+                 logger.log("driver not found", Level.SEVERE,e);
+             } catch (SQLException e) {
+                 logger.log("can't connect", Level.WARNING, e);
+             }
+         }
+    }
+
+    public void closeConnection(){
         try {
             con.close();
         } catch (SQLException e) {
-            System.out.println("failed to close connection");
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           logger.log("failed to close connection",Level.WARNING,e);
         }
     }
-    private static void closePreparedStatement(PreparedStatement pst){
+    private void closePreparedStatement(PreparedStatement pst){
         try {
             pst.close();
         } catch (SQLException e) {
-            System.out.println("failed to close Statement");
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           logger.log("failed to close Statement",Level.WARNING,e);
         }
     }
 
@@ -68,11 +79,12 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
     public Boolean verifyUserPassword(String userName, String passwordToVerify){
-        String sql = "SELECT password FROM mocodb.user WHERE username IS " + userName;
-        Connection con = getInstance();
+        String sql = "SELECT passwordhash FROM userlist WHERE username IS ?;";
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
+            pst.setString(1, userName);
             pst.execute();
             ResultSet rs= pst.getResultSet();
             if (!rs.first()) {
@@ -89,8 +101,8 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
             closePreparedStatement(pst);
+
         }
 
         return null;
@@ -98,8 +110,8 @@ public class DBBackend {
     }
 
     public void addUser(String username,String password){
-        String sql = "INSERT INTO user (username,password) VALUES (?,?);"; //on duplicate key?
-        Connection con = getInstance();
+        String sql = "INSERT INTO userlist (username,passwordhash) VALUES (?,?);"; //on duplicate key?
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -109,22 +121,23 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
             closePreparedStatement(pst);
         }
     }
 
     public void deleteUser(String username){
-        String sql = "DROP FROM user WHERE username = \""+ username+"\"" ;
-        Connection con = getInstance();
+        String sql = "DELETE * FROM userlist WHERE username = ?;";
+        checkConnection();
         PreparedStatement pst= null;
+
         try {
             pst  = con.prepareStatement(sql);
+            pst.setString(1, username);
             pst.execute();
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
     }
@@ -134,8 +147,8 @@ public class DBBackend {
      *--------------------------------------------------------------*/
 
      public void addPoi(POI poi) {
-         String sql = "INSERT INTO poi (latitude,longitude,type,active,name ) VALUES (?,?,?,?,?);"; //on duplicate key?
-         Connection con = getInstance();
+         String sql = "INSERT INTO poi (latitude,longitude,type,active,poiName ) VALUES (?,?,?,?,?);"; //on duplicate key?
+         checkConnection();
          PreparedStatement pst= null;
          try {
              pst  = con.prepareStatement(sql);
@@ -151,14 +164,46 @@ public class DBBackend {
          } catch (SQLException e) {
              e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
          } finally {
-             closeConnection(con);
+
              closePreparedStatement(pst);
          }
      }
+    public POI getPoiById(int idPoi){
+        POI poi = null;
+        String sql = "SELECT * FROM poi WHERE idPoi = ?;";
+        checkConnection();
+        PreparedStatement pst= null;
+        try {
+            pst  = con.prepareStatement(sql);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+                return null;
+                //keine poi
+            }
+            rs.beforeFirst();
+            while(rs.next()){
+                if(rs.getInt("active")==1)
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
+                else
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+
+            closePreparedStatement(pst);
+        }
+        return poi;
+
+    }
+
+
     public ArrayList<POI> getAllPoi(){
         ArrayList<POI> poiList =new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -172,18 +217,16 @@ public class DBBackend {
             while(rs.next()){
                 POI poi;
                 if(rs.getInt("active")==1)
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, 
-                                rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),true, rs.getInt("type"),rs.getInt("idPoi"));
                    else
-                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, 
-                                rs.getInt("type"),rs.getInt("idPoi"));
+                    poi= new POI(rs.getDouble("latitude"),rs.getDouble("longitude"),rs.getString("name"),false, rs.getInt("type"),rs.getInt("idPoi"));
                 poiList.add(poi);
 
             }
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
         return poiList;
@@ -194,7 +237,7 @@ public class DBBackend {
 
     public void addFriend(int idUserA, int idUserB ){
         String sql = "INSERT INTO friendlist (idUserA,idUserB) VALUES (?,?);"; //on duplicate key?
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -205,7 +248,7 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
 
@@ -215,7 +258,7 @@ public class DBBackend {
         ArrayList<Integer> friendlist = new ArrayList<Integer>();
 
         String sql = "SELECT idUserB FROM friendlist WHERE idUserA = "+idUser+";";
-        Connection con = getInstance();
+        checkConnection();
         PreparedStatement pst= null;
         try {
             pst  = con.prepareStatement(sql);
@@ -234,9 +277,41 @@ public class DBBackend {
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
-            closeConnection(con);
+
             closePreparedStatement(pst);
         }
         return friendlist;
+    }
+    /*--------------------------------------------------------------*
+     * message management                                           *
+     *--------------------------------------------------------------*/
+   // SELECT userName AS sendername FROM userlist INNER JOIN chatmessage ON userlist.iduser = chatmessage.idsender ORDER BY sendTime DESC LIMIT 0,50;
+
+
+    public ArrayList<ChatMessage> getAllChatMessage(){
+        ArrayList<ChatMessage> chatMessageList =new ArrayList<ChatMessage>();
+        String sql = "SELECT * FROM chatmessage ORDER BY sendTime DESC LIMIT 0,50;";
+        checkConnection();
+        PreparedStatement pst= null;
+        try {
+            pst  = con.prepareStatement(sql);
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+                return null;
+                //keine chatmessages
+            }
+            rs.beforeFirst();
+            while(rs.next()){
+               // chatMessageList.add(new ChatMessage())
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+
+            closePreparedStatement(pst);
+        }
+        return chatMessageList;
     }
 }
