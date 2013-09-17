@@ -21,7 +21,7 @@ public class UserListRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.TEXT_XML)
-    public UserList getChatMessages(@PathParam(value = "token") String token,
+    public UserList getChatMessages(@PathParam("token") String token,
                                     @PathParam("username") String username) {
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);

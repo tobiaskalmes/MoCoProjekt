@@ -25,7 +25,7 @@ public class GameRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{token}")
     @Produces(MediaType.TEXT_XML)
-    public List<GameInfo> getGameInfoList(@PathParam(value = "token") String token) {
+    public List<GameInfo> getGameInfoList(@PathParam("token") String token) {
         //TODO: add db request
         if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
