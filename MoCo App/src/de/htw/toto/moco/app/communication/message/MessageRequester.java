@@ -1,7 +1,6 @@
 package de.htw.toto.moco.app.communication.message;
 
 import android.content.Context;
-import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,8 +29,6 @@ public class MessageRequester {
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
-                                                          //TODO: build list
-                                                          Log.e("----------DEBUG----------", s);
                                                           listener.result(JSONParser.parseToChatMessageList(s));
                                                       }
                                                   },

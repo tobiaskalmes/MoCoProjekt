@@ -1,4 +1,4 @@
-package de.htw.toto.moco.app.communication.login;
+package de.htw.toto.moco.app.communication.register;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,24 +13,25 @@ import de.htw.toto.moco.app.communication.ServerInfo;
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
- * Date: 14.09.13
- * Time: 15:37
+ * Date: 18.09.13
+ * Time: 20:53
  * To change this template use File | Settings | File Templates.
  */
-public class LoginRequester {
-    private LoginRequester() {
+public class RegisterRequester {
+    private RegisterRequester() {
     }
 
-    public static void login(Context context, final ILoginListener listener, String username, String passwordHash) {
+    public static void register(Context context, final IRegisterListener listener, String username,
+                                String passwordHash) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = ServerInfo.serverBaseURL + ServerInfo.LOGIN_BASE + ServerInfo.DELIMETER + username + ServerInfo
+        String requestURL = ServerInfo.serverBaseURL + ServerInfo.REGISTER + ServerInfo.DELIMETER + username + ServerInfo
                 .DELIMETER + passwordHash;
         Log.e("DEBUG", requestURL);
         StringRequest request = new StringRequest(Request.Method.GET, requestURL,
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
-                                                          listener.result(s);
+                                                          listener.registerResult(s);
                                                       }
                                                   },
                                                   new Response.ErrorListener() {
@@ -42,5 +43,4 @@ public class LoginRequester {
         );
         queue.add(request);
     }
-
 }

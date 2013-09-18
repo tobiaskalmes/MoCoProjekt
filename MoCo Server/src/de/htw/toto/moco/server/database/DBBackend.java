@@ -97,10 +97,10 @@ public class DBBackend {
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
-                return null;
+                return false;
                 //user does not exist!
             }
-            if (rs.getString("password").equals(passwordToVerify)) {
+            if (rs.getString("passwordhash").equals(passwordToVerify)) {
                 return true;
                 //user exist pw ok
             } else {
@@ -116,7 +116,7 @@ public class DBBackend {
 
         }
 
-        return null;
+        return false;
         //sth bad happened!
     }
 

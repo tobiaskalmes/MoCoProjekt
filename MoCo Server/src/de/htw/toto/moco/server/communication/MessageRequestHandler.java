@@ -22,10 +22,10 @@ public class MessageRequestHandler extends RequestHandler {
     @Path(value = "/list/{username}/{token}")
     @Produces(MediaType.APPLICATION_JSON)
     public ChatMessageList getChatMessages(@PathParam("token") String token, @PathParam("username") String username) {
-        /*if (!TokenHandler.getInstance().checkToken(token)) {
+        if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
-        }*/
+        }
         logger.log("username: " + username + " token: " + token, Level.INFO);
         return DBBackend.getInstance().getAllChatMessages(username);
     }

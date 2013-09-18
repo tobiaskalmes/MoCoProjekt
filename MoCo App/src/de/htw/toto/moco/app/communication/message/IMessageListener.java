@@ -1,9 +1,6 @@
 package de.htw.toto.moco.app.communication.message;
 
-import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

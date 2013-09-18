@@ -8,25 +8,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
- * Date: 14.09.13
- * Time: 13:36
+ * Date: 18.09.13
+ * Time: 20:28
  * To change this template use File | Settings | File Templates.
  */
-
-@Path("/login")
-public class LoginRequestHandler extends RequestHandler {
+@Path("/register")
+public class RegisterRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/{username}/{passwordHash}")
+    @Path("/{username}/{passwordHash}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String login(@PathParam("username") String username, @PathParam("passwordHash") String
-            passwordHash) {
-        if (!DBBackend.getInstance().verifyUserPassword(username, passwordHash)) {
+    public String register(@PathParam("username") String username, @PathParam("passwordHash") String passwordHash) {
+        //check if username is free
+        if (DBBackend.getInstance().getIdUserByName(username) >= 1) {
             return null;
         }
+        //register new user
+        DBBackend.getInstance().addUser(username, passwordHash);
+        logger.log("Added user " + username, Level.INFO);
         return TokenHandler.getInstance().createToken(username);
     }
+
 }

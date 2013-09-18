@@ -14,6 +14,8 @@ public class ServerInfo {
     public static final String LIST_BASE    = "list";
     public static final String POI_BASE     = "poi";
     public static final String DETAILS      = "details";
+    public static final String REGISTER      = "register";
+
 
     static {
         serverBaseURL = "http://192.168.2.102:9998/";
