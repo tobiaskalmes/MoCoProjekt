@@ -25,10 +25,10 @@ public class UserListRequestHandler extends RequestHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public UserList getChatMessages(@PathParam("token") String token,
                                     @PathParam("username") String username) {
-        if (!TokenHandler.getInstance().checkToken(token)) {
+        /*if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
-        }
+        }*/
         return DBBackend.getInstance().getFriendlist(username);
     }
 }

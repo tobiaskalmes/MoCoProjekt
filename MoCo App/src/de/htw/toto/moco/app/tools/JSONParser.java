@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
@@ -39,5 +42,21 @@ public class JSONParser {
             Log.e("JSONParser", "Parser Exception", e);
         }
         return cml;
+    }
+
+    public static List<String> parseToUserList(String jsonString) {
+        List<String> userList = new ArrayList<String>();
+        try {
+            JSONObject baseObject = new JSONObject(jsonString);
+            JSONArray users = baseObject.getJSONArray("users");
+            int userCount = users.length();
+            for (int i = 0; i < userCount; ++i) {
+                userList.add(users.get(i).toString());
+            }
+        }
+        catch (JSONException e) {
+            Log.e("JSONParser", "Parser Exception", e);
+        }
+        return userList;
     }
 }
