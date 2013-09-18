@@ -18,12 +18,12 @@ public class ChatMessage {
     private String receiver;
     private String content;
     private int    id;
-    private Date   sendTime;
+    private long   sendTime;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String sender, String receiver, String content, int id, Date sendTime) {
+    public ChatMessage(String sender, String receiver, String content, int id, long sendTime) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
@@ -36,14 +36,14 @@ public class ChatMessage {
         this.receiver = receiver;
         this.content = content;
         this.id = id;
-        sendTime = new Date();
+        sendTime = new Date().getTime();
     }
 
-    public Date getSendTime() {
+    public long getSendTime() {
         return sendTime;
     }
 
-    public void setSendTime(Date sendTime) {
+    public void setSendTime(long sendTime) {
         this.sendTime = sendTime;
     }
 

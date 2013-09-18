@@ -1,6 +1,7 @@
 package de.htw.toto.moco.app.communication.message;
 
 import de.htw.toto.moco.server.messaging.ChatMessage;
+import de.htw.toto.moco.server.messaging.ChatMessageList;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface IMessageListener {
-    public void result(List<ChatMessage> chatMessages);
+    public void result(ChatMessageList chatMessages);
 
     public void error(Throwable e);
 }

@@ -403,7 +403,7 @@ public class DBBackend {
             while (rs.next()) {
                 chatMessageList.add(
                         new ChatMessage(rs.getString("sender"), rs.getString("destination"), rs.getString("content"),
-                                rs.getInt("idChatmessage"), rs.getDate("sendTime")));
+                                        rs.getInt("idChatmessage"), rs.getDate("sendTime").getTime()));
 
             }
         }
@@ -438,7 +438,7 @@ public class DBBackend {
             while (rs.next()) {
                 chatMessageList.add(
                         new ChatMessage(rs.getString("sender"), rs.getString("destination"), rs.getString("content"),
-                                        rs.getInt("idChatmessage"), rs.getDate("sendTime")));
+                                        rs.getInt("idChatmessage"), rs.getDate("sendTime").getTime()));
 
             }
         }
@@ -464,7 +464,7 @@ public class DBBackend {
             pst.setString(1, cm.getContent());
             pst.setInt(2, getIdUserByName(cm.getSender()));
             pst.setInt(3, getIdUserByName(cm.getReceiver()));
-            pst.setDate(4, new java.sql.Date(cm.getSendTime().getTime()));
+            pst.setDate(4, new java.sql.Date(cm.getSendTime()));
             pst.execute();
         }
         catch (SQLException e) {

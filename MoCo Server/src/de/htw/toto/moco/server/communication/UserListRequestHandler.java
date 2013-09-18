@@ -22,7 +22,7 @@ import java.util.logging.Level;
 public class UserListRequestHandler extends RequestHandler {
     @GET
     @Path(value = "/list/{username}/{token}")
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public UserList getChatMessages(@PathParam("token") String token,
                                     @PathParam("username") String username) {
         if (!TokenHandler.getInstance().checkToken(token)) {

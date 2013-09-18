@@ -10,12 +10,13 @@ package de.htw.toto.moco.app.communication;
 public class ServerInfo {
     public static final String DELIMETER    = "/";
     public static final String MESSAGE_BASE = "message";
+    public static final String LOGIN_BASE   = "login";
     public static final String LIST_BASE    = "list";
     public static final String POI_BASE     = "poi";
     public static final String DETAILS      = "details";
 
     static {
-        serverBaseURL = "http://192.168.2.102:9998/login/";
+        serverBaseURL = "http://192.168.2.102:9998/";
     }
 
     public static String serverBaseURL;

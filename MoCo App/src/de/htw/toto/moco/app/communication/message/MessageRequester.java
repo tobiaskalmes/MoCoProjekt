@@ -1,6 +1,7 @@
 package de.htw.toto.moco.app.communication.message;
 
 import android.content.Context;
+import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -8,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import de.htw.toto.moco.app.communication.ServerInfo;
+import de.htw.toto.moco.app.tools.JSONParser;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,13 +25,14 @@ public class MessageRequester {
     public static void requestChatMessages(Context context, final IMessageListener listener) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String requestURL = ServerInfo.serverBaseURL + ServerInfo.MESSAGE_BASE + ServerInfo.DELIMETER + ServerInfo
-                .LIST_BASE;
+                .LIST_BASE + "/b/handy";
         StringRequest request = new StringRequest(Request.Method.GET, requestURL,
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
                                                           //TODO: build list
-                                                          listener.result(null);
+                                                          Log.e("----------DEBUG----------", s);
+                                                          listener.result(JSONParser.parseToChatMessageList(s));
                                                       }
                                                   },
                                                   new Response.ErrorListener() {
