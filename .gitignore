@@ -1,0 +1,62 @@
+MoCo App/.idea/libraries/volley.xml
+MoCo App/.idea/workspace.xml
+MoCo App/gen/de/htw/toto/moco/app/BuildConfig.java
+MoCo App/gen/de/htw/toto/moco/app/R.java
+MoCo App/MoCo App.iml
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/BuildConfig.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/login/ILoginListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/login/LoginRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/login/LoginRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/login/LoginRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/IMessageListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/MessageRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/MessageRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/MessageRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/IPOIListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/POIRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/POIRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/POIRequester$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/POIRequester$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/poi/POIRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/register/IRegisterListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/register/RegisterRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/register/RegisterRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/register/RegisterRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/ServerInfo.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/GameMenu$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/GameMenu.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/MainMenuActivity$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/MainMenuActivity$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/MainMenuActivity$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/MainMenuActivity$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/MainMenuActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/NavigationMenu$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/NavigationMenu$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/NavigationMenu.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIMenu$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIMenu$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIMenu.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/MainActivity$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/MainActivity$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/MainActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R$attr.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R$drawable.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R$id.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R$layout.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R$string.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/R.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/ChecksumHandler$Type.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/ChecksumHandler.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/JSONParser.class
+MoCo App/out/production/MoCo App/MoCo App.afp.apk
+MoCo App/out/production/MoCo App/MoCo App.apk
+MoCo App/out/production/MoCo App/MoCo App.unaligned.apk
+MoCo Server/.idea/dataSources.ids
+MoCo Server/.idea/dataSources.xml
+MoCo Server/.idea/libraries/mysql_connector_java_5_1_26_bin.xml
+MoCo Server/.idea/workspace.xml
+MoCo Server/logging/databaseLogger.log.0
+MoCo Server/logging/databaseLogger.log.0.lck
+MoCo Server/logging/mainLogger.log.0
+MoCo Server/logging/mainLogger.log.0.lck
+MoCo Server/MoCo Server.iml
