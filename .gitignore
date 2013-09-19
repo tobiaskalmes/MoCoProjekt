@@ -60,3 +60,6 @@ MoCo Server/logging/databaseLogger.log.0.lck
 MoCo Server/logging/mainLogger.log.0
 MoCo Server/logging/mainLogger.log.0.lck
 MoCo Server/MoCo Server.iml
+MoCo Server/out/artifacts/*
+MoCo Server/out/*
+MoCo Server/.idea/*
