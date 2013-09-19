@@ -19,7 +19,7 @@ public class GameMenu extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.mainmenu);
+        setContentView(R.layout.gamesmenu);
 
 
         final Button gameListButton  = (Button) findViewById(R.id.buttonGameMenuGameList);

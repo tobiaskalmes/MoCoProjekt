@@ -20,6 +20,8 @@ public class ChatActivity extends Activity {
 
 
         //zeige alle messages an zwischen mir und freund
-        //
+        //Sende Nachricht,
+        //erneueter abruf
+        //eventuell pollen um neue nachrichten zu erhalten?
     }
 }

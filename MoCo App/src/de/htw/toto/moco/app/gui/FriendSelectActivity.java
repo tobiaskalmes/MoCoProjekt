@@ -26,6 +26,7 @@ public class FriendSelectActivity extends Activity { //TODO User Request...
         //anzeigen der liste
         //auswahl durch onSelect oder so
         //dann nächste anctivity, übergebe FREUND!
+        //Notification durch Message?
         Intent intent = new Intent(FriendSelectActivity.this, GameMenu.class);
         startActivity(intent);
     }
