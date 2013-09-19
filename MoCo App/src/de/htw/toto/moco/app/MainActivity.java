@@ -1,6 +1,7 @@
 package de.htw.toto.moco.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +12,7 @@ import de.htw.toto.moco.app.communication.login.ILoginListener;
 import de.htw.toto.moco.app.communication.login.LoginRequester;
 import de.htw.toto.moco.app.communication.register.IRegisterListener;
 import de.htw.toto.moco.app.communication.register.RegisterRequester;
+import de.htw.toto.moco.app.gui.MainMenuActivity;
 import de.htw.toto.moco.server.tools.ChecksumHandler;
 
 public class MainActivity extends Activity implements ILoginListener, IRegisterListener {
@@ -51,6 +53,7 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
     @Override
     public void result(String result) {
         ((TextView) findViewById(R.id.loginResult)).setText(result);
+        switchToMainMenu();
     }
 
     @Override
@@ -61,5 +64,10 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
     @Override
     public void error(Throwable e) {
         ((TextView) findViewById(R.id.loginResult)).setText(e.getMessage());
+    }
+
+    private void switchToMainMenu() {
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        startActivity(intent);
     }
 }
