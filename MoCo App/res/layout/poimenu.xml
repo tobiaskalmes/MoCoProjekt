@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout         xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:padding="25dp">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="POI"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+    <Button
+            android:id="@+id/buttonPOIMenuGetPOI"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="get POI's"
+            android:textSize="20dp"
+            android:padding="15dp" />
+    <Button
+            android:id="@+id/buttonPOIMenuNavPOI"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="POI nav"
+            android:textSize="20dp"
+            android:padding="15dp" />
+
+</LinearLayout>
