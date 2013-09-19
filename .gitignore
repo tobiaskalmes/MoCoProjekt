@@ -66,3 +66,9 @@ MoCo Server/.idea/*
 MoCo App/.idea/*
 MoCo App/.idea/workspace.xml
 MoCo App/gen/*
+MoCo App/.idea/workspace.xml
+MoCo App/gen/de/htw/toto/moco/app/BuildConfig.java
+MoCo App/gen/de/htw/toto/moco/app/R.java
+MoCo App/MoCo App.iml
+MoCo Server/.idea/workspace.xml
+MoCo Server/MoCo Server.iml
