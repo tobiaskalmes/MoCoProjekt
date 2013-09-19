@@ -25,8 +25,8 @@ public class DBBackend {
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
-    private static String dbUser = "moco";
-    private static String dbPass = "MoCo1234";
+    private static String dbUser = "root";
+    private static String dbPass = "Admin123#";
     private static DBBackend instance;
     private Connection con = null;
     private RootLogger logger;
