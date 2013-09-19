@@ -17,5 +17,7 @@
         <activity android:name=".gui.POIMenu"/>
         <activity android:name=".gui.NavigationMenu"/>
         <activity android:name=".gui.GameMenu"/>
+        <activity android:name=".gui.FriendSelectActivity"/>
+        <activity android:name=".gui.ChatActivity"/>
     </application>
 </manifest>

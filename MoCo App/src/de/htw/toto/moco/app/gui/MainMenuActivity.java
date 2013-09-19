@@ -1,6 +1,7 @@
 package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -27,7 +28,9 @@ public class MainMenuActivity extends Activity {
         startChatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //TODO start chat
+                Intent intent = new Intent(MainMenuActivity.this, FriendSelectActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -50,7 +53,8 @@ public class MainMenuActivity extends Activity {
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO start game
+                Intent intent = new Intent(MainMenuActivity.this, GameMenu.class);
+                startActivity(intent);
             }
         });
 
