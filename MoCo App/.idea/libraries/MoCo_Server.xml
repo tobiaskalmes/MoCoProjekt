@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MoCo Server">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../MoCo Server/out/production/MoCo Server" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
