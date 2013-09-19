@@ -16,18 +16,12 @@
             android:textStyle="bold" />
 
     <Button
-            android:id="@+id/buttonPOIMenuGetPOI"
+            android:id="@+id/buttonGameMenuGameList"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="get POI's"
+            android:text="show Gamelist"
             android:textSize="20dp"
             android:padding="15dp" />
-    <Button
-            android:id="@+id/buttonPOIMenuNavPOI"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="POI nav"
-            android:textSize="20dp"
-            android:padding="15dp" />
+
 
 </LinearLayout>
