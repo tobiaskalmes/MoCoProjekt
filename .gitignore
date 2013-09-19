@@ -64,3 +64,5 @@ MoCo Server/out/artifacts/*
 MoCo Server/out/*
 MoCo Server/.idea/*
 MoCo App/.idea/*
+MoCo App/.idea/workspace.xml
+MoCo App/gen/*
