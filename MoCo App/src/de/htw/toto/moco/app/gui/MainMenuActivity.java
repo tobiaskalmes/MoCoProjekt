@@ -30,6 +30,7 @@ public class MainMenuActivity extends Activity {
               //TODO start chat
             }
         });
+
         final Button startNavigationButton  = (Button) findViewById(R.id.buttonMainNavigate);
         startNavigationButton.setOnClickListener(new View.OnClickListener() {
             @Override
