@@ -13,5 +13,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".gui.MainMenuActivity"/>
+        <activity android:name=".gui.POIMenu"/>
+        <activity android:name=".gui.NavigationMenu"/>
+        <activity android:name=".gui.GameMenu"/>
     </application>
 </manifest>
