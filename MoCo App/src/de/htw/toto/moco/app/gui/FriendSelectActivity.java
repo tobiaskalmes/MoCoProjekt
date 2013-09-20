@@ -1,6 +1,5 @@
 package de.htw.toto.moco.app.gui;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.*;
 import de.htw.toto.moco.app.R;
-import de.htw.toto.moco.app.communication.SessionInfo;
-import de.htw.toto.moco.app.communication.message.IMessageListener;
-import de.htw.toto.moco.app.communication.message.MessageRequester;
 import de.htw.toto.moco.app.communication.user.IUserListener;
 import de.htw.toto.moco.app.communication.user.UserRequester;
-import de.htw.toto.moco.server.messaging.ChatMessageList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,11 +73,15 @@ public class FriendSelectActivity extends ListActivity implements IUserListener 
 
         userFriends = new ArrayList<String>(users);
         arrayAdapter =new ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, userFriends.toArray());
-        friendListView.setAdapter(arrayAdapter);    }
+        friendListView.setAdapter(arrayAdapter);
+    }
 
     @Override
     public void resultAddFriend(Boolean result) {
         ((TextView) findViewById(R.id.addFriendResult)).setText("Successfully Added:" + ((EditText) findViewById(R.id.addFriendName)).getText().toString());
+        //refresh
+        UserRequester.requestUserList(getBaseContext(), FriendSelectActivity.this);
+        ((EditText) findViewById(R.id.addFriendName)).setText("");
     }
 
     @Override
