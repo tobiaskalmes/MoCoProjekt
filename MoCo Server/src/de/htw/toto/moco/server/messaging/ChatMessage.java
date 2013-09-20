@@ -39,6 +39,8 @@ public class ChatMessage {
         sendTime = new Date().getTime();
     }
 
+
+
     public long getSendTime() {
         return sendTime;
     }
