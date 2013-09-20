@@ -22,35 +22,12 @@ public class POIRequester {
 
     public static void requestPOIList(Context context, final IPOIListener listener) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = ServerInfo.serverBaseURL + ServerInfo.POI_BASE + ServerInfo.DELIMETER + ServerInfo.LIST_BASE;
-        StringRequest request = new StringRequest(Request.Method.GET, requestURL,
+        StringRequest request = new StringRequest(Request.Method.GET, ServerInfo.getPOIListURL(),
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
                                                           //TODO:build list
                                                           listener.result(null);
-                                                      }
-                                                  },
-                                                  new Response.ErrorListener() {
-                                                      @Override
-                                                      public void onErrorResponse(VolleyError volleyError) {
-                                                          listener.error(volleyError);
-                                                      }
-                                                  }
-        );
-        queue.add(request);
-    }
-
-    public static void requestPOIDetails(Context context, final IPOIListener listener, int idPOI) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = ServerInfo.serverBaseURL + ServerInfo.POI_BASE + ServerInfo.DELIMETER + ServerInfo
-                .DETAILS + ServerInfo.DELIMETER + Integer.toString(idPOI);
-        StringRequest request = new StringRequest(Request.Method.GET, requestURL,
-                                                  new Response.Listener<String>() {
-                                                      @Override
-                                                      public void onResponse(String s) {
-                                                          //TODO:build POI
-                                                          listener.resultDetails(null);
                                                       }
                                                   },
                                                   new Response.ErrorListener() {

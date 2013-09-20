@@ -3,8 +3,12 @@ package de.htw.toto.moco.server.communication;
 import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.token.TokenHandler;
+import de.htw.toto.moco.server.tools.JSONParser;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.logging.Level;
 
@@ -19,25 +23,28 @@ import java.util.logging.Level;
 public class MessageRequestHandler extends RequestHandler {
 
     @GET
-    @Path(value = "/list/{username}/{token}")
+    @Path("/list/{token}/{username}/{chatPartner}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ChatMessageList getChatMessages(@PathParam("token") String token, @PathParam("username") String username) {
-        if (!TokenHandler.getInstance().checkToken(token)) {
+    public ChatMessageList getChatMessages(@PathParam("token") String token, @PathParam("username") String username,
+                                           @PathParam("chatPartner") String chatPartner) {
+        /*if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
             return null;
-        }
-        logger.log("username: " + username + " token: " + token, Level.INFO);
-        return DBBackend.getInstance().getAllChatMessages(username);
+        }*/
+        logger.log("username: " + username + " chatPartner: " + chatPartner + " token: " + token, Level.INFO);
+        return DBBackend.getInstance().getAllChatMessages(username, chatPartner);
     }
 
-    @POST
-    @Path(value = "/{token}/addMessage")
-    @Consumes("application/xml")
-    public void addMessage(@PathParam("token") String token, String xml) {
-        if (!TokenHandler.getInstance().checkToken(token)) {
+    @GET
+    @Path("/addMessage/{token}/{message}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addMessage(@PathParam("token") String token, @PathParam("message") String messageJSONString) {
+        /*if (!TokenHandler.getInstance().checkToken(token)) {
             logger.log("Token " + token + " is not valid!", Level.WARNING);
-            return;
-        }
-        logger.log(xml, Level.FINEST);
+            return null;
+        }*/
+        DBBackend.getInstance().addChatMessage(JSONParser.parseToChatMessage(messageJSONString));
+        logger.log("Received message: " + messageJSONString + " with token: " + token, Level.INFO);
+        return "true";
     }
 }

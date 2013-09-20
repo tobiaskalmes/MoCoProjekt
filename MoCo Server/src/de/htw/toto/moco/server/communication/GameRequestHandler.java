@@ -23,7 +23,7 @@ import java.util.logging.Level;
 @Path("/game")
 public class GameRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/list/{token}")
+    @Path("/list/{token}")
     @Produces(MediaType.TEXT_XML)
     public List<GameInfo> getGameInfoList(@PathParam("token") String token) {
         //TODO: add db request

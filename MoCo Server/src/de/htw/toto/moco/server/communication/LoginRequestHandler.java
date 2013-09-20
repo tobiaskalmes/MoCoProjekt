@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,13 +21,14 @@ import javax.ws.rs.core.MediaType;
 @Path("/login")
 public class LoginRequestHandler extends RequestHandler {
     @GET
-    @Path(value = "/{username}/{passwordHash}")
+    @Path("/{username}/{passwordHash}")
     @Produces(MediaType.TEXT_PLAIN)
     public String login(@PathParam("username") String username, @PathParam("passwordHash") String
             passwordHash) {
         if (!DBBackend.getInstance().verifyUserPassword(username, passwordHash)) {
             return null;
         }
+        logger.log("User " + username + " logged in.", Level.INFO);
         return TokenHandler.getInstance().createToken(username);
     }
 }

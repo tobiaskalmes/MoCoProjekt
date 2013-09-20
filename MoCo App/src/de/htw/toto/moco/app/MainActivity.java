@@ -52,6 +52,9 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
 
     @Override
     public void result(String result) {
+        if (result == null) {
+            return;
+        }
         ((TextView) findViewById(R.id.loginResult)).setText(result);
         switchToMainMenu();
     }

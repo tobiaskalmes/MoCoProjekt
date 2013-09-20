@@ -1,7 +1,6 @@
 package de.htw.toto.moco.app.communication.login;
 
 import android.content.Context;
-import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,10 +22,7 @@ public class LoginRequester {
 
     public static void login(Context context, final ILoginListener listener, String username, String passwordHash) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = ServerInfo.serverBaseURL + ServerInfo.LOGIN_BASE + ServerInfo.DELIMETER + username + ServerInfo
-                .DELIMETER + passwordHash;
-        Log.e("DEBUG", requestURL);
-        StringRequest request = new StringRequest(Request.Method.GET, requestURL,
+        StringRequest request = new StringRequest(Request.Method.GET, ServerInfo.getLoginURL(username, passwordHash),
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
@@ -42,5 +38,4 @@ public class LoginRequester {
         );
         queue.add(request);
     }
-
 }
