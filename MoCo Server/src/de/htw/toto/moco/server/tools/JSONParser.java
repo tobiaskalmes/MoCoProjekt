@@ -1,11 +1,10 @@
-package de.htw.toto.moco.app.tools;
+package de.htw.toto.moco.server.tools;
 
-import android.util.Log;
 import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +12,8 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
- * Date: 18.09.13
- * Time: 13:51
+ * Date: 20.09.13
+ * Time: 11:52
  * To change this template use File | Settings | File Templates.
  */
 public class JSONParser {
@@ -39,9 +38,24 @@ public class JSONParser {
             }
         }
         catch (JSONException e) {
-            Log.e("JSONParser", "Parser Exception", e);
         }
         return cml;
+    }
+
+    public static ChatMessage parseToChatMessage(String jsonString) {
+        ChatMessage cm = new ChatMessage();
+        try {
+            JSONObject baseObject = new JSONObject(jsonString);
+            JSONObject messageObject = baseObject.getJSONObject("ChatMessage");
+            cm.setSender(messageObject.get("sender").toString());
+            cm.setReceiver(messageObject.get("receiver").toString());
+            cm.setContent(messageObject.get("content").toString());
+            cm.setId(Integer.parseInt(messageObject.get("id").toString()));
+            cm.setSendTime(Long.parseLong(messageObject.get("sendTime").toString()));
+        }
+        catch (JSONException e) {
+        }
+        return cm;
     }
 
     public static List<String> parseToUserList(String jsonString) {
@@ -55,7 +69,6 @@ public class JSONParser {
             }
         }
         catch (JSONException e) {
-            Log.e("JSONParser", "Parser Exception", e);
         }
         return userList;
     }

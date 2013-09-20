@@ -10,7 +10,9 @@ import de.htw.toto.moco.server.messaging.ChatMessageList;
  * To change this template use File | Settings | File Templates.
  */
 public interface IMessageListener {
-    public void result(ChatMessageList chatMessages);
+    public void resultChatMessageList(ChatMessageList chatMessages);
+
+    public void resultNewChatMessage(Boolean result);
 
     public void error(Throwable e);
 }

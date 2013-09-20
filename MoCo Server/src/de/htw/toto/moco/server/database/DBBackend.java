@@ -419,15 +419,20 @@ public class DBBackend {
         return cml;
     }
 
-    public ChatMessageList getAllChatMessages(String username) {
+    public ChatMessageList getAllChatMessages(String username, String chatPartner) {
         ArrayList<ChatMessage> chatMessageList = new ArrayList<ChatMessage>();
-        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser WHERE uls.username = ? OR uld.username = ? ORDER BY sendTime DESC LIMIT 0,50;";
+        String sql = "SELECT chatmessage.idChatmessage, chatmessage.content, chatmessage.sendTime, " +
+                "uls.username AS sender, uld.username AS destination FROM chatmessage INNER JOIN userlist uls ON " +
+                "chatmessage.idsender = uls.idUser INNER JOIN userlist uld ON chatmessage.iddestination = uld.idUser " +
+                "WHERE (uls.username = ? AND uld.username = ?) OR (uls.username = ? AND uld.username = ?) ORDER BY sendTime DESC LIMIT 0,50;";
         checkConnection();
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, username);
-            pst.setString(2, username);
+            pst.setString(2, chatPartner);
+            pst.setString(3, chatPartner);
+            pst.setString(4, username);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
@@ -443,7 +448,7 @@ public class DBBackend {
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
         finally {
 
