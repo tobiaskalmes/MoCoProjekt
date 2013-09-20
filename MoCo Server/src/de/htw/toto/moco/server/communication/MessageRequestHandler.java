@@ -1,8 +1,9 @@
 package de.htw.toto.moco.server.communication;
 
 import de.htw.toto.moco.server.database.DBBackend;
+import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
-import de.htw.toto.moco.server.token.TokenHandler;
+import de.htw.toto.moco.server.tools.HexStringConverter;
 import de.htw.toto.moco.server.tools.JSONParser;
 
 import javax.ws.rs.GET;
@@ -41,7 +42,9 @@ public class MessageRequestHandler extends RequestHandler {
         if (!checkToken(token)) {
             return null;
         }
-        DBBackend.getInstance().addChatMessage(JSONParser.parseToChatMessage(messageJSONString));
+        String dehexedJSON = HexStringConverter.getHexStringConverterInstance().hexToString(messageJSONString);
+        ChatMessage cm = JSONParser.parseToChatMessage(dehexedJSON);
+        DBBackend.getInstance().addChatMessage(cm);
         logger.log("Received message: " + messageJSONString + " with token: " + token, Level.INFO);
         return "true";
     }

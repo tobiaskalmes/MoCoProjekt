@@ -46,12 +46,11 @@ public class JSONParser {
         ChatMessage cm = new ChatMessage();
         try {
             JSONObject baseObject = new JSONObject(jsonString);
-            JSONObject messageObject = baseObject.getJSONObject("ChatMessage");
-            cm.setSender(messageObject.get("sender").toString());
-            cm.setReceiver(messageObject.get("receiver").toString());
-            cm.setContent(messageObject.get("content").toString());
-            cm.setId(Integer.parseInt(messageObject.get("id").toString()));
-            cm.setSendTime(Long.parseLong(messageObject.get("sendTime").toString()));
+            cm.setSender(baseObject.get("sender").toString());
+            cm.setReceiver(baseObject.get("receiver").toString());
+            cm.setContent(baseObject.get("content").toString());
+            cm.setId(Integer.parseInt(baseObject.get("id").toString()));
+            cm.setSendTime(Long.parseLong(baseObject.get("sendTime").toString()));
         }
         catch (JSONException e) {
         }

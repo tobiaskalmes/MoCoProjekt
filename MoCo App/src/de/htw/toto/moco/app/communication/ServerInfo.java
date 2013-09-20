@@ -2,6 +2,9 @@ package de.htw.toto.moco.app.communication;
 
 import com.google.gson.Gson;
 import de.htw.toto.moco.server.messaging.ChatMessage;
+import de.htw.toto.moco.server.tools.HexStringConverter;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +23,7 @@ public class ServerInfo {
     public static final String REGISTER     = "register";
     public static final String USER         = "user";
     public static final String ADD_FRIEND   = "addFriend";
+    public static final String ADD_MESSAGE  = "addMessage";
 
     static {
         serverBaseURL = "http://192.168.2.102:9998/";
@@ -45,7 +49,15 @@ public class ServerInfo {
         cm.setReceiver(chatPartner);
         cm.setContent(content);
         String jsonMessage = gson.toJson(cm);
-        return serverBaseURL + SessionInfo.getInstance().getToken() + DELIMETER + jsonMessage;
+        String hexedJSON = "";
+        try {
+            hexedJSON = HexStringConverter.getHexStringConverterInstance().stringToHex(jsonMessage);
+        }
+        catch (UnsupportedEncodingException e) {
+
+        }
+        return serverBaseURL + MESSAGE_BASE + DELIMETER + ADD_MESSAGE + DELIMETER + SessionInfo.getInstance().getToken() +
+                DELIMETER + hexedJSON;
     }
 
     public static String getPOIListURL() {
