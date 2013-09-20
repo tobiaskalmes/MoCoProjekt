@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import de.htw.toto.moco.app.communication.SessionInfo;
 import de.htw.toto.moco.app.communication.login.ILoginListener;
 import de.htw.toto.moco.app.communication.login.LoginRequester;
 import de.htw.toto.moco.app.communication.register.IRegisterListener;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
             @Override
             public void onClick(View view) {
                 String username = ((EditText) findViewById(R.id.username)).getText().toString();
+                SessionInfo.getInstance().setUsername(username);
                 ChecksumHandler.getInstance(ChecksumHandler.Type.SHA1).update(
                         ((EditText) findViewById(R.id.password)).getText().toString());
                 String passwordHash = ChecksumHandler.getInstance(ChecksumHandler.Type.SHA1).digest();
@@ -55,6 +57,7 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
         if (result == null) {
             return;
         }
+        SessionInfo.getInstance().setToken(result);
         ((TextView) findViewById(R.id.loginResult)).setText(result);
         switchToMainMenu();
     }
