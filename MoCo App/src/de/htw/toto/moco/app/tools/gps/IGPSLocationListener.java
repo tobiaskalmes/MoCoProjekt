@@ -1,4 +1,4 @@
-package de.htw.toto.moco.app.tools;
+package de.htw.toto.moco.app.tools.gps;
 
 import android.location.Location;
 

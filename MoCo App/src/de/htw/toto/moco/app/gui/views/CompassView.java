@@ -16,6 +16,7 @@ import android.view.View;
  */
 public class CompassView extends View {
     private float direction;
+    private Float bearing;
 
     public CompassView(Context context) {
         super(context);
@@ -40,9 +41,9 @@ public class CompassView extends View {
         int h = getMeasuredHeight();
         int r;
         if (w > h) {
-            r = h / 2;
+            r = (h / 2) - 5;
         } else {
-            r = w / 2;
+            r = (w / 2) - 5;
         }
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -55,11 +56,22 @@ public class CompassView extends View {
         paint.setColor(Color.RED);
         canvas.drawLine(w / 2, h / 2, (float) (w / 2 + r * Math.sin(-direction)),
                         (float) (h / 2 - r * Math.cos(-direction)), paint);
-
+        if (bearing != null) {
+            paint.setColor(Color.GREEN);
+            canvas.drawLine(w / 2, h / 2, (float) (w / 2 + r * Math.sin(-(direction - (bearing * Math.PI / 180)))),
+                            (float) (h / 2 - r * Math.cos(-(direction - (bearing * Math.PI / 180)))), paint);
+        }
     }
 
     public void update(float dir) {
         direction = dir;
+        bearing = null;
+        invalidate();
+    }
+
+    public void update(float direction, float bearing) {
+        this.direction = direction;
+        this.bearing = bearing;
         invalidate();
     }
 }

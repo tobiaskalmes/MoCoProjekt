@@ -14,7 +14,7 @@ import de.htw.toto.moco.app.communication.login.LoginRequester;
 import de.htw.toto.moco.app.communication.register.IRegisterListener;
 import de.htw.toto.moco.app.communication.register.RegisterRequester;
 import de.htw.toto.moco.app.gui.MainMenuActivity;
-import de.htw.toto.moco.app.tools.GPSLocation;
+import de.htw.toto.moco.app.tools.gps.GPSLocation;
 import de.htw.toto.moco.server.tools.ChecksumHandler;
 
 public class MainActivity extends Activity implements ILoginListener, IRegisterListener {

@@ -5,11 +5,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <TextView android:id="@+id/compass" android:layout_height="wrap_content" android:layout_width="wrap_content"
-              android:text="Compass"/>
-    <TextView android:id="@+id/azimuth" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
-    <TextView android:id="@+id/pitch" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
-    <TextView android:id="@+id/roll" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
-    <TextView android:id="@+id/location" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+              android:text="@string/compass"/>
+    <TextView android:id="@+id/latitude" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <TextView android:id="@+id/longitude" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <TextView android:id="@+id/bearing" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <TextView android:id="@+id/distance" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <Button android:id="@+id/navigateTo" android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="@string/navigateTo"/>
     <de.htw.toto.moco.app.gui.views.CompassView android:id="@+id/mycompass" android:layout_height="fill_parent"
                                                 android:layout_width="fill_parent"/>
+
 </LinearLayout>

@@ -7,12 +7,14 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.gui.views.CompassView;
-import de.htw.toto.moco.app.tools.GPSLocation;
-import de.htw.toto.moco.app.tools.IGPSLocationListener;
+import de.htw.toto.moco.app.tools.gps.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,9 +23,10 @@ import de.htw.toto.moco.app.tools.IGPSLocationListener;
  * Time: 13:06
  * To change this template use File | Settings | File Templates.
  */
-public class NavigationActivity extends Activity implements SensorEventListener, IGPSLocationListener {
+public class NavigationActivity extends Activity implements SensorEventListener, IGPSLocationListener,
+                                                            INavigationListener {
     private SensorManager sensorManager;
-    private TextView      readingAzimuth, readingPitch, readingRoll, locationText;
+    private TextView      readingLatitude, readingLongitude, readingDistance, readingBearing;
     private CompassView myCompass;
     private Sensor      sensorAccelerometer;
     private Sensor      sensorMagneticField;
@@ -32,15 +35,21 @@ public class NavigationActivity extends Activity implements SensorEventListener,
     private float[]     matrixR;
     private float[]     matrixI;
     private float[]     matrixValues;
+    private boolean     isNavigating;
+    private Float       bearing;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.compass);
-        readingAzimuth = (TextView) findViewById(R.id.azimuth);
-        readingPitch = (TextView) findViewById(R.id.pitch);
-        readingRoll = (TextView) findViewById(R.id.roll);
-        locationText = (TextView) findViewById(R.id.location);
+
+        isNavigating = false;
+        bearing = null;
+
+        readingLatitude = (TextView) findViewById(R.id.latitude);
+        readingLongitude = (TextView) findViewById(R.id.longitude);
+        readingDistance = (TextView) findViewById(R.id.distance);
+        readingBearing = (TextView) findViewById(R.id.bearing);
 
         myCompass = (CompassView) findViewById(R.id.mycompass);
 
@@ -55,7 +64,22 @@ public class NavigationActivity extends Activity implements SensorEventListener,
         matrixI = new float[9];
         matrixValues = new float[3];
 
-        GPSLocation.getInstance().addListener(this);
+        GPSLocation.getInstance().addGPSListener(this);
+        GPSLocation.getInstance().addNavigationListener(this);
+
+        ((Button) findViewById(R.id.navigateTo)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    NavigationActivity.this.isNavigating = true;
+                    GPSLocation.getInstance().navigateTo(50.0, 8.0);
+                }
+                catch (GPSException e) {
+                    Log.e("GPS-Exception", "GPS failed", e);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -105,22 +129,25 @@ public class NavigationActivity extends Activity implements SensorEventListener,
 
         if (success) {
             SensorManager.getOrientation(matrixR, matrixValues);
-
-            double azimuth = Math.toDegrees(matrixValues[0]);
-            double pitch = Math.toDegrees(matrixValues[1]);
-            double roll = Math.toDegrees(matrixValues[2]);
-
-            readingAzimuth.setText("Azimuth: " + String.valueOf(azimuth));
-            readingPitch.setText("Pitch: " + String.valueOf(pitch));
-            readingRoll.setText("Roll: " + String.valueOf(roll));
-
-            myCompass.update(matrixValues[0]);
+            if (!isNavigating || bearing == null) {
+                myCompass.update(matrixValues[0]);
+            } else {
+                myCompass.update(matrixValues[0], bearing);
+            }
         }
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        locationText.setText(location.toString());
+        readingLatitude.setText("Latitude: " + location.getLatitude());
+        readingLongitude.setText("Longitude: " + location.getLongitude());
+    }
+
+    @Override
+    public void onLocationChanged(NavigationInfo navInfo) {
+        readingBearing.setText("Bearing: " + navInfo.getBearing());
+        readingDistance.setText("Distance: " + navInfo.getDistance() + "m");
+        bearing = navInfo.getBearing();
     }
 }

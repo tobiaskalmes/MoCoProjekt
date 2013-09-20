@@ -10,4 +10,6 @@
     <string name="chatpartner">Chatpartner:</string>
     <string name="sendMessage">Nachricht senden</string>
     <string name="register">Registrieren</string>
+    <string name="compass">Navigation</string>
+    <string name="navigateTo">Navigiere zu</string>
 </resources>
