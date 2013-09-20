@@ -24,10 +24,9 @@ public class UserListRequestHandler extends RequestHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public UserList getChatMessages(@PathParam("token") String token,
                                     @PathParam("username") String username) {
-        /*if (!TokenHandler.getInstance().checkToken(token)) {
-            logger.log("Token " + token + " is not valid!", Level.WARNING);
+        if (checkToken(token)) {
             return null;
-        }*/
+        }
         logger.log("Fetched friendlist for user: " + username + " with token: " + token, Level.INFO);
         return DBBackend.getInstance().getFriendlist(username);
     }
@@ -37,10 +36,9 @@ public class UserListRequestHandler extends RequestHandler {
     @Produces(MediaType.TEXT_PLAIN)
     public String addMessage(@PathParam("token") String token, @PathParam("username") String username,
                              @PathParam("friend") String friend) {
-        /*if (!TokenHandler.getInstance().checkToken(token)) {
-            logger.log("Token " + token + " is not valid!", Level.WARNING);
+        if (checkToken(token)) {
             return null;
-        }*/
+        }
         DBBackend.getInstance().addFriend(username, friend);
         logger.log("User " + username + " added " + friend + " as friend.", Level.INFO);
         return "true";

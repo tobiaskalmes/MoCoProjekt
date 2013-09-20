@@ -1,9 +1,8 @@
 package de.htw.toto.moco.server.communication;
 
+import de.htw.toto.moco.server.game.GameFactory;
 import de.htw.toto.moco.server.game.GameInfo;
-import de.htw.toto.moco.server.logging.LoggerNames;
-import de.htw.toto.moco.server.logging.RootLogger;
-import de.htw.toto.moco.server.token.TokenHandler;
+import de.htw.toto.moco.server.game.GameType;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,13 +23,35 @@ import java.util.logging.Level;
 public class GameRequestHandler extends RequestHandler {
     @GET
     @Path("/list/{token}")
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<GameInfo> getGameInfoList(@PathParam("token") String token) {
         //TODO: add db request
-        if (!TokenHandler.getInstance().checkToken(token)) {
-            logger.log("Token " + token + " is not valid!", Level.WARNING);
+        if (checkToken(token)) {
             return null;
         }
         return null;
+    }
+
+    @GET
+    @Path("/rpssl/{token}/{username}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String readyForRPSSL(@PathParam("token") String token, @PathParam("username") String username) {
+        if (checkToken(token)) {
+            return null;
+        }
+        GameFactory.getInstance().addToWaitList(GameType.ROCK_PAPER_SCISSORS_SPOCK_LIZARD, username);
+        logger.log("Added " + username + " to WaiList for " + GameType.ROCK_PAPER_SCISSORS_SPOCK_LIZARD, Level.INFO);
+        return "true";
+    }
+
+    @GET
+    @Path("/rpssl/inviteState/{token}/{username}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String checkInviteState(@PathParam("token") String token, @PathParam("username") String username) {
+        if (checkToken(token)) {
+            return null;
+        }
+        //check if game is ready
+        return "true";
     }
 }

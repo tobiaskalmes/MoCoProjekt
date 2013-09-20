@@ -24,8 +24,7 @@ public class POIRequestHandler extends RequestHandler {
     @Path("/list/{token}")
     @Produces(MediaType.TEXT_XML)
     public POIList getPOIList(@PathParam("token") String token) {
-        if (!TokenHandler.getInstance().checkToken(token)) {
-            logger.log("Token " + token + " is not valid!", Level.WARNING);
+        if (checkToken(token)) {
             return null;
         }
         logger.log("Fetched POIs fro token: " + token, Level.INFO);

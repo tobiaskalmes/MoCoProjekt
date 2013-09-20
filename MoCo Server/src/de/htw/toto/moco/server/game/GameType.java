@@ -8,5 +8,5 @@ package de.htw.toto.moco.server.game;
  * To change this template use File | Settings | File Templates.
  */
 public enum GameType {
-    DEFAULT;
+    DEFAULT, ROCK_PAPER_SCISSORS_SPOCK_LIZARD
 }
