@@ -8,8 +8,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import de.htw.toto.moco.app.communication.ServerInfo;
-
-import java.util.ArrayList;
+import de.htw.toto.moco.app.tools.JSONParser;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,8 +27,7 @@ public class UserRequester {
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
-                                                          //TODO: build list
-                                                          listener.resultUserList(new ArrayList<String>());
+                                                          listener.resultUserList(JSONParser.parseToUserList(s));
                                                       }
                                                   },
                                                   new Response.ErrorListener() {

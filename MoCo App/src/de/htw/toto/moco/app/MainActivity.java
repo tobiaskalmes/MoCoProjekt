@@ -14,6 +14,7 @@ import de.htw.toto.moco.app.communication.login.LoginRequester;
 import de.htw.toto.moco.app.communication.register.IRegisterListener;
 import de.htw.toto.moco.app.communication.register.RegisterRequester;
 import de.htw.toto.moco.app.gui.MainMenuActivity;
+import de.htw.toto.moco.app.tools.GPSLocation;
 import de.htw.toto.moco.server.tools.ChecksumHandler;
 
 public class MainActivity extends Activity implements ILoginListener, IRegisterListener {
@@ -25,6 +26,7 @@ public class MainActivity extends Activity implements ILoginListener, IRegisterL
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login);
+        GPSLocation.getInstance().setContext(this);
 
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {

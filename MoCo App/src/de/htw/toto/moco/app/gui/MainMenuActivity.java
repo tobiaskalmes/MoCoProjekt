@@ -34,11 +34,12 @@ public class MainMenuActivity extends Activity {
             }
         });
 
-        final Button startNavigationButton  = (Button) findViewById(R.id.buttonMainNavigate);
+        final Button startNavigationButton = (Button) findViewById(R.id.buttonMainNavigate);
         startNavigationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO start navigation
+                Intent intent = new Intent(MainMenuActivity.this, NavigationActivity.class);
+                startActivity(intent);
             }
         });
 
