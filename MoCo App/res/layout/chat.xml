@@ -14,7 +14,7 @@
               android:layout_height="wrap_content"
               android:text="@string/undefined"/>
 
-    <ListView android:id="@+id/chat"
+    <ListView android:id="@android:id/list"
               android:layout_height="wrap_content"
               android:layout_width="fill_parent"/>
 

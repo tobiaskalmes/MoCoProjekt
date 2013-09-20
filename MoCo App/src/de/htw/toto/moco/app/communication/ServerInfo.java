@@ -22,7 +22,7 @@ public class ServerInfo {
     public static final String ADD_FRIEND   = "addFriend";
 
     static {
-        serverBaseURL = "http://192.168.0.14:9998/";
+        serverBaseURL = "http://192.168.2.102:9998/";
     }
 
     public static String serverBaseURL;

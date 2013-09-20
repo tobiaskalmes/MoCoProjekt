@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import de.htw.toto.moco.app.R;
+import de.htw.toto.moco.server.messaging.ChatMessageList;
+
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,23 +20,28 @@ import de.htw.toto.moco.app.R;
  * To change this template use File | Settings | File Templates.
  */
 public class ChatActivity extends ListActivity {
+    ChatMessageList chatMessages;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.chat);
 
 
+        ListView chatListView;
 
-        String[] testItems = { "this", "is", "a", "really",
-                "silly", "list" };
+        ArrayAdapter arrayAdapter;
+
+        chatListView = (ListView)findViewById(android.R.id.list);
 
 
 
-        setListAdapter(new ArrayAdapter<String>(
+
+
+        /*setListAdapter(new ArrayAdapter<String>(
                 ChatActivity.this,
-                android.R.layout.simple_list_item_activated_1,
-                testItems));
-
+                android.R.layout.simple_list_item_activated_1,));
+          */
 
 
 

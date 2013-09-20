@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import de.htw.toto.moco.app.R;
+import de.htw.toto.moco.app.communication.SessionInfo;
 import de.htw.toto.moco.app.communication.message.IMessageListener;
 import de.htw.toto.moco.app.communication.message.MessageRequester;
+import de.htw.toto.moco.app.communication.user.IUserListener;
+import de.htw.toto.moco.app.communication.user.UserRequester;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,8 +25,11 @@ import de.htw.toto.moco.server.messaging.ChatMessageList;
  * Time: 19:59
  * To change this template use File | Settings | File Templates.
  */
-public class FriendSelectActivity extends ListActivity { //TODO User Request...  //TODO ADDFRIENDIMPLEMENT!
-    String[] testItems= { "this", "is", "a", "really", "silly", "list" };
+public class FriendSelectActivity extends ListActivity implements IUserListener { //TODO User Request...  //TODO ADDFRIENDIMPLEMENT!
+
+    ArrayList<String> userFriends;
+    ListView friendListView;
+    ArrayAdapter arrayAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +37,11 @@ public class FriendSelectActivity extends ListActivity { //TODO User Request... 
 
         setContentView(R.layout.chatpartnerlist);
 
-        ListView friendListView;
 
-        ArrayAdapter arrayAdapter;
+        UserRequester.requestUserList(getBaseContext(), FriendSelectActivity.this);
 
-        friendListView = (ListView)findViewById(R.id.list);
-        arrayAdapter =new ArrayAdapter(this, android.R.layout.simple_list_item_activated_1,testItems);
-        friendListView.setAdapter(arrayAdapter);
+        friendListView = (ListView)findViewById(android.R.id.list);
+
 
 
 
@@ -47,8 +51,9 @@ public class FriendSelectActivity extends ListActivity { //TODO User Request... 
         addFriendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO start Add friend to fl
-                //TODO update List!
+
+                UserRequester.requestAddFriend(getBaseContext(),FriendSelectActivity.this,  ((EditText) findViewById(R.id.addFriendName)).getText().toString());
+
             }
         });
         //anzeigen der liste
@@ -63,8 +68,25 @@ public class FriendSelectActivity extends ListActivity { //TODO User Request... 
     public void onListItemClick(ListView l, View v, int position, long id) {
        // Do something when a friend item from list is clicked
         Intent intent = new Intent(FriendSelectActivity.this, ChatActivity.class);
-        intent.putExtra("CHATBUDDY", testItems[position]);
+
+        intent.putExtra("CHATBUDDY", (String)userFriends.toArray()[position]);
         startActivity(intent);
     }
 
+    @Override
+    public void resultUserList(List<String> users) {
+
+        userFriends = new ArrayList<String>(users);
+        arrayAdapter =new ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, userFriends.toArray());
+        friendListView.setAdapter(arrayAdapter);    }
+
+    @Override
+    public void resultAddFriend(Boolean result) {
+        ((TextView) findViewById(R.id.addFriendResult)).setText("Successfully Added:" + ((EditText) findViewById(R.id.addFriendName)).getText().toString());
+    }
+
+    @Override
+    public void error(Throwable e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

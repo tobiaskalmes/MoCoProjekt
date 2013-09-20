@@ -15,12 +15,25 @@
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
             android:choiceMode="multipleChoice"
-            android:id="@+id/list"
+            android:id="@android:id/list"
             android:layout_gravity="center"/>
 
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+    <EditText android:id="@+id/addFriendName" android:inputType="text" android:layout_height="wrap_content"
+              android:layout_width="fill_parent" android:layout_weight="1"/>
 
     <Button android:id="@+id/addFriendButton"
             android:text="@string/addFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView android:id="@+id/addFriendResult"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"/>
+
+
 </LinearLayout>
