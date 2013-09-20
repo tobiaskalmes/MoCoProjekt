@@ -24,7 +24,7 @@ public class POIRequestHandler extends RequestHandler {
     @Path("/list/{token}")
     @Produces(MediaType.TEXT_XML)
     public POIList getPOIList(@PathParam("token") String token) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         logger.log("Fetched POIs fro token: " + token, Level.INFO);

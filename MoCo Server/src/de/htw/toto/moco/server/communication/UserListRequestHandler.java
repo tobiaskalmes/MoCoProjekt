@@ -24,7 +24,7 @@ public class UserListRequestHandler extends RequestHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public UserList getChatMessages(@PathParam("token") String token,
                                     @PathParam("username") String username) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         logger.log("Fetched friendlist for user: " + username + " with token: " + token, Level.INFO);
@@ -36,7 +36,7 @@ public class UserListRequestHandler extends RequestHandler {
     @Produces(MediaType.TEXT_PLAIN)
     public String addMessage(@PathParam("token") String token, @PathParam("username") String username,
                              @PathParam("friend") String friend) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         DBBackend.getInstance().addFriend(username, friend);

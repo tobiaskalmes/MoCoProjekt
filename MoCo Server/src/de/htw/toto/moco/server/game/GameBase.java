@@ -1,5 +1,8 @@
 package de.htw.toto.moco.server.game;
 
+import de.htw.toto.moco.server.logging.LoggerNames;
+import de.htw.toto.moco.server.logging.RootLogger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +14,22 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class GameBase extends Thread {
+    protected static Integer runningGameID = 1000000;
     protected int          gameID;
     protected List<Player> players;
     protected Boolean      isRunning;
+    protected RootLogger   logger;
+    protected GameState    gameState;
 
     public GameBase() {
         super();
+        synchronized (runningGameID) {
+            gameID = runningGameID++;
+        }
+        logger = RootLogger.getInstance(LoggerNames.MAIN_LOGGER);
         players = new ArrayList<Player>();
         isRunning = false;
+        gameState = GameState.WAITING_FOR_PLAYER_ACTION;
     }
 
     public void addPlayer(Player player) {
@@ -39,5 +50,9 @@ public abstract class GameBase extends Thread {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }

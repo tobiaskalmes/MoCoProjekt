@@ -3,6 +3,7 @@ package de.htw.toto.moco.server.communication;
 import de.htw.toto.moco.server.game.GameFactory;
 import de.htw.toto.moco.server.game.GameInfo;
 import de.htw.toto.moco.server.game.GameType;
+import de.htw.toto.moco.server.game.rpssl.GameHand;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,7 +27,7 @@ public class GameRequestHandler extends RequestHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public List<GameInfo> getGameInfoList(@PathParam("token") String token) {
         //TODO: add db request
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         return null;
@@ -36,7 +37,7 @@ public class GameRequestHandler extends RequestHandler {
     @Path("/rpssl/{token}/{username}")
     @Produces(MediaType.TEXT_PLAIN)
     public String readyForRPSSL(@PathParam("token") String token, @PathParam("username") String username) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         GameFactory.getInstance().addToWaitList(GameType.ROCK_PAPER_SCISSORS_SPOCK_LIZARD, username);
@@ -48,10 +49,47 @@ public class GameRequestHandler extends RequestHandler {
     @Path("/rpssl/inviteState/{token}/{username}")
     @Produces(MediaType.TEXT_PLAIN)
     public String checkInviteState(@PathParam("token") String token, @PathParam("username") String username) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
-        //check if game is ready
+        logger.log("User " + username + " has checked the inviteState.", Level.INFO);
+        return Integer.toString(GameFactory.getInstance().checkInviteState(username));
+    }
+
+    @GET
+    @Path("/rpssl/pollGameState/{token}/{username}/{gameID}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String pollGameState(@PathParam("token") String token, @PathParam("username") String username,
+                                @PathParam("gameID") int gameID) {
+        if (!checkToken(token)) {
+            return null;
+        }
+        logger.log("User " + username + " has checked the gamestate for gameID " + gameID, Level.INFO);
+        return GameFactory.getInstance().checkGameState(gameID).name();
+    }
+
+    @GET
+    @Path("/rpssl/playHand/{token}/{username}/{gameID}/{gameHand}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String playHand(@PathParam("token") String token, @PathParam("username") String username,
+                           @PathParam("gameID") String gameID, @PathParam("gameHand") String gameHand) {
+        if (!checkToken(token)) {
+            return null;
+        }
+        logger.log("User " + username + " played Hand: " + gameHand, Level.INFO);
+        GameFactory.getInstance().playHand(Integer.parseInt(gameID), username, GameHand.valueOf(gameHand));
         return "true";
+    }
+
+    @GET
+    @Path("/rpssl/getResult/{token}/{username}/{gameID}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getResult(@PathParam("token") String token, @PathParam("username") String username,
+                            @PathParam("gameID") String gameID) {
+        if (!checkToken(token)) {
+            return null;
+        }
+        logger.log("User " + username + " fetched Result for gameID " + gameID, Level.INFO);
+        return GameFactory.getInstance().checkResult(Integer.parseInt(gameID), username).toString();
     }
 }

@@ -1,10 +1,13 @@
 package de.htw.toto.moco.server.game.rpssl;
 
 import de.htw.toto.moco.server.game.GameBase;
+import de.htw.toto.moco.server.game.GameState;
 import de.htw.toto.moco.server.game.GameType;
+import de.htw.toto.moco.server.game.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +19,10 @@ import java.util.List;
 public class RPSSLGame extends GameBase {
     protected static final GameType gameType = GameType.ROCK_PAPER_SCISSORS_SPOCK_LIZARD;
     private List<GameRule> gameRules;
+    private int            isWaitingForPlayers;
+    private GameHand       hand1;
+    private GameHand       hand2;
+    private int            result;
 
     public RPSSLGame() {
         super();
@@ -58,8 +65,62 @@ public class RPSSLGame extends GameBase {
     @Override
     public void run() {
         isRunning = true;
+        String playerString = "";
+        for (Player player : players) {
+            playerString += player.getName() + " ";
+        }
+        logger.log("Game Rock, Paper, Scissors, Spock, Lizard started with Players: " + playerString, Level.INFO);
         while (isRunning) {
+            logger.log("Waiting for Players...", Level.INFO);
+            isWaitingForPlayers = 0;
+            while (isWaitingForPlayers < 2) {
+                //Waiting until every player has played his/her hand
+            }
+            //get Result
+            result = checkResult();
+            logger.log("Player1 played hand: " + hand1 + " Player2 played hand: " + hand2 + " Result: " + result,
+                       Level.INFO);
+            gameState = GameState.RESULT_READY;
+            while (isWaitingForPlayers > 0) {
+                //waiting till every player has fetched the result
+            }
+            gameState = GameState.WAITING_FOR_PLAYER_ACTION;
+        }
+    }
 
+    private int checkResult() {
+        for (GameRule rule : gameRules) {
+            if (rule.getFirstPlayerHand().name().equals(hand1.name()) && rule.getSecondPlayerHand().name().equals
+                    (hand2.name())) {
+                return rule.getResult();
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+
+    public void playHand(String player, GameHand gameHand) {
+        if (player.equals(players.get(0).getName())) {
+            if (hand1 == null) {
+                ++isWaitingForPlayers;
+                hand1 = gameHand;
+                logger.log("Player1 played hand: " + gameHand.name(), Level.INFO);
+            }
+        } else {
+            if (hand2 == null) {
+                ++isWaitingForPlayers;
+                hand2 = gameHand;
+                logger.log("Player2 played hand: " + gameHand.name(), Level.INFO);
+            }
+        }
+    }
+
+    public int getResult(String username) {
+        if (players.get(0).getName().equals(username)) {
+            --isWaitingForPlayers;
+            return result;
+        } else {
+            --isWaitingForPlayers;
+            return -result;
         }
     }
 }

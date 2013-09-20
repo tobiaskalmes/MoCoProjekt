@@ -27,7 +27,7 @@ public class MessageRequestHandler extends RequestHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public ChatMessageList getChatMessages(@PathParam("token") String token, @PathParam("username") String username,
                                            @PathParam("chatPartner") String chatPartner) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         logger.log("username: " + username + " chatPartner: " + chatPartner + " token: " + token, Level.INFO);
@@ -38,7 +38,7 @@ public class MessageRequestHandler extends RequestHandler {
     @Path("/addMessage/{token}/{message}")
     @Produces(MediaType.TEXT_PLAIN)
     public String addMessage(@PathParam("token") String token, @PathParam("message") String messageJSONString) {
-        if (checkToken(token)) {
+        if (!checkToken(token)) {
             return null;
         }
         DBBackend.getInstance().addChatMessage(JSONParser.parseToChatMessage(messageJSONString));
