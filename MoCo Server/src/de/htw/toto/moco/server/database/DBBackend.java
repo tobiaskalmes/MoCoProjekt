@@ -1,5 +1,7 @@
 package de.htw.toto.moco.server.database;
 
+import de.htw.toto.moco.server.game.GameInfo;
+import de.htw.toto.moco.server.game.GameType;
 import de.htw.toto.moco.server.logging.LoggerNames;
 import de.htw.toto.moco.server.logging.RootLogger;
 import de.htw.toto.moco.server.messaging.ChatMessage;
@@ -25,8 +27,8 @@ public class DBBackend {
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
-    private static String dbUser = "root";
-    private static String dbPass = "Admin123#";
+    private static String dbUser = "moco";
+    private static String dbPass = "MoCo1234";
     private static DBBackend instance;
     private Connection con = null;
     private RootLogger logger;
@@ -480,6 +482,41 @@ public class DBBackend {
             closePreparedStatement(pst);
         }
 
+    }
+
+    /*--------------------------------------------------------------*
+     * game management                                              *
+     *--------------------------------------------------------------*/
+    public ArrayList<GameInfo> getAllGames() {
+        ArrayList<GameInfo> gameList = new ArrayList<GameInfo>();
+        String sql = "SELECT * FROM game";
+        checkConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(sql);
+
+            pst.execute();
+            ResultSet rs = pst.getResultSet();
+            if (!rs.first()) {
+                return null;
+                //keine chatmessages
+            }
+            rs.beforeFirst();
+            while (rs.next()) {
+                gameList.add(
+                        new GameInfo(rs.getString("gamename"), rs.getInt("idgame"), GameType.DEFAULT));//TODO (rs.getInt("idType")
+
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            closePreparedStatement(pst);
+        }
+
+return gameList;
     }
 
 }

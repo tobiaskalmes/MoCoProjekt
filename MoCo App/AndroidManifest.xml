@@ -21,5 +21,6 @@
         <activity android:name=".gui.GameMenu"/>
         <activity android:name=".gui.FriendSelectActivity"/>
         <activity android:name=".gui.ChatActivity"/>
+        <activity android:name=".gui.GameSelectActivity"/>
     </application>
 </manifest>

@@ -18,9 +18,20 @@
               android:layout_height="wrap_content"
               android:layout_width="fill_parent"/>
 
-    <Button android:id="@+id/sendMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sendMessage"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+        <EditText android:id="@+id/sendMessageContent"
+                  android:inputType="text"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:layout_weight="1"/>
+
+        <Button android:id="@+id/sendMessageButton"
+                android:text="@string/sendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </LinearLayout>
