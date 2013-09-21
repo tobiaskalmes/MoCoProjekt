@@ -8,6 +8,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import de.htw.toto.moco.app.communication.ServerInfo;
+import de.htw.toto.moco.app.tools.JSONParser;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,8 +27,7 @@ public class POIRequester {
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
-                                                          //TODO:build list
-                                                          listener.result(null);
+                                                          listener.result(JSONParser.parseToPOIList(s));
                                                       }
                                                   },
                                                   new Response.ErrorListener() {

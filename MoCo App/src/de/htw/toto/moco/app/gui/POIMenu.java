@@ -22,9 +22,7 @@ public class POIMenu extends Activity {
         setContentView(R.layout.poimenu);
 
 
-
-
-        final Button getPOIButton  = (Button) findViewById(R.id.buttonPOIMenuGetPOI);
+        final Button getPOIButton = (Button) findViewById(R.id.buttonPOIMenuGetPOI);
         getPOIButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +30,7 @@ public class POIMenu extends Activity {
                 startActivity(intent);
             }
         });
-        final Button navToPOIButton  = (Button) findViewById(R.id.buttonPOIMenuNavPOI);
+        final Button navToPOIButton = (Button) findViewById(R.id.buttonPOIMenuNavPOI);
         getPOIButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

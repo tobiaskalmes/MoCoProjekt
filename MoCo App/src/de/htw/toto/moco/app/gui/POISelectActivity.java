@@ -8,9 +8,7 @@ import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.communication.poi.IPOIListener;
 import de.htw.toto.moco.app.communication.poi.POIRequester;
 import de.htw.toto.moco.server.navigation.POI;
-
-import java.util.ArrayList;
-import java.util.List;
+import de.htw.toto.moco.server.navigation.POIList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,25 +18,26 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class POISelectActivity extends Activity implements IPOIListener {
-    ListView poiListView;
+    ListView        poiListView;
     POIArrayAdapter poiArrayAdapter;
-    POI[] data;
+    POI[]           data;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.poilist);
-        poiListView =  (ListView)findViewById(R.id.poiListView);
+        poiListView = (ListView) findViewById(R.id.poiListView);
         POIRequester.requestPOIList(getBaseContext(), POISelectActivity.this);
 
 
     }
 
     @Override
-    public void result(List<POI> result) {
-        data = new POI[result.size()];
-        data = result.toArray(data);
-        poiArrayAdapter =new POIArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_activated_1, data);
+    public void result(POIList result) {
+        data = new POI[result.getPois().size()];
+        data = result.getPois().toArray(data);
+        poiArrayAdapter = new POIArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_activated_1, data);
         poiListView.setAdapter(poiArrayAdapter);
     }
 

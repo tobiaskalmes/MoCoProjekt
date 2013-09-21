@@ -1,6 +1,5 @@
 package de.htw.toto.moco.app.gui;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 
@@ -11,11 +10,10 @@ import android.os.Bundle;
  * Time: 15:21
  * To change this template use File | Settings | File Templates.
  */
-public class GameSelectActivity extends ListActivity{
+public class GameSelectActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
 
 }

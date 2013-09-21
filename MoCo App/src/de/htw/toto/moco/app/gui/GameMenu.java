@@ -1,7 +1,6 @@
 package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -22,7 +21,7 @@ public class GameMenu extends Activity {
         setContentView(R.layout.gamesmenu);
 
 
-        final Button gameListButton  = (Button) findViewById(R.id.buttonGameMenuGameList);
+        final Button gameListButton = (Button) findViewById(R.id.buttonGameMenuGameList);
         gameListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

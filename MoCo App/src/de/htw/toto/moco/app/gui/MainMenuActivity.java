@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import de.htw.toto.moco.app.R;
-import de.htw.toto.moco.app.communication.login.LoginRequester;
-import de.htw.toto.moco.server.tools.ChecksumHandler;
 
 /**
  * Created with IntelliJ IDEA.

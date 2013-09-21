@@ -2,6 +2,8 @@ package de.htw.toto.moco.app.tools;
 
 import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
+import de.htw.toto.moco.server.navigation.POI;
+import de.htw.toto.moco.server.navigation.POIList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +42,31 @@ public class JSONParser {
         catch (JSONException e) {
         }
         return cml;
+    }
+
+    public static POIList parseToPOIList(String jsonString) {
+        POIList pl = new POIList();
+
+        try {
+            JSONObject baseObject = new JSONObject(jsonString);
+            JSONArray pois = baseObject.getJSONArray("pois");
+            int poiCount = pois.length();
+            for (int i = 0; i < poiCount; ++i) {
+                POI poi = new POI();
+                JSONObject poiObject = pois.getJSONObject(i).getJSONObject("POI");
+                poi.setActive(poiObject.getBoolean("active"));
+                poi.setIdPoi(poiObject.getInt("idPoi"));
+                poi.setLatitude(poiObject.getDouble("latitude"));
+                poi.setLongitude(poiObject.getDouble("longitude"));
+                poi.setType(poiObject.getInt("type"));
+                poi.setName(poiObject.getString("name"));
+                pl.getPois().add(poi);
+            }
+        }
+        catch (JSONException e) {
+
+        }
+        return pl;
     }
 
     public static ChatMessage parseToChatMessage(String jsonString) {

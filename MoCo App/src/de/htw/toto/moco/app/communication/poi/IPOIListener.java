@@ -1,8 +1,6 @@
 package de.htw.toto.moco.app.communication.poi;
 
-import de.htw.toto.moco.server.navigation.POI;
-
-import java.util.List;
+import de.htw.toto.moco.server.navigation.POIList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +10,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface IPOIListener {
-    public void result(List<POI> result);
+    public void result(POIList result);
 
     public void error(Throwable e);
 }

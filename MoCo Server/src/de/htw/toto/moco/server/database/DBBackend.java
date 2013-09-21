@@ -27,8 +27,8 @@ public class DBBackend {
     private static String dbHost = "localhost";
     private static String dbPort = "3306";
     private static String dbName = "mocodb";
-    private static String dbUser = "moco";
-    private static String dbPass = "MoCo1234";
+    private static String dbUser = "root";
+    private static String dbPass = "Admin123#";
     private static DBBackend instance;
     private Connection con = null;
     private RootLogger logger;
@@ -287,23 +287,24 @@ public class DBBackend {
         ArrayList<POI> poiList = new ArrayList<POI>();
         String sql = "SELECT * FROM poi";
         checkConnection();
+        POIList pl = new POIList();
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(sql);
             pst.execute();
             ResultSet rs = pst.getResultSet();
             if (!rs.first()) {
-                return null;
+                return pl;
                 //keine poi
             }
             rs.beforeFirst();
             while (rs.next()) {
                 POI poi;
                 if (rs.getInt("active") == 1) {
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), true,
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("poiName"), true,
                                   rs.getInt("type"), rs.getInt("idPoi"));
                 } else {
-                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("name"), false,
+                    poi = new POI(rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getString("poiName"), false,
                                   rs.getInt("type"), rs.getInt("idPoi"));
                 }
                 poiList.add(poi);
@@ -317,7 +318,6 @@ public class DBBackend {
 
             closePreparedStatement(pst);
         }
-        POIList pl = new POIList();
         pl.setPois(poiList);
 
         return pl;

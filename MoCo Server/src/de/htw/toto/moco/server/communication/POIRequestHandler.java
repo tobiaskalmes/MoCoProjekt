@@ -2,7 +2,6 @@ package de.htw.toto.moco.server.communication;
 
 import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.navigation.POIList;
-import de.htw.toto.moco.server.token.TokenHandler;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,7 +21,7 @@ import java.util.logging.Level;
 public class POIRequestHandler extends RequestHandler {
     @GET
     @Path("/list/{token}")
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public POIList getPOIList(@PathParam("token") String token) {
         if (!checkToken(token)) {
             return null;
