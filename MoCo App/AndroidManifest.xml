@@ -22,5 +22,6 @@
         <activity android:name=".gui.FriendSelectActivity"/>
         <activity android:name=".gui.ChatActivity"/>
         <activity android:name=".gui.GameSelectActivity"/>
+        <activity android:name=".gui.POISelectActivity"/>
     </application>
 </manifest>

@@ -5,10 +5,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.*;
 import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.communication.message.IMessageListener;
 import de.htw.toto.moco.app.communication.message.MessageRequester;
@@ -26,25 +23,20 @@ import java.util.List;
  * Time: 20:12
  * To change this template use File | Settings | File Templates.
  */
-public class ChatActivity extends ListActivity implements IMessageListener {
-    ChatMessage[] test;
+public class ChatActivity extends Activity implements IMessageListener {
+    ChatMessage[] data;
     String chatPartner;
     ChatArrayAdapter chatArrayAdapter;
+    private ListView chatListView;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.chat);
+
         chatPartner=getIntent().getStringExtra("CHATBUDDY");
-
-        ListView chatListView;
-
-
-
-        chatListView = (ListView)findViewById(android.R.id.list);
-
-        MessageRequester.requestChatMessages(getBaseContext(), ChatActivity.this,chatPartner);
-
-
+        ((TextView) findViewById(R.id.chatPartner)).setText(chatPartner);
+        MessageRequester.requestChatMessages(getBaseContext(),ChatActivity.this,chatPartner);
 
         final Button sendMessageButton  = (Button) findViewById(R.id.sendMessageButton);
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
@@ -62,18 +54,22 @@ public class ChatActivity extends ListActivity implements IMessageListener {
 
     @Override
     public void resultChatMessageList(ChatMessageList chatMessages) {
-        test = new ChatMessage[chatMessages.getMessages().size()];
-        test = chatMessages.getMessages().toArray(test);
+        data = new ChatMessage[chatMessages.getMessages().size()];
+        data = chatMessages.getMessages().toArray(data);
 
         //ChatMessage[] chatMessageArray = (ChatMessage[])chatMessages.getMessages().toArray()   ;
 
-        chatArrayAdapter = new ChatArrayAdapter(this, test);
-        setListAdapter(chatArrayAdapter);
+        chatArrayAdapter = new ChatArrayAdapter(this, R.layout.chatrowleft,data);
+        chatListView = (ListView)findViewById(R.id.chatListView);
+        chatListView.setAdapter(chatArrayAdapter);
     }
 
     @Override
     public void resultNewChatMessage(Boolean result) {
         ((EditText) findViewById(R.id.sendMessageContent)).setText("");
+        //refresh
+        MessageRequester.requestNewChatMessage(getBaseContext(),ChatActivity.this,chatPartner,((EditText) findViewById(R.id.sendMessageContent)).getText().toString());
+
     }
     @Override
     public void error(Throwable e) {

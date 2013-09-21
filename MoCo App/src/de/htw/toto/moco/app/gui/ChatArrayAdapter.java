@@ -1,5 +1,6 @@
 package de.htw.toto.moco.app.gui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,33 +20,48 @@ import de.htw.toto.moco.server.messaging.ChatMessage;
  */
 public class ChatArrayAdapter extends ArrayAdapter<ChatMessage>{
     public final Context context;
-    public final ChatMessage[] chatMessages;
+    public final ChatMessage[] data;
+    int layoutResourceId;
 
-    public ChatArrayAdapter(Context context, ChatMessage[] chatMessages) {
-        super(context, R.layout.chatrowright);
+    public ChatArrayAdapter(Context context,int layoutResourceId ,ChatMessage[] data) {
+        super(context,layoutResourceId ,R.layout.chat);
         this.context = context;
-        this.chatMessages = chatMessages;
+        this.data = data;
+        this.layoutResourceId = layoutResourceId;
+
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView;
-        TextView textViewFirst;
-        TextView textViewSecond;
-        if(SessionInfo.getInstance().getUsername().equals(chatMessages[position].getSender())){
-        rowView = inflater.inflate(R.layout.chatrowright, parent, false);
-             textViewFirst = (TextView) rowView.findViewById(R.id.firstLineRight);
-             textViewSecond = (TextView) rowView.findViewById(R.id.secondLineRight);
-        }else {
-            rowView = inflater.inflate(R.layout.chatrowleft, parent, false);
-             textViewFirst = (TextView) rowView.findViewById(R.id.firstLineLeft);
-             textViewSecond = (TextView) rowView.findViewById(R.id.secondLineLeft);
-        }
-        textViewFirst.setText(chatMessages[position].getSender()+":");
-        textViewSecond.setText(chatMessages[position].getContent());
+        View row = convertView;
+        ChatMessageHolder holder = null;
 
-        return rowView;
+
+        if(row==null){
+            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+
+            //switch ressource ID?
+            row = inflater.inflate(layoutResourceId, parent,false);
+
+            holder = new ChatMessageHolder();
+
+            //select right id for view
+            holder.lowerText = (TextView)row.findViewById(R.id.secondLineLeft);
+            holder.upperText = (TextView)row.findViewById(R.id.firstLineLeft);
+            row.setTag(holder);
+        } else {
+            holder = (ChatMessageHolder)row.getTag();
+        }
+
+        ChatMessage chatMessage = data[position];
+        holder.upperText.setText(chatMessage.getSender()+":");
+        holder.lowerText.setText(chatMessage.getContent());
+        return row;
+    }
+
+    static class ChatMessageHolder{
+        TextView upperText;
+        TextView lowerText;
     }
 
 }
