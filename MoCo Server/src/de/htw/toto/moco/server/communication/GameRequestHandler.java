@@ -1,5 +1,6 @@
 package de.htw.toto.moco.server.communication;
 
+import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.game.GameFactory;
 import de.htw.toto.moco.server.game.GameInfo;
 import de.htw.toto.moco.server.game.GameType;
@@ -26,11 +27,11 @@ public class GameRequestHandler extends RequestHandler {
     @Path("/list/{token}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<GameInfo> getGameInfoList(@PathParam("token") String token) {
-        //TODO: add db request
         if (!checkToken(token)) {
             return null;
         }
-        return null;
+        logger.log("GameList fetched with token " + token, Level.INFO);
+        return DBBackend.getInstance().getAllGames();
     }
 
     @GET

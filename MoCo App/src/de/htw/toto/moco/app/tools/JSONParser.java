@@ -1,5 +1,7 @@
 package de.htw.toto.moco.app.tools;
 
+import de.htw.toto.moco.server.game.GameInfo;
+import de.htw.toto.moco.server.game.GameType;
 import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
 import de.htw.toto.moco.server.navigation.POI;
@@ -46,7 +48,6 @@ public class JSONParser {
 
     public static POIList parseToPOIList(String jsonString) {
         POIList pl = new POIList();
-
         try {
             JSONObject baseObject = new JSONObject(jsonString);
             JSONArray pois = baseObject.getJSONArray("pois");
@@ -67,6 +68,26 @@ public class JSONParser {
 
         }
         return pl;
+    }
+
+    public static List<GameInfo> parseToGameInfoList(String jsonString) {
+        List<GameInfo> gl = new ArrayList<GameInfo>();
+        try {
+            JSONArray games = new JSONArray(jsonString);
+            int gameCount = games.length();
+            for (int i = 0; i < gameCount; ++i) {
+                GameInfo gi = new GameInfo();
+                JSONObject poiObject = games.getJSONObject(i);
+                gi.setId(poiObject.getInt("id"));
+                gi.setName(poiObject.getString("name"));
+                gi.setType(GameType.valueOf(poiObject.getString("type")));
+                gl.add(gi);
+            }
+        }
+        catch (JSONException e) {
+
+        }
+        return gl;
     }
 
     public static ChatMessage parseToChatMessage(String jsonString) {

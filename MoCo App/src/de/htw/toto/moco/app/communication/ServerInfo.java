@@ -78,4 +78,8 @@ public class ServerInfo {
         return serverBaseURL + USER + DELIMETER + ADD_FRIEND + DELIMETER + SessionInfo.getInstance().getToken()
                 + DELIMETER + SessionInfo.getInstance().getUsername() + DELIMETER + friend;
     }
+
+    public static String getGameInfoListURL() {
+        return serverBaseURL + LIST_BASE + DELIMETER + SessionInfo.getInstance().getToken();
+    }
 }
