@@ -13,4 +13,5 @@
     <string name="gameList">Spieleliste</string>
     <string name="compass">Navigation</string>
     <string name="navigateTo">Navigiere zu</string>
+    <string name="poiList">POI Liste</string>
 </resources>

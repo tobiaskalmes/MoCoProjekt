@@ -47,7 +47,8 @@ public class MainMenuActivity extends Activity {
         poiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO start poi
+                Intent intent = new Intent(MainMenuActivity.this, POISelectActivity.class);
+                startActivity(intent);
             }
         });
         final Button gameButton = (Button) findViewById(R.id.buttonMainGame);
