@@ -61,8 +61,7 @@ public class ServerInfo {
     }
 
     public static String getPOIListURL() {
-        //TODO: add GPS coordinates
-        return serverBaseURL + LIST_BASE + DELIMETER + SessionInfo.getInstance().getToken();
+        return serverBaseURL + POI_BASE + DELIMETER + LIST_BASE + DELIMETER + SessionInfo.getInstance().getToken();
     }
 
     public static String getRegisterURL(String username, String passwordHash) {

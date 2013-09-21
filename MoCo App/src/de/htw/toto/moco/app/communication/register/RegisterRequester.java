@@ -1,7 +1,6 @@
 package de.htw.toto.moco.app.communication.register;
 
 import android.content.Context;
-import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,10 +23,7 @@ public class RegisterRequester {
     public static void register(Context context, final IRegisterListener listener, String username,
                                 String passwordHash) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String requestURL = ServerInfo.serverBaseURL + ServerInfo.REGISTER + ServerInfo.DELIMETER + username + ServerInfo
-                .DELIMETER + passwordHash;
-        Log.e("DEBUG", requestURL);
-        StringRequest request = new StringRequest(Request.Method.GET, requestURL,
+        StringRequest request = new StringRequest(Request.Method.GET, ServerInfo.getRegisterURL(username, passwordHash),
                                                   new Response.Listener<String>() {
                                                       @Override
                                                       public void onResponse(String s) {
