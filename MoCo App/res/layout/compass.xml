@@ -10,9 +10,6 @@
     <TextView android:id="@+id/longitude" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
     <TextView android:id="@+id/bearing" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
     <TextView android:id="@+id/distance" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
-    <Button android:id="@+id/navigateTo" android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="@string/navigateTo"/>
     <de.htw.toto.moco.app.gui.views.CompassView android:id="@+id/mycompass" android:layout_height="fill_parent"
                                                 android:layout_width="fill_parent"/>
-
 </LinearLayout>
