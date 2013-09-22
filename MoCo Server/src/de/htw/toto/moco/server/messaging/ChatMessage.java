@@ -21,6 +21,7 @@ public class ChatMessage {
     private long   sendTime;
 
     public ChatMessage() {
+        sendTime = new Date().getTime();
     }
 
     public ChatMessage(String sender, String receiver, String content, int id, long sendTime) {
@@ -38,8 +39,6 @@ public class ChatMessage {
         this.id = id;
         sendTime = new Date().getTime();
     }
-
-
 
     public long getSendTime() {
         return sendTime;
