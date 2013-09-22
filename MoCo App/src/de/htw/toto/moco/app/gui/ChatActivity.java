@@ -2,6 +2,7 @@ package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -41,8 +42,7 @@ public class ChatActivity extends Activity implements IMessageListener {
         chatPartner = getIntent().getStringExtra("CHATBUDDY");
 
         ((TextView) findViewById(R.id.chatPartner)).setText(chatPartner);
-
-
+        ((TextView) findViewById(R.id.chatPartner)).setTextColor(Color.MAGENTA);
 
         final Button sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
         sendMessageButton.setOnClickListener(new View.OnClickListener() {

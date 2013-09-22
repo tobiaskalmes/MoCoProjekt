@@ -2,6 +2,8 @@ package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +57,9 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
 
         text.setText(item.getContent());
 
+        if(!item.getSender().equals(SessionInfo.getInstance().getUsername())){
+        text.setTextColor(Color.MAGENTA) ;
+        };
 
         return view;
     }
