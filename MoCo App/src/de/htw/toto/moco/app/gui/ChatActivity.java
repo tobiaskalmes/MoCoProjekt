@@ -39,8 +39,10 @@ public class ChatActivity extends Activity implements IMessageListener {
         setContentView(R.layout.chat);
 
         chatPartner = getIntent().getStringExtra("CHATBUDDY");
+
         ((TextView) findViewById(R.id.chatPartner)).setText(chatPartner);
-        MessageRequester.requestChatMessages(getBaseContext(), ChatActivity.this, chatPartner);
+
+
 
         final Button sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +65,7 @@ public class ChatActivity extends Activity implements IMessageListener {
         data = new ChatMessage[chatMessages.getMessages().size()];
         data = chatMessages.getMessages().toArray(data);
 
-        //ChatMessage[] chatMessageArray = (ChatMessage[])chatMessages.getMessages().toArray()   ;
-
-        chatArrayAdapter = new ChatArrayAdapter(this, R.layout.chatrowleft, data);
+        chatArrayAdapter = new ChatArrayAdapter(this, android.R.layout.simple_list_item_activated_1, data);
         chatListView = (ListView) findViewById(R.id.chatListView);
         chatListView.setAdapter(chatArrayAdapter);
     }
@@ -74,8 +74,7 @@ public class ChatActivity extends Activity implements IMessageListener {
     public void resultNewChatMessage(Boolean result) {
         ((EditText) findViewById(R.id.sendMessageContent)).setText("");
         //refresh
-        MessageRequester.requestNewChatMessage(getBaseContext(), ChatActivity.this, chatPartner,
-                                               ((EditText) findViewById(R.id.sendMessageContent)).getText().toString());
+        MessageRequester.requestChatMessages(getBaseContext(), ChatActivity.this, chatPartner);
 
     }
 

@@ -53,7 +53,6 @@ public class POIArrayAdapter extends ArrayAdapter<POI> {
 
         text.setText(item.getName());
 
-
         return view;
     }
 
