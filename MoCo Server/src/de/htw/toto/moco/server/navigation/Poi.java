@@ -2,6 +2,7 @@ package de.htw.toto.moco.server.navigation;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,14 +13,14 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement
 @XmlType(propOrder = {"name", "idPoi", "type", "latitude", "longitude", "active"})
-public class POI {
+public class POI implements Serializable{
     private double latitude, longitude;
     private String  name;
     private boolean active;
     private int     type;
     private Integer idPoi;
 
-    public POI(double latitude, double longitude, String name, boolean active, int type, Integer idPoi) {
+    public POI(double latitude, double longitude, String name, boolean active, int type, Integer idPoi){
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;

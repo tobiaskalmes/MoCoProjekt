@@ -17,38 +17,39 @@ import de.htw.toto.moco.server.navigation.POIList;
  * Time: 13:40
  * To change this template use File | Settings | File Templates.
  */
-public class POIArrayAdapter extends ArrayAdapter<POIList> {
-    public final Context context;
-    public final POI[]   data;
-    int            layoutResourceId;
-    LayoutInflater layoutInflater;
+public class POIArrayAdapter extends ArrayAdapter<POI> {
+
+    int            ressource;
+    //LayoutInflater layoutInflater;
 
     public POIArrayAdapter(Context context, int layoutResourceId, POI[] data) {
-        super(context, layoutResourceId, R.layout.chat);
-        this.context = context;
-        this.data = data;
-        this.layoutResourceId = layoutResourceId;
-        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        super(context, layoutResourceId, data);
+        this.ressource = layoutResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
-        TextView text;
+         View view;
+         TextView text;
+        Context context = getContext();
 
+        LayoutInflater inflater = ((LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
         if (convertView == null) {
-            view = layoutInflater.inflate(layoutResourceId, parent, false);
+            view = inflater.inflate(ressource, parent, false);
         } else {
             view = convertView;
         }
 
+        //no mField value
         text = (TextView) view;
 
-        // text = (TextView) view.findViewById(mFieldId);
+        if (convertView == null) {
+            view = inflater.inflate(ressource, parent, false);
+        } else {
+            view = convertView;
+        }
 
-
-        POI item = data[position];
+        POI item = getItem(position);
 
         text.setText(item.getName());
 
@@ -57,6 +58,6 @@ public class POIArrayAdapter extends ArrayAdapter<POIList> {
     }
 
 
-    //
+
 
 }

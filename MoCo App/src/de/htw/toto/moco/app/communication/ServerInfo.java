@@ -33,7 +33,7 @@ public class ServerInfo {
     private static final String GAME            = "game";
 
     static {
-        serverBaseURL = "http://192.168.2.102:9998/";
+        serverBaseURL = "http://192.168.2.121:9998/";
     }
 
     public static String serverBaseURL;

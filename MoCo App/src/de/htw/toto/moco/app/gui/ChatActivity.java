@@ -1,6 +1,7 @@
 package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,8 +12,12 @@ import android.widget.TextView;
 import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.communication.message.IMessageListener;
 import de.htw.toto.moco.app.communication.message.MessageRequester;
+import de.htw.toto.moco.app.communication.user.UserRequester;
 import de.htw.toto.moco.server.messaging.ChatMessage;
 import de.htw.toto.moco.server.messaging.ChatMessageList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

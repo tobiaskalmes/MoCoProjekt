@@ -2,6 +2,7 @@ package de.htw.toto.moco.server.game;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement
 @XmlType(propOrder = {"name", "id", "type"})
-public class GameInfo {
+public class GameInfo implements Serializable {
     private String   name;
     private int      id;
     private GameType type;

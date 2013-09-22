@@ -1,14 +1,20 @@
 package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.communication.poi.IPOIListener;
 import de.htw.toto.moco.app.communication.poi.POIRequester;
 import de.htw.toto.moco.server.navigation.POI;
 import de.htw.toto.moco.server.navigation.POIList;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,9 +23,9 @@ import de.htw.toto.moco.server.navigation.POIList;
  * Time: 12:37
  * To change this template use File | Settings | File Templates.
  */
-public class POISelectActivity extends Activity implements IPOIListener {
+public class POISelectActivity extends ListActivity implements IPOIListener {
     ListView        poiListView;
-    POIArrayAdapter poiArrayAdapter;
+    ArrayAdapter<POI> poiArrayAdapter;
     POI[]           data;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -27,10 +33,18 @@ public class POISelectActivity extends Activity implements IPOIListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.poilist);
-        poiListView = (ListView) findViewById(R.id.poiListView);
+        poiListView = (ListView) findViewById(android.R.id.list);
         POIRequester.requestPOIList(getBaseContext(), POISelectActivity.this);
 
 
+    }
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // Do something when a friend item from list is clicked
+        Intent intent = new Intent(POISelectActivity.this, IPOIListener.class);
+
+        intent.putExtra("POI", data[position]);
+        startActivity(intent);
     }
 
     @Override
@@ -39,7 +53,7 @@ public class POISelectActivity extends Activity implements IPOIListener {
         data = result.getPois().toArray(data);
         poiArrayAdapter = new POIArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_activated_1, data);
         poiListView.setAdapter(poiArrayAdapter);
-        poiListView.invalidate();
+
     }
 
     @Override
