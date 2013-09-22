@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:background="@drawable/bg_rpssl">
     <TextView android:id="@+id/gameState" android:text="N/A" android:layout_width="fill_parent"
               android:layout_height="wrap_content"/>
     <Button android:id="@+id/rockButton" android:text="@string/rock" android:layout_width="fill_parent"
