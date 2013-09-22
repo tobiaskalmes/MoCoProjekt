@@ -23,5 +23,6 @@
         <activity android:name=".gui.ChatActivity"/>
         <activity android:name=".gui.GameSelectActivity"/>
         <activity android:name=".gui.POISelectActivity"/>
+        <activity android:name=".gui.games.rpssl.RPSSLGameActivity"/>
     </application>
 </manifest>

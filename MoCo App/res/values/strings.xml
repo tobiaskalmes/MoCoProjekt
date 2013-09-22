@@ -14,4 +14,10 @@
     <string name="compass">Navigation</string>
     <string name="navigateTo">Navigiere zu</string>
     <string name="poiList">POI Liste</string>
+    <string name="rock">Stein</string>
+    <string name="paper">Papier</string>
+    <string name="scissors">Schere</string>
+    <string name="spock">Spock</string>
+    <string name="lizard">Echse</string>
+    <string name="playAgain">Noch eine Runde</string>
 </resources>

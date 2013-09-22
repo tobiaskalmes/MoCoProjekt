@@ -18,11 +18,13 @@ import java.util.logging.Level;
  */
 public class RPSSLGame extends GameBase {
     protected static final GameType gameType = GameType.ROCK_PAPER_SCISSORS_SPOCK_LIZARD;
+    private final          Object   waitLock = new Object();
     private List<GameRule> gameRules;
     private int            isWaitingForPlayers;
     private GameHand       hand1;
     private GameHand       hand2;
     private int            result;
+    private Boolean        keepWaiting;
 
     public RPSSLGame() {
         super();
@@ -78,13 +80,22 @@ public class RPSSLGame extends GameBase {
             }
             //get Result
             result = checkResult();
+            setGameState(GameState.RESULT_READY);
             logger.log("Player1 played hand: " + hand1 + " Player2 played hand: " + hand2 + " Result: " + result,
                        Level.INFO);
-            gameState = GameState.RESULT_READY;
-            while (isWaitingForPlayers > 0) {
-                //waiting till every player has fetched the result
+            try {
+
+                Thread.sleep(2000);
             }
-            gameState = GameState.WAITING_FOR_PLAYER_ACTION;
+            catch (Exception e) {
+            }
+            keepWaiting = true;
+            while (keepWaiting) {
+                synchronized (waitLock) {
+                    keepWaiting = isWaitingForPlayers > 0;
+                }
+            }
+            setGameState(GameState.WAITING_FOR_PLAYER_ACTION);
         }
     }
 
@@ -116,10 +127,14 @@ public class RPSSLGame extends GameBase {
 
     public int getResult(String username) {
         if (players.get(0).getName().equals(username)) {
-            --isWaitingForPlayers;
+            synchronized (waitLock) {
+                --isWaitingForPlayers;
+            }
             return result;
         } else {
-            --isWaitingForPlayers;
+            synchronized (waitLock) {
+                --isWaitingForPlayers;
+            }
             return -result;
         }
     }

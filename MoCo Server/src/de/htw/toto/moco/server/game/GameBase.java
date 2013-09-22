@@ -15,11 +15,12 @@ import java.util.List;
  */
 public abstract class GameBase extends Thread {
     protected static Integer runningGameID = 1000000;
+    protected final  Object  gameStateLock = new Object();
     protected int          gameID;
     protected List<Player> players;
     protected Boolean      isRunning;
     protected RootLogger   logger;
-    protected GameState    gameState;
+    private   GameState    gameState;
 
     public GameBase() {
         super();
@@ -52,7 +53,11 @@ public abstract class GameBase extends Thread {
         this.gameID = gameID;
     }
 
-    public GameState getGameState() {
+    public synchronized GameState getGameState() {
         return gameState;
+    }
+
+    protected synchronized void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 }

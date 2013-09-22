@@ -39,6 +39,7 @@ public class POISelectActivity extends Activity implements IPOIListener {
         data = result.getPois().toArray(data);
         poiArrayAdapter = new POIArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_activated_1, data);
         poiListView.setAdapter(poiArrayAdapter);
+        poiListView.invalidate();
     }
 
     @Override

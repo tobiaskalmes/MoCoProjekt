@@ -1,11 +1,13 @@
 package de.htw.toto.moco.app.gui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import de.htw.toto.moco.app.R;
+import de.htw.toto.moco.app.gui.games.rpssl.RPSSLGameActivity;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +27,8 @@ public class GameMenu extends Activity {
         gameListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(GameMenu.this, RPSSLGameActivity.class);
+                startActivity(intent);
             }
         });
 

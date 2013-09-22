@@ -3,6 +3,7 @@ package de.htw.toto.moco.server.communication;
 import de.htw.toto.moco.server.database.DBBackend;
 import de.htw.toto.moco.server.game.GameFactory;
 import de.htw.toto.moco.server.game.GameInfo;
+import de.htw.toto.moco.server.game.GameState;
 import de.htw.toto.moco.server.game.GameType;
 import de.htw.toto.moco.server.game.rpssl.GameHand;
 
@@ -65,8 +66,11 @@ public class GameRequestHandler extends RequestHandler {
         if (!checkToken(token)) {
             return null;
         }
-        logger.log("User " + username + " has checked the gamestate for gameID " + gameID, Level.INFO);
-        return GameFactory.getInstance().checkGameState(gameID).name();
+        GameState gameState = GameFactory.getInstance().checkGameState(gameID);
+        logger.log(
+                "User " + username + " has checked the gamestate for gameID " + gameID + " State: " + gameState.name(),
+                Level.INFO);
+        return gameState.name();
     }
 
     @GET
