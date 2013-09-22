@@ -20,49 +20,43 @@ import de.htw.toto.moco.server.messaging.ChatMessage;
  */
 //TODO MASSIVE
 public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
-    public final Context       context;
-    public final ChatMessage[] data;
-    int layoutResourceId;
+
+    int            ressource;
+    //LayoutInflater layoutInflater;
 
     public ChatArrayAdapter(Context context, int layoutResourceId, ChatMessage[] data) {
-        super(context, layoutResourceId, R.layout.chat);
-        this.context = context;
-        this.data = data;
-        this.layoutResourceId = layoutResourceId;
-
+        super(context, layoutResourceId, data);
+        this.ressource = layoutResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        ChatMessageHolder holder = null;
+        View view;
+        TextView text;
+        Context context = getContext();
 
-
-        if (row == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-
-            //switch ressource ID?
-            row = inflater.inflate(layoutResourceId, parent,false);
-
-            holder = new ChatMessageHolder();
-
-            //select right id for view
-            holder.lowerText = (TextView)row.findViewById(R.id.secondLineLeft);
-            holder.upperText = (TextView)row.findViewById(R.id.firstLineLeft);
-            row.setTag(holder);
+        LayoutInflater inflater = ((LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        if (convertView == null) {
+            view = inflater.inflate(ressource, parent, false);
         } else {
-            holder = (ChatMessageHolder)row.getTag();
+            view = convertView;
         }
 
-        ChatMessage chatMessage = data[position];
-        holder.upperText.setText(chatMessage.getSender()+":");
-        holder.lowerText.setText(chatMessage.getContent());
-        return row;
-    }
+        //no mField value
+        text = (TextView) view;
 
-    static class ChatMessageHolder{
-        TextView upperText;
-        TextView lowerText;
+        if (convertView == null) {
+            view = inflater.inflate(ressource, parent, false);
+        } else {
+            view = convertView;
+        }
+
+        ChatMessage item = getItem(position);
+
+        text.setText(item.getContent());
+
+
+        return view;
     }
 
 }
