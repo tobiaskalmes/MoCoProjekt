@@ -41,7 +41,7 @@ public class POISelectActivity extends ListActivity implements IPOIListener {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Do something when a friend item from list is clicked
-        Intent intent = new Intent(POISelectActivity.this, IPOIListener.class);
+        Intent intent = new Intent(POISelectActivity.this, POIDetail.class);
 
         intent.putExtra("POI", data[position]);
         startActivity(intent);

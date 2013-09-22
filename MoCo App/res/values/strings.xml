@@ -20,4 +20,5 @@
     <string name="spock">Spock</string>
     <string name="lizard">Echse</string>
     <string name="playAgain">Noch eine Runde</string>
+    <string name="navigateToPoi">Navigiere zu POI</string>
 </resources>

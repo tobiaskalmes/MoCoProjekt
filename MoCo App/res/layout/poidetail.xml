@@ -13,11 +13,14 @@
     <TextView android:id="@+id/poiDetailLong"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"/>
+    <TextView android:id="@+id/poiDetailDist"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"/>
     <Button
-            android:id="@+id/buttonMainChat"
+            android:id="@+id/poiDetailNavButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Start Chat"
+            android:text="@string/navigateToPoi"
             android:textSize="20dp"
             android:padding="15dp" />
 </LinearLayout>
