@@ -6,6 +6,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import de.htw.toto.moco.server.navigation.POI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,16 @@ public class GPSLocation implements LocationListener {
         destination.setLatitude(latitude);
         destination.setLongitude(longitude);
         navInfo = new NavigationInfo(destination);
+    }
+
+    public float estimateDistanceToPOI(POI poi) {
+        if (currentLocation == null) {
+            return -1.0f;
+        }
+        Location temp = new Location((currentLocation));
+        temp.setLatitude(poi.getLatitude());
+        temp.setLongitude(poi.getLongitude());
+        return currentLocation.distanceTo(temp);
     }
 
     public void addGPSListener(IGPSLocationListener listener) {
