@@ -19,7 +19,7 @@
             android:id="@+id/buttonGameMenuGameList"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="show Gamelist"
+            android:text="Schere Exe Stein Papier Spock"
             android:textSize="20dp"
             android:padding="15dp" />
 
