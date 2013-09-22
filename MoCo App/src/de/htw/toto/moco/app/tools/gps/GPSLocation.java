@@ -49,6 +49,10 @@ public class GPSLocation implements LocationListener {
         navInfo = new NavigationInfo(destination);
     }
 
+    public void navigateToPOI(POI poi) throws GPSException {
+        navigateTo(poi.getLatitude(), poi.getLongitude());
+    }
+
     public float estimateDistanceToPOI(POI poi) {
         if (currentLocation == null) {
             return -1.0f;

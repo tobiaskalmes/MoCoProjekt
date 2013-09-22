@@ -8,13 +8,12 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 import de.htw.toto.moco.app.R;
 import de.htw.toto.moco.app.gui.views.CompassView;
 import de.htw.toto.moco.app.tools.gps.*;
+import de.htw.toto.moco.server.navigation.POI;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,6 +24,7 @@ import de.htw.toto.moco.app.tools.gps.*;
  */
 public class NavigationActivity extends Activity implements SensorEventListener, IGPSLocationListener,
                                                             INavigationListener {
+    public static final String POI_KEY = "navigateToPOI";
     private SensorManager sensorManager;
     private TextView      readingLatitude, readingLongitude, readingDistance, readingBearing;
     private CompassView myCompass;
@@ -37,6 +37,7 @@ public class NavigationActivity extends Activity implements SensorEventListener,
     private float[]     matrixValues;
     private boolean     isNavigating;
     private Float       bearing;
+    private POI         poi;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,20 +67,23 @@ public class NavigationActivity extends Activity implements SensorEventListener,
 
         GPSLocation.getInstance().addGPSListener(this);
         GPSLocation.getInstance().addNavigationListener(this);
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(POI_KEY)) {
+            NavigationActivity.this.isNavigating = true;
+            poi = (POI) getIntent().getSerializableExtra(POI_KEY);
+        }
+    }
 
-        ((Button) findViewById(R.id.navigateTo)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    NavigationActivity.this.isNavigating = true;
-                    GPSLocation.getInstance().navigateTo(50.0, 8.0);
-                }
-                catch (GPSException e) {
-                    Log.e("GPS-Exception", "GPS failed", e);
-                }
+    @Override
+    public void onPostCreate(Bundle bundle) {
+        super.onPostCreate(bundle);
+        if (poi != null) {
+            try {
+                GPSLocation.getInstance().navigateToPOI(poi);
             }
-        });
-
+            catch (GPSException e) {
+                Log.e("GPS-Exception", "GPS failed", e);
+            }
+        }
     }
 
     @Override
