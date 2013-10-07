@@ -101,3 +101,70 @@ Dokumentation/document.thm
 Dokumentation/document.toc
 Dokumentation/document.tps
 Dokumentation/glossary/glossary.aux
+Dokumentation/utils/captions.aux
+Dokumentation/utils/header.aux
+MoCo App/.idea/ant.xml
+MoCo App/.idea/workspace.xml
+MoCo App/gen/de/htw/toto/moco/app/BuildConfig.java
+MoCo App/gen/de/htw/toto/moco/app/Manifest.java
+MoCo App/gen/de/htw/toto/moco/app/R.java
+MoCo App/MoCo App.apk
+MoCo App/MoCo App.iml
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/GameRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/GameRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/GameRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/IGameInfoListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/IRPSSLRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$10.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$5.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$6.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$7.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$8.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester$9.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/game/RPSSL/RPSSLRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/MessageRequester$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/message/MessageRequester$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/SessionInfo.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/IUserListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/UserRequester$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/UserRequester$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/UserRequester$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/UserRequester$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/communication/user/UserRequester.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/ChatActivity$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/ChatActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/ChatArrayAdapter.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/FriendSelectActivity$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/FriendSelectActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$2.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$3.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$4.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$5.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$6.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$7.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity$8.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/games/rpssl/RPSSLGameActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/GameSelectActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/NavigationActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIArrayAdapter.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIDetail$1.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POIDetail.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/POISelectActivity.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/gui/views/CompassView.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/gps/GPSException.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/gps/GPSLocation.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/gps/IGPSLocationListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/gps/INavigationListener.class
+MoCo App/out/production/MoCo App/de/htw/toto/moco/app/tools/gps/NavigationInfo.class
+MoCo App/src/de/htw/toto/moco/app/communication/ServerInfo.java
+MoCo Server/.idea/ant.xml
+MoCo Server/.idea/workspace.xml
+MoCo Server/lib/mysql-connector-java-5.1.26-bin.jar
+MoCo Server/lib/mysql-connector-license.txt
+MoCo Server/logging/databaseLogger.log.0.1
+MoCo Server/logging/databaseLogger.log.0.1.lck
