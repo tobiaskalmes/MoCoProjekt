@@ -1,0 +1,41 @@
+\include{utils/header}
+\include{utils/captions}
+
+\makeindex
+
+\begin{document}
+	%\nocite{*}
+
+	\frontmatter
+		\include{chapters/title}
+		\include{chapters/abstract}
+		\include{glossary/glossary}
+		\begin{singlespace}			
+			\tableofcontents
+		\end{singlespace}
+
+	
+	\mainmatter
+		\include{chapters/definition}
+		\include{chapters/design}
+		\include{chapters/frameworks}
+		\include{chapters/server}
+		\include{chapters/app}		
+		\include{chapters/erweiterbarkeit}
+		\include{chapters/fazit}
+		
+		
+		
+		
+	\appendix	
+		\listofabbreviations	
+		\listofglossaryentries		
+		\listofbibliographyentries
+		\listoffigures
+		%\listoflistings
+		%\listoftables
+		%\listoflists
+		%\listofexamples
+		%\listofdefinitions	
+	
+\end{document}
