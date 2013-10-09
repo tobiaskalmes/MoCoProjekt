@@ -1,6 +1,9 @@
 \chapter{Server}
 \section{Datenbank}
-\TODO{TG: machen}
+Die Verwendung einer Datenbank birgt große Vorteile. Insbesondere Skalierbarkeit und Erweiterbarkeit werden gesteigert. Zwar ist der Aufwand zunächst relativ hoch, macht sich auf lange Sicht jedoch positiv bemerkbar. Da Benutzerinformationen, Nachrichten etc dauerhaft gespeichert werden müssen, ist es ohnehin kaum möglich auf eine Datenbank zu verzichten. 
+Die Wahl fiel auf MySQL da die Unterstützung für Java hervorragend ist und die Nutzung kostenlos ist. Des weiteren ist MySQL gut dokumentiert. Dank der MySQL Workbench ist es auch komfortabel die Datenbank zu warten und Einträge für Testzwecke zu erstellen.
+Der Server verwendet Java Database Connectivity (JDBC) um mit der Datenbank zu kommunizieren. Mit Hilfe dieses Treibers ist es kein Problem Daten in der Datenbank zu speichern oder abzurufen.
+Zu den Aufgaben der Datenbank gehört das Speichern der Nutzernamen samt Passwort hash welches für den Login benötigt wird. Darüber hinaus läuft das Nachrichtensystem über den Server. Nachrichten und Freundesliste werden von der Datenbank gespeichert. Die vorhandenen Spiele werden ebenfalls in der Datenbank abgelegt sowie die POI's.
 
 \section{Benutzerverwaltung}
 \TODO{TK: machen}

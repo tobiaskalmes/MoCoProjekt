@@ -6,7 +6,13 @@
 \TODO{TK: machen}
 
 \section{Chatsystem}
-\TODO{TG: machen}
+Um den Nutzern der App die Möglichkeit zu bieten miteinander zu kommunizieren wurde ein Nachrichtensystem implementiert. Dieses ermöglicht es den Nutzern der App über diese miteinander zu kommunizieren und ermöglicht es Freunde zur Freundesliste hinzuzufügen. 
+Die Kommunikation erfolgt über den zentralen Server. Alle gesendeten Nachrichten eines Nutzers werden dort gespeichert und können von den Kommunikationspartnern abgerufen werden. Somit ist es kein Problem Nachrichten zu empfangen, wenn man zum Zeitpunkt des Sendens nicht online war. Neben den Nachrichten wird auch die Freundesliste auf dem Server abgelegt.
+Startet man die Nachrichtenfunktion, so erhält man zunächst die Möglichkeit neue Freunde (andere regstrierte Benutzer) durch Eingabe deren Namen zur Freundesliste hinzuzufügen. In der selben Ansicht wird die Freundesliste angezeigt. 
+\TODO Screenshot "friendlist"
+Durch Tippen auf einen Freund in der Liste öffnet man die Kommunikationsansicht. Dort werden bereits versendete und empfangene Nachrichten angezeigt. Hier lassen sich dann Nachrichten eingeben und durch antippen von "Nachricht senden" übertragen. Je Nachdem ob man Empfänger oder sender ist wird die Nachricht Farbig dargestellt.
+\TODO Screenshot "chat"
+Dank dieser Funktionalität wird es den Nutzern der App ermöglicht auf einfache Art und Weise Kontaktpflege zu betreiben und sich beispielsweise für ein Treffen bei einem der POI's zu verabreden. Dank der integrierten Nachrichtenlösung ist es möglich, dass sich die Nutzer verständigen können ohne irgendwelche persönlichen Daten veröffentlichen zu müssen.
 
 \section{Kompass}
 \TODO{TK: machen}
@@ -15,9 +21,13 @@
 \TODO{TK: machen}
 
 \section{POIs}
-\TODO{TG: machen}
+Die App verbindet POI's (point nof interest)  mit bestimmten Ereignissen wie einem Spiel. Ein POI besteht im Wesentlichen aus Koordinaten, Namen und Eigenschaft.  Die POI's werden ebenfalls in der Datenbank gespeichert und können über den Punkt "POI" aus dem Hauptmenü aufgerufen werden. Wählt man einen POI aus der Liste durch antippen aus, werden einem die Details angezeigt wie in folgender Abbildung zu sehen ist.
+\TODO Screenshot POI Liste
+Dazu gehören neben Längengrad, Breitengrad und Namen des POI's auch die Distanz zum POI in Metern angezeigt. Mit dem Button "Navigiere zu POI" wird die Navigation welche zuvor beschrieben wurde aufgerufen.
 
 \section{Spiele}
+
 \TODO{TG: Anzeige der Spiele machen}
+
 
 \TODO{TK: Minigame beschreiben}
