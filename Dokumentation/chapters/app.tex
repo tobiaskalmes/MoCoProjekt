@@ -2,16 +2,20 @@
 \section{Registrierung}
 Bei der Registrierung gibt der Benutzer seinen gewünschten Benutzernamen und sein Passwort ein. Der Benutzername und der SHA1-Hash des Passworts wird dann an den Server gesendet und sofern der Benutzername nicht bereits existiert wird der neue Benutzer angemeldet. Dies wird dem Benutzer mit einer Nachricht mitgeteilt. Der Benutzer kann sich nun anmelden.
 
-\TODO{Screenshot einfügen}
+\begin{capfigure}[App - Registrierung]
+	\includegraphics[width=6cm]{images/app/login}
+\end{capfigure}
 
 
 \section{Anmeldung}
 Ein bereits registrierter Benutzer kann sich analog zur Registrierung anmelden. War die Anmeldung erfolgreich bekommt die App ein Token und wechselt in das Hauptmenü.
 
-\TODO{Screenshot einfügen}
-
 \section{Hauptmenü}
-\TODO{TG: machen + Screenshot}
+\TODO{TG: machen}
+
+\begin{capfigure}[App - Hauptmenü]
+	\includegraphics[width=6cm]{images/app/main_menu}
+\end{capfigure}
 
 \section{Chatsystem}
 Um den Nutzern der App die Möglichkeit zu bieten miteinander zu kommunizieren wurde ein Nachrichtensystem implementiert. Dieses ermöglicht es den Nutzern der App über diese miteinander zu kommunizieren und ermöglicht es Freunde zur Freundesliste hinzuzufügen. 
@@ -25,12 +29,16 @@ Dank dieser Funktionalität wird es den Nutzern der App ermöglicht auf einfache
 \section{Kompass}
 Neben dem Kompass werden in der KompassView noch weitere Daten dargestellt. Es wird die aktuelle GPS-Position in Form von Longitude und Latitude angezeigt.
 
-\TODO{Screenshot einfügen}
+\begin{capfigure}[App - Kompass]
+	\includegraphics[width=6cm]{images/app/compass}
+\end{capfigure}
 
 \section{Navigation}
 Für die Navigation wird die KompassView verwendet. Wenn sich die KompassView im Navigationsmodus befindet wird zusätzlich die Richtung zum Ziel als auch die Entfernung angezeigt.
 
-\TODO{Screenshot einfügen}
+\begin{capfigure}[App - Navigation]
+	\includegraphics[width=6cm]{images/app/navigation}
+\end{capfigure}
 
 Für die Navigation wird auf Funktionen des Android-Frameworks zurückgegriffen. Über diese Funktionen wird die Distanz berechnet und das Bearing. Bearing gibt den Winkel zum Nordpol an.
 
@@ -42,6 +50,12 @@ Dazu gehören neben Längengrad, Breitengrad und Namen des POI's auch die Distan
 \section{Spiele}
 
 \TODO{TG: Anzeige der Spiele machen}
+
+\subsection{Rock, Paper, Scissors, Lizzard, Spock}
+
+\begin{capfigure}[App - Rock, Paper, Scissors, Lizzard, Spock]
+	\includegraphics[width=6cm]{images/app/rpssl}
+\end{capfigure}
 
 
 
