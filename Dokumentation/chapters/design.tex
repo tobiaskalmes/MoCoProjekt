@@ -1,11 +1,24 @@
 \chapter{Designentscheidungen}
-\TODO{TK: Punkte detailliert beschreiben}
-\begin{capitemize}[Designentscheidungen]
-	\item Asynchrone Übertragung
-	\item Zentraler Server
-	\item Poll-basierte Abfragen
-	\item Serialisierung (mit JSON)
-	\item Factories
-	\item Sensor Fusion
-	\item Datenhaltung in Datenbank
-\end{capitemize}
+Im folgenden werden die Entscheidungen bezüglich des Designs erläutert.
+
+\WIP
+
+\section{Asynchrone Übertragung}
+Bei der Übertragung von Daten zwischen Server und Endgeräten haben wir uns für eine asynchrone Übertragung entschieden. Diese Art der Übertragung ist besonders gut geeignet für mobile Geräte. Bei der asynchronen Übertragung muss das Endgerät nicht auf die Antwort warten.
+
+\section{Zentraler Server}
+Für viele der angestrebten Funktionen ist ein zentraler Server unumgänglich. Für die gesamte Datenhaltung ist es unumgänglich einen zentralen Server zu verwenden. Zudem müssen so beispielsweise Nachrichten nicht über einzelne Clients gesendet werden um beim Empfänger anzukommen. 
+
+\section{Poll-basierte Abfragen}
+Ein Grund für die Verwendung dieser Variante ist, dass auf diese Art auch Webclients möglich wären. 
+
+\section{Serialisierung}
+Für die Übertragung von Informationen zwischen Server und Endgeräten haben wir uns für die Serialisierung mit JSON entschieden. Das Jetty-Framework bietet hierfür direkte Unterstützung.
+
+\TODO{Evtl. auch die Android-Seite erwähnen}
+
+\section{Sensor Fusion}
+Sensor Fusion bezeichnet das Zusammenspiel zwischen mehreren Sensoren. Für unsere App verwenden wir das Gyroskop und den Magnetfeldsensor. Mit deren Hilfe wird der Kompass auf dem Smartphone dargestellt. 
+
+\section{Datenhaltung in Datenbank}
+\TODO{TG: machen}
