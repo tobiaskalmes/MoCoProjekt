@@ -1,8 +1,6 @@
 \chapter{Erweiterbarkeit}
 In diesem Kapitel werden die Gründe für die Erweiterbarkeit kurz erläutert und die möglichen Ergänzungen zu der App erklärt.
 
-\TODO{Evtl. mehr schreiben}
-
 \section{Gründe}
 \subsection{RESTful Webservices}
 Durch die Verwendung von RESTful Webservices ist die Anwendung an keine Plattform gebunden.
@@ -12,11 +10,8 @@ Die Verwendung von JSON für die Übertragung von Objekten ermöglichst eine Ver
 
 
 \subsection{Zentrale Datenbank}
-\TODO{TG: machen}
+Dank der relationalen Datenbank lässt sich das Datenbankschema leicht an Erweiterungen anpassen. Die Konsistenz kann aufgrund der Normalisierung gewährleistet werden.
 
-
-\TODO{Gründe für Erweiterbarkeit aufzählen und beschreiben}
-Dank der relationalen Datenbank lässt sich das Datenbankschema leicht an Erweiterungen anpassen. 
 \section{Mögliche Ergänzungen}
 \subsection{Plattformen}
 Eine Erweiterung auf andere Plattformen ist denkbar und ohne weiteres möglich. Es müsste für die entsprechende Plattform lediglich eine GUI und eine Anbindung der Webservices gemacht werden.
@@ -27,7 +22,8 @@ Die momentane Struktur des Servers ermöglicht es weitere Spiele zu integrieren.
 \subsection{Navigation}
 Da die Navigation rein über GPS-Koordinaten gelöst ist, ist es ohne weiteres möglich zu Freunden zu navigieren oder zu andere Orten.
 
+\subsection{Chat}
+Beim Chatsystem ist es sinnvoll noch einen Poll zu implementieren der in einem interval prüft ob neue Nachrichten vorhanden sind.
+
 \subsection{Soziale Netzwerke}
 Eine Anbindung an soziale Netzwerke ist auch denkbar.Bei der Spieleliste der App wurde, da nicht viele Spiele vorhanden sind, auf eine Darstellung als Liste verzichtet. Wenn weitere Spiele hinzukommen sollten wäre dies ein sinnvoller Schritt, der sogar auf der Serverseite bereits implementiert wurde.\\
-Beim Chatsystem ist es sinnvoll noch einen Poll zu implementieren der in einem interval prüft ob neue Nachrichten vorhanden sind.
-\TODO{machen}
