@@ -50,6 +50,24 @@ Die Regeln basieren auf denen von Stein, Schere, Papier. In der Abbildung sind d
 
 Für die Umsetzung der Regeln wurde eine Klasse \lstinjava{GameRule} verwendet. Zudem gibt es noch die Klasse \lstinjava{GameHand}, die die einzelnen Hände abbildet. In der Klasse \lstinjava{GameRule} gibt es immer eine erste Hand, eine zweite Hand und ein Ergebnis. Die möglichen Kombinationen werden in einer Liste gespeichert.
 
+\subsection{Spielablauf}
+Um den Ablauf von der Anmeldung für ein Spiel bis hin zum Ende des Spiels zu erläutern verwenden wir ein Beispiel. Als Beispiel wird \textit{Rock, Paper, Scissorcs, Lizzard, Spock} mit Spieler A und Spieler B verwendet.
+
+\subsubsection{Spieler melden sich zum Spielen an}
+Spieler A meldet sich zum Spielen an. Der Server steckt Spieler A in die Warteliste für das Spiel. Spieler A kann beim Server den Status des Spiels abfragen. Zu diesem Zeitpunkt wird ihm der Server mitteilen, dass noch auf Spieler gewartet wird.
+
+Als nächstes meldet sich Spieler B an. Auch er wird in die Warteliste gesteckt. Der Server überprüft nun, ob genügend Spieler auf das Spiel warten. Da zwei Spieler vorhanden sind wird nun vom Server eine Instanz des Spiels erstellt. Als nächstes werden die beiden Spieler der Instanz hinzugefügt.
+
+Die beiden Spieler bekommen nun bei ihrer Abfrage des Status die Antwort, dass das Spiel bereit ist.
+
+\subsubsection{Spielen der Hände}
+Spieler A spielt jetzt die Hand \textit{Spock}. Der Server wartet nun darauf, dass auch Spieler B seine Hand spielt. Wenn sich Spieler A nun über den Status des Spiels informiert wird ihm mitgeteilt, dass auf den anderen Spieler gewartet wird.
+
+Als nächstes spielt Spieler B die Hand \textit{Paper}. Da nun alle Spieler ihre Hand gespielt haben bereitet der Server nun das Ergebnis vor. Anhand der Regeln ergibt sich, dass Spieler B gewonnen hat.
+
+\subsubsection{Ergebnisabfrage}
+Die beiden Spieler können nun das Ergebnis abfragen und bekommen die entsprechende Antwort.
+
 \section{Übertragung der Chatnachrichten}
 Für die Übertragung der Chatnachrichten gibt es zwei Funktionen. Eine Funktion zum Senden neuer Nachrichten und eine Funktion zum Abfragen der Nachrichten.
 
