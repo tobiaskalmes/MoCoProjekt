@@ -1,22 +1,19 @@
 \chapter{Server}
 \section{Datenbank}
+Die Wahl fiel auf MySQL da die Unterstützung für Java hervorragend ist und die Nutzung kostenlos ist. Des weiteren ist MySQL gut dokumentiert. Dank der MySQL Workbench ist es auch komfortabel die Datenbank zu warten und Einträge für Testzwecke zu erstellen.
 
-Die Verwendung einer Datenbank birgt große Vorteile. Insbesondere Skalierbarkeit und Erweiterbarkeit wurden gesteigert. Zwar ist der Aufwand zunächst relativ hoch, macht sich auf lange Sicht jedoch positiv bemerkbar. Da Benutzerinformationen, Nachrichten etc dauerhaft gespeichert werden müssen, war es ohnehin kaum möglich auf eine Datenbank zu verzichten.\\
-
-Die Wahl fiel auf MySQL da die Unterstützung für Java hervorragend ist und die Nutzung kostenlos ist. Des weiteren ist MySQL gut dokumentiert. Dank der MySQL Workbench ist es auch komfortabel die Datenbank zu warten und Einträge für Testzwecke zu erstellen.\\
-
-Der Server verwendet \gls{jdbc} um mit der Datenbank zu kommunizieren. Mit Hilfe dieses Treibers ist es kein Problem Daten in der Datenbank zu speichern oder abzurufen.\\
+Der Server verwendet \gls{jdbc} um mit der Datenbank zu kommunizieren. Mit Hilfe dieses Treibers ist es kein Problem Daten in der Datenbank zu speichern oder abzurufen.
 
 Zu den Aufgaben der Datenbank gehört neben dem speichern der Nutzernamen samt deren Passworthash welcher für den Login benötigt wird. Darüber hinaus 
-läuft das Nachrichtensystem über den Server. Nachrichten und Freundesliste werden von der Datenbank gespeichert. Die vorhandenen Spiele werden ebenfalls in der Datenbank abgelegt sowie die \glspl{poi}.\\
+läuft das Nachrichtensystem über den Server. Nachrichten und Freundesliste werden von der Datenbank gespeichert. Die vorhandenen Spiele werden ebenfalls in der Datenbank abgelegt sowie die \glspl{poi}.
 
-Die relationale Datenbank wurde in die 2. Normalform gebracht. Des weiteren wurden \textit{Foreign Keys} verwendet um die ID der Nutzer mit den Tabellen der Freundesliste und der Nachrichtentabelle zu bringen um die Konsistenz zu sichern. Folgende Abbildung stellt das \gls{eer} Diagramm des Datenbankschemas dar.
+Die relationale Datenbank wurde in die 2. Normalform gebracht. Das heißt es wurden \textit{Foreign Keys} verwendet um die ID der Nutzer mit den Tabellen der Freundesliste und der Nachrichtentabelle zu bringen um die Konsistenz zu sichern. Folgende Abbildung stellt das \gls{eer} Diagramm des Datenbankschemas dar.
 
 \begin{capfigure}[Datenbank - EER Diagramm]
-	\includegraphics[width=6cm]{images/server/eer}
+	\includegraphics[width=8cm]{images/server/eer}
 \end{capfigure}
 
-Die Datenbank stellt sicher das kein Benutzername mehrmals vorkommt,  null ist oder änhnliche Probleme in anderen Tabellen. Ohne Datenbank hätte man dies alles im Sourcecode selbst implementieren müssen.
+Die Datenbank stellt sicher das kein Benutzername mehrmals vorkommt,  null ist oder ähnliche Probleme in anderen Tabellen. Ohne Datenbank hätte man dies alles im Sourcecode selbst implementieren müssen.
 
 \section{Webservices}
 Wir verwenden RESTful Webservices. Auf Grund der Einschränkungen auf Seiten der App im Volley-Framework werden nur GET-Methoden verwendet. 

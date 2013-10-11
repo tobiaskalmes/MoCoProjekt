@@ -1,8 +1,6 @@
 \chapter{Designentscheidungen}
 Im folgenden werden die Entscheidungen bezüglich des Designs erläutert.
 
-\WIP
-
 \section{Asynchrone Übertragung}
 Bei der Übertragung von Daten zwischen Server und Endgeräten haben wir uns für eine asynchrone Übertragung entschieden. Diese Art der Übertragung ist besonders gut geeignet für mobile Geräte. Bei der asynchronen Übertragung muss das Endgerät nicht auf die Antwort warten.
 
@@ -15,12 +13,12 @@ Ein Grund für die Verwendung dieser Variante ist, dass auf diese Art auch Webcl
 \section{Serialisierung}
 Für die Übertragung von Informationen zwischen Server und Endgeräten haben wir uns für die Serialisierung mit JSON entschieden. Das Jetty-Framework bietet hierfür direkte Unterstützung.
 
-\TODO{Evtl. auch die Android-Seite erwähnen}
-
 \section{Sensor Fusion}
 Sensor Fusion bezeichnet das Zusammenspiel zwischen mehreren Sensoren. Für unsere App verwenden wir das Gyroskop und den Magnetfeldsensor. Mit deren Hilfe wird der Kompass auf dem Smartphone dargestellt. 
 
 \section{Datenhaltung in Datenbank}
-Für den Entwurf des Systems ist es erforderlich eine große Anzahl verschiedener Daten vorrätig zu halten. Selbst für Demonstrationszwecke wird bereits eine gewisse Menge an Daten benötigt.\\
-Die Verwendung einer Datenbank ist eine effiziente Methode. Da sie einfach und flexibel zu handhaben ist, fällt die Wahl auf eine relationale Datenbank. Darunter versteht man eine Datenbank die auf einem Schema beruht, welches festlegt welche Daten gespeichert werden und wie diese in Verbindung miteinander stehen.\\
-Bei der Normalisierung, einem wichtigen Schritt bei der Modellierung relationaler Datenbanken, werden funktional voneinander abhängige Daten auf mehrere Tabellen aufgeteilt. Dank der Normalisierung werden Redundanzen verringert, die Konsistenz der Daten gesichert und Anomalien vermieden.
+Für den Entwurf des Systems ist es erforderlich eine große Anzahl verschiedener Daten vorrätig zu halten. Selbst für Demonstrationszwecke wird bereits eine gewisse Menge an Daten benötigt.
+
+Die Verwendung einer Datenbank ist eine effiziente Methode. Da sie einfach und flexibel zu handhaben ist, fällt die Wahl auf eine relationale Datenbank. Darunter versteht man eine Datenbank die auf einem Schema beruht, welches festlegt welche Daten gespeichert werden und wie diese in Verbindung miteinander stehen.
+
+Die Tabellen sind in der zweiten Normalform. Hierdurch wird eine Dateninkonsistenz vermieden.
