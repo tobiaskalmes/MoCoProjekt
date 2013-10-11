@@ -1,5 +1,29 @@
 \chapter{Erweiterbarkeit}
-\TODO{Gründe für Erweiterbarkeit aufzählen und beschreiben}
+In diesem Kapitel werden die Gründe für die Erweiterbarkeit kurz erläutert und die möglichen Ergänzungen zu der App erklärt.
+
+\TODO{Evtl. mehr schreiben}
+
+\section{Gründe}
+\subsection{RESTful Webservices}
+Durch die Verwendung von RESTful Webservices ist die Anwendung an keine Plattform gebunden.
+
+\subsection{Serialisierung mit JSON}
+Die Verwendung von JSON für die Übertragung von Objekten ermöglichst eine Verwendung auf jeden Plattformen. Würde man hier beispielsweise RMI verwenden wäre man auf JAVA-Anwendungen angewiesen.
+
+
+\subsection{Zentrale Datenbank}
+\TODO{TG: machen}
+
 
 \section{Mögliche Ergänzungen}
-\TODO{machen}
+\subsection{Plattformen}
+Eine Erweiterung auf andere Plattformen ist denkbar und ohne weiteres möglich. Es müsste für die entsprechende Plattform lediglich eine GUI und eine Anbindung der Webservices gemacht werden.
+
+\subsection{Spiele}
+Die momentane Struktur des Servers ermöglicht es weitere Spiele zu integrieren. Aktuell ist es nur möglich Spiele mit einer Warteliste hinzuzufügen. Eine Ergänzung um Spiele, die an \glspl{poi} gebunden sind, ist auch möglich. Auch andere \gls{poi}-basierte Spiele wie beispielsweise eine Schnitzeljagd ist denkbar.
+
+\subsection{Navigation}
+Da die Navigation rein über GPS-Koordinaten gelöst ist, ist es ohne weiteres möglich zu Freunden zu navigieren oder zu andere Orten.
+
+\subsection{Soziale Netzwerke}
+Eine Anbindung an soziale Netzwerke ist auch denkbar.
